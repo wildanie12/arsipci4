@@ -4,6 +4,88 @@
 
 <?= $this->section('page-content'); ?>
 
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col">
+            <div class="card card-shadow">
+                <div class="card-header">
+                    <div class="row justify-content-between align-items-center">
+                        <div class="col-auto text-center">
+                            <i class="fas fa-file-alt mb-2" style="font-size: 32px"></i>
+                            <h6 class="mb-0 font-weight-bold text-default text-center">
+                                Manajemen <br/>Data asesi
+                            </h6>
+                        </div>
+                        <div class="col-md">
+                            <div class="form-group mb-0">
+                                <label for="filter-limit">Limit</label>
+                                <input type="number" class="form-control form-control-sm" min="0" step="5">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th>Opsi</th>
+                                    <th>Foto</th>
+                                    <th>Nama</th>
+                                    <th>Alamat</th>
+                                    <th>Tempat Lahir</th>
+                                    <th>Tanggal Lahir</th>
+                                    <th>NIK</th>
+                                    <th>Pekerjaan</th>
+                                    <th>Pendidikan Terakhir</th>
+                                    <th>Email</th>
+                                    <th>No Telepon</th>
+                                    <th>Tanggal Uji</th>
+                                    <th>Asesor Kompetensi</th>
+                                    <th>TUK</th>
+                                    <th>Skema Sertifikasi</th>
+                                    <th>No Blanko</th>
+                                    <th>No Sertifikat</th>
+                                    <th>Tanggal Sertifikat</th>
+                                    <th>Tanggal Expired Sertifikat</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>No</td>
+                                    <td>Opsi</td>
+                                    <td>Foto</td>
+                                    <td>Nama</td>
+                                    <td>Alamat</td>
+                                    <td>Tempat Lahir</td>
+                                    <td>Tanggal Lahir</td>
+                                    <td>NIK</td>
+                                    <td>Pekerjaan</td>
+                                    <td>Pendidikan Terakhir</td>
+                                    <td>Email</td>
+                                    <td>No Telepon</td>
+                                    <td>Tanggal Uji</td>
+                                    <td>Asesor Kompetensi</td>
+                                    <td>TUK</td>
+                                    <td>Skema Sertifikasi</td>
+                                    <td>No Blanko</td>
+                                    <td>No Sertifikat</td>
+                                    <td>Tanggal Sertifikat</td>
+                                    <td>Tanggal Expired Sertifikat</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
 <div class="container-fluid text-center text-md-left justify-content-center">
 
     <!-- Page Heading -->
@@ -452,147 +534,147 @@
     
 
 
-    table = $("#table-1").DataTable({
-        responsive: true,
-        ajax: {
-            url: "<?= site_url('asesi/ajax_list') ?>",
-            type: "GET",
-            error: function(request, status, err) {
-                Swal.fire({
-                    title: "Pengambilan data gagal!",
-                    text: "Silakan coba kembali.",
-                    type: "error",
-                    allowOutsideClick: false,
-                });
-            }
-        },
-        initComplete: function(settings, json) {
-            $(this).DataTable().on('order.dt search.dt', function() {
-                $(this).DataTable().column(0, {
-                    search: 'applied',
-                    order: 'applied'
-                }).nodes().each(function(cell, i) {
-                    cell.innerHTML = i + 1;
-                });
-            }).draw();
-        },
-        columnDefs: [{
-            targets: [0],
-            className: "dt-center"
-        }, ],
-        columns: [
+    // table = $("#table-1").DataTable({
+    //     responsive: true,
+    //     ajax: {
+    //         url: "<?= site_url('asesi/ajax_list') ?>",
+    //         type: "GET",
+    //         error: function(request, status, err) {
+    //             Swal.fire({
+    //                 title: "Pengambilan data gagal!",
+    //                 text: "Silakan coba kembali.",
+    //                 type: "error",
+    //                 allowOutsideClick: false,
+    //             });
+    //         }
+    //     },
+    //     initComplete: function(settings, json) {
+    //         $(this).DataTable().on('order.dt search.dt', function() {
+    //             $(this).DataTable().column(0, {
+    //                 search: 'applied',
+    //                 order: 'applied'
+    //             }).nodes().each(function(cell, i) {
+    //                 cell.innerHTML = i + 1;
+    //             });
+    //         }).draw();
+    //     },
+    //     columnDefs: [{
+    //         targets: [0],
+    //         className: "dt-center"
+    //     }, ],
+    //     columns: [
             
-            {
-                width: "1%",
-                data: null
-            },
-            {
-                data: null,
-                render: function(data, type, row) {
-                    return '<a href="#" class="btn btn-sm btn-primary btn-detail mb-1 mt-1" data-id="' + data.id + '">Detail</a></br> ' + '</br>'+
-                        '<button class="btn btn-sm btn-info btn-edit mb-1 mt-1" data-id="' + data.id + '">Edit</button></br> ' + '</br>'+
-                        '<button class="btn btn-sm btn-danger btn-delete mb-1 mt-1" data-id="' + data.id + '">Hapus</button>';
-                },
-            },
-            {
-                data: null,
-                render: function(data, type, row) {
-                    var no_image = "'<?= site_url('assets/media/img/no_image.jpg') ?>'";
-                    return '<div class="rounded-circle my-auto" style="width: 140px; height: 140px; overflow:hidden"><img style="width: 100%" src="' + data.foto + '" alt="' + data.nama + '"></div></div>';
-                },
-            },
+    //         {
+    //             width: "1%",
+    //             data: null
+    //         },
+    //         {
+    //             data: null,
+    //             render: function(data, type, row) {
+    //                 return '<a href="#" class="btn btn-sm btn-primary btn-detail mb-1 mt-1" data-id="' + data.id + '">Detail</a></br> ' + '</br>'+
+    //                     '<button class="btn btn-sm btn-info btn-edit mb-1 mt-1" data-id="' + data.id + '">Edit</button></br> ' + '</br>'+
+    //                     '<button class="btn btn-sm btn-danger btn-delete mb-1 mt-1" data-id="' + data.id + '">Hapus</button>';
+    //             },
+    //         },
+    //         {
+    //             data: null,
+    //             render: function(data, type, row) {
+    //                 var no_image = "'<?= site_url('assets/media/img/no_image.jpg') ?>'";
+    //                 return '<div class="rounded-circle my-auto" style="width: 140px; height: 140px; overflow:hidden"><img style="width: 100%" src="' + data.foto + '" alt="' + data.nama + '"></div></div>';
+    //             },
+    //         },
 
-            {
-                data: "nama",
-                render: $.fn.dataTable.render.text()
-            },
-            {
-                data: "alamat",
-                render: $.fn.dataTable.render.text()
-            },
-            {
-                data: "tempat_lahir",
-                render: $.fn.dataTable.render.text()
-            },
-            {
-                data: "tanggal_lahir",
-                render: $.fn.dataTable.render.text()
-            },
-            {
-                data: "nik",
-                render: $.fn.dataTable.render.text()
-            },
-            {
-                data: "pekerjaan",
-                render: $.fn.dataTable.render.text()
-            },
-            {
-                data: "pendidikan_terakhir",
-                render: $.fn.dataTable.render.text()
-            },
-            {
-                data: "email",
-                render: $.fn.dataTable.render.text()
-            },
-            {
-                data: "no_telepon",
-                render: $.fn.dataTable.render.text()
-            },
-            {
-                data: "tanggal_uji",
-                render: $.fn.dataTable.render.text()
-            },
-            {
-                data: "asesor_kompetensi",
-                render: $.fn.dataTable.render.text()
-            },
-            {
-                data: "tuk",
-                render: $.fn.dataTable.render.text()
-            },
-            {
-                data: "skema_sertifikasi",
-                render: $.fn.dataTable.render.text()
-            },
-            {
-                data: "no_blanko",
-                render: $.fn.dataTable.render.text()
-            },
-            {
-                data: "no_sertifikat",
-                render: $.fn.dataTable.render.text()
-            },
-            {
-                data: "tanggal_sertifikat",
-                render: $.fn.dataTable.render.text()
-            },
-            {
-                data: "tanggal_expired_sertifikat",
-                render: $.fn.dataTable.render.text()
-            },
-            // {
-            //     data: null,
-            //     render: function(data, type, row) {
-            //         var no_image = "'<?= base_url('assets/media/img/no_image.jpg') ?>'";
-            //         return '<div style="width: 100px; height: 100px; overflow: hidden"><img style="width: 100%" src="' + data.muk + '" alt="' + data.nama + '" onerror="this.onerror=null;this.src=' + no_image + '"></div>';
-            //     },
-            // },
-            // {
-            //     data: null,
-            //     render: function(data, type, row) {
-            //         var no_image = "'<?= base_url('assets/media/img/no_image.jpg') ?>'";
-            //         return '<div style="width: 100px; height: 100px; overflow: hidden"><img style="width: 100%" src="' + data.portofolio + '" alt="' + data.nama + '" onerror="this.onerror=null;this.src=' + no_image + '"></div>';
-            //     },
-            // },
-            // {
-            //     data: null,
-            //     render: function(data, type, row) {
-            //         var no_image = "'<?= base_url('assets/media/img/no_image.jpg') ?>'";
-            //         return '<div style="width: 100px; height: 100px; overflow: hidden"><img style="width: 100%" src="' + data.sertifikat_kompetensi + '" alt="' + data.nama + '" onerror="this.onerror=null;this.src=' + no_image + '"></div>';
-            //     },
-            // }
-        ]
-    });
+    //         {
+    //             data: "nama",
+    //             render: $.fn.dataTable.render.text()
+    //         },
+    //         {
+    //             data: "alamat",
+    //             render: $.fn.dataTable.render.text()
+    //         },
+    //         {
+    //             data: "tempat_lahir",
+    //             render: $.fn.dataTable.render.text()
+    //         },
+    //         {
+    //             data: "tanggal_lahir",
+    //             render: $.fn.dataTable.render.text()
+    //         },
+    //         {
+    //             data: "nik",
+    //             render: $.fn.dataTable.render.text()
+    //         },
+    //         {
+    //             data: "pekerjaan",
+    //             render: $.fn.dataTable.render.text()
+    //         },
+    //         {
+    //             data: "pendidikan_terakhir",
+    //             render: $.fn.dataTable.render.text()
+    //         },
+    //         {
+    //             data: "email",
+    //             render: $.fn.dataTable.render.text()
+    //         },
+    //         {
+    //             data: "no_telepon",
+    //             render: $.fn.dataTable.render.text()
+    //         },
+    //         {
+    //             data: "tanggal_uji",
+    //             render: $.fn.dataTable.render.text()
+    //         },
+    //         {
+    //             data: "asesor_kompetensi",
+    //             render: $.fn.dataTable.render.text()
+    //         },
+    //         {
+    //             data: "tuk",
+    //             render: $.fn.dataTable.render.text()
+    //         },
+    //         {
+    //             data: "skema_sertifikasi",
+    //             render: $.fn.dataTable.render.text()
+    //         },
+    //         {
+    //             data: "no_blanko",
+    //             render: $.fn.dataTable.render.text()
+    //         },
+    //         {
+    //             data: "no_sertifikat",
+    //             render: $.fn.dataTable.render.text()
+    //         },
+    //         {
+    //             data: "tanggal_sertifikat",
+    //             render: $.fn.dataTable.render.text()
+    //         },
+    //         {
+    //             data: "tanggal_expired_sertifikat",
+    //             render: $.fn.dataTable.render.text()
+    //         },
+    //         // {
+    //         //     data: null,
+    //         //     render: function(data, type, row) {
+    //         //         var no_image = "'<?= base_url('assets/media/img/no_image.jpg') ?>'";
+    //         //         return '<div style="width: 100px; height: 100px; overflow: hidden"><img style="width: 100%" src="' + data.muk + '" alt="' + data.nama + '" onerror="this.onerror=null;this.src=' + no_image + '"></div>';
+    //         //     },
+    //         // },
+    //         // {
+    //         //     data: null,
+    //         //     render: function(data, type, row) {
+    //         //         var no_image = "'<?= base_url('assets/media/img/no_image.jpg') ?>'";
+    //         //         return '<div style="width: 100px; height: 100px; overflow: hidden"><img style="width: 100%" src="' + data.portofolio + '" alt="' + data.nama + '" onerror="this.onerror=null;this.src=' + no_image + '"></div>';
+    //         //     },
+    //         // },
+    //         // {
+    //         //     data: null,
+    //         //     render: function(data, type, row) {
+    //         //         var no_image = "'<?= base_url('assets/media/img/no_image.jpg') ?>'";
+    //         //         return '<div style="width: 100px; height: 100px; overflow: hidden"><img style="width: 100%" src="' + data.sertifikat_kompetensi + '" alt="' + data.nama + '" onerror="this.onerror=null;this.src=' + no_image + '"></div>';
+    //         //     },
+    //         // }
+    //     ]
+    // });
 
     var operationMode = 'tambah'
     $(".btn-add").click(function (e) {

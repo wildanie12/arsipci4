@@ -33,6 +33,9 @@ $routes->setAutoRoute(true);
 // route since we don't have to scan directories.
 $routes->get('/', 'User::index');
 
+$routes->get('asesi', 'Asesi\AsesiController::index');
+$routes->get('asesi/(:any)', 'Asesi\AsesiController::$1');
+
 /*
  * --------------------------------------------------------------------
  * Additional Routing

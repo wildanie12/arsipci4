@@ -1,18 +1,53 @@
 <?php
 
-namespace App\Controllers;
+namespace App\Controllers\Asesi;
 
+use App\Controllers\BaseController;
 
 class Asesi extends BaseController
 {
-    
+    /**
+     * Menampilkan halaman list
+     * return 
+     */
     public function index()
     {
         $data = [
             'ui_title' => 'Data Asesi'
         ];
-        return view('user/asesi', $data);
+        return view('asesi/asesi/list', $data);
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     public function ajax_list()
@@ -96,8 +131,6 @@ class Asesi extends BaseController
     {
         $request = $this->request;
         if ($request->isAJAX()) {
-
-
             $rules = [
                 'no_sertifikat' => [
                     'rules' => 'required|is_unique[asesi.no_sertifikat]',
