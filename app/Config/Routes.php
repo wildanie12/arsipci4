@@ -2,6 +2,8 @@
 
 namespace Config;
 
+use App\Models\TUK\TUKModel;
+
 // Create a new instance of our RouteCollection class.
 $routes = Services::routes();
 
@@ -31,10 +33,20 @@ $routes->setAutoRoute(true);
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
-$routes->get('/', 'User::index');
+// $routes->get('/', 'User::index');
+$routes->get('/', function () {
+	dd((new TUKModel())->findAll());
+});
 
 $routes->get('asesi', 'Asesi\AsesiController::index');
 $routes->get('asesi/(:any)', 'Asesi\AsesiController::$1');
+
+$routes->get('tuk', 'TUK\TUKController::index');
+$routes->get('tuk/(:any)', 'TUK\TUKController::$1');
+
+$routes->group('resource', function($routes) {
+	$routes->resource('tuk', ['controller' => 'Resources\TUK\TUKResource']);
+});
 
 /*
  * --------------------------------------------------------------------

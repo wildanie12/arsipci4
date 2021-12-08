@@ -1,6 +1,4 @@
-<?= $this->extend(
-    'templates/sidebar'
-); ?>
+<?= $this->extend('templates/sidebar'); ?>
 
 <?= $this->section('page-content'); ?>
 
@@ -19,8 +17,24 @@
                         </div>
                         <div class="col-md">
                             <div class="form-group mb-0">
-                                <label for="filter-limit">Limit</label>
-                                <input type="number" class="form-control form-control-sm" min="0" step="5">
+                                <label for="filter-limit" class="mb-0 font-weight-bold text-xs">Limit</label>
+                                <div class="input-group input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fas fa-list-ol"></i></span>
+                                    </div>
+                                    <input type="number" value="50" id="filter-limit" class="filter-limit form-control form-control-sm" min="0" step="5">
+                                </div> 
+                            </div>
+                        </div>
+                        <div class="col-md">
+                            <div class="form-group mb-0">
+                                <label for="filter-limit" class="mb-0 font-weight-bold text-xs">Limit</label>
+                                <div class="input-group input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fas fa-list-ol"></i></span>
+                                    </div>
+                                    <input type="number" value="50" id="filter-limit" class="filter-limit form-control form-control-sm" min="0" step="5">
+                                </div> 
                             </div>
                         </div>
                     </div>
