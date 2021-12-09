@@ -75,7 +75,21 @@ class TUKResource extends ResourceController
 	 */
 	public function show($id = null)
 	{
-		//
+		$TUKModel = new TUKModel();
+		$data = $TUKModel->asArray()->find($id);
+
+		$data['panduan_mutu_filename'] = basename($data['panduan_mutu']);
+		$data['sop_filename'] = basename($data['sop']);
+		$data['sk_tuk_filename'] = basename($data['sk_tuk']);
+		$data['ba_verifikasi_filename'] = basename($data['ba_verifikasi']);
+		$data['spt_verifikator_filename'] = basename($data['spt_verifikator']);
+		$data['sk_checklist_persyaratan_filename'] = basename($data['sk_checklist_persyaratan']);
+		$data['mou_filename'] = basename($data['mou']);
+
+		return json_encode([
+			'status' => 'success',
+			'data' => $data
+		]);
 	}
 
 	/**
@@ -146,14 +160,14 @@ class TUKResource extends ResourceController
 				'errors' => ['required' => 'Dokumen MoU harus diisi']
 			],
 		];
-		// if (!$this->validate($rules)) {
-		// 	$validation = \Config\Services::validation();
-		// 	return json_encode([
-		// 		'status' => 'error',
-		// 		'rules' => 'required',
-		// 		'errors' => $validation->getErrors()
-		// 	]);
-		// }
+		if (!$this->validate($rules)) {
+			$validation = \Config\Services::validation();
+			return json_encode([
+				'status' => 'error',
+				'rules' => 'required',
+				'errors' => $validation->getErrors()
+			]);
+		}
 		$data = [
 			'nama' => $request->getPost('nama'),
 			'alamat' => $request->getPost('alamat'),
@@ -240,7 +254,142 @@ class TUKResource extends ResourceController
 	 */
 	public function update($id = null)
 	{
-		//
+		if ($id != null) {
+			$TUKModel = new TUKModel();
+			$request = $this->request;
+
+			$tuk = $TUKModel->find($id);
+
+			$rules = [
+				'nama' => [
+					'rules' => 'required',
+					'errors' => ['required' => 'Nama harus diisi']
+				],
+				'no_sk' => [
+					'rules' => 'required',
+					'errors' => ['required' => 'Nomor SK harus diisi']
+				],
+				'alamat' => [
+					'rules' => 'required',
+					'errors' => ['required' => 'Alamat harus diisi']
+				],
+				'ketua' => [
+					'rules' => 'required',
+					'errors' => ['required' => 'Ketua TUK harus diisi']
+				],
+				'no_telepon' => [
+					'rules' => 'required',
+					'errors' => ['required' => 'Nomor Telepon harus diisi']
+				]
+			];
+			if (!$this->validate($rules)) {
+				$validation = \Config\Services::validation();
+				return json_encode([
+					'status' => 'error',
+					'rules' => 'required',
+					'errors' => $validation->getErrors()
+				]);
+			}
+			$data = [
+				'nama' => $request->getPost('nama'),
+				'alamat' => $request->getPost('alamat'),
+				'no_sk' => $request->getPost('no_sk'),
+				'ketua' => $request->getPost('ketua'),
+				'no_telepon' => $request->getPost('no_telepon'),
+			];
+
+			// Upload
+			$configPath = new Upload();
+
+			$panduan_mutu = $request->getFile('panduan_mutu');
+			if ($panduan_mutu->isValid()) {
+				if ($tuk->panduan_mutu != '') {
+					if (file_exists($configPath->publicDirectory . 'files/tuk/panduan_mutu/' . utf8_decode(urldecode(basename($tuk->panduan_mutu))))) {
+						unlink($configPath->publicDirectory . 'files/tuk/panduan_mutu/' . utf8_decode(urldecode(basename($tuk->panduan_mutu))));
+					}
+				}
+				$panduan_mutu->move($configPath->publicDirectory . 'files/tuk/panduan_mutu');
+				$data['panduan_mutu'] = site_url('files/tuk/panduan_mutu/' . $panduan_mutu->getName());
+			}
+
+			$sop = $request->getFile('sop');
+			if ($sop->isValid()) {
+				if ($tuk->sop != '') {
+					if (file_exists($configPath->publicDirectory . 'files/tuk/sop/' . utf8_decode(urldecode(basename($tuk->sop))))) {
+						unlink($configPath->publicDirectory . 'files/tuk/sop/' . utf8_decode(urldecode(basename($tuk->sop))));
+					}
+				}
+				$sop->move($configPath->publicDirectory . 'files/tuk/sop');
+				$data['sop'] = site_url('files/tuk/sop/' . $sop->getName());
+			}
+
+			$sk_tuk = $request->getFile('sk_tuk');
+			if ($sk_tuk->isValid()) {
+				if ($tuk->sk_tuk != '') {
+					if (file_exists($configPath->publicDirectory . 'files/tuk/sk_tuk/' . utf8_decode(urldecode(basename($tuk->sk_tuk))))) {
+						unlink($configPath->publicDirectory . 'files/tuk/sk_tuk/' . utf8_decode(urldecode(basename($tuk->sk_tuk))));
+					}
+				}
+				$sk_tuk->move($configPath->publicDirectory . 'files/tuk/sk_tuk');
+				$data['sk_tuk'] = site_url('files/tuk/sk_tuk/' . $sk_tuk->getName());
+			}
+
+			$ba_verifikasi = $request->getFile('ba_verifikasi');
+			if ($ba_verifikasi->isValid()) {
+				if ($tuk->ba_verifikasi != '') {
+					if (file_exists($configPath->publicDirectory . 'files/tuk/ba_verifikasi/' . utf8_decode(urldecode(basename($tuk->ba_verifikasi))))) {
+						unlink($configPath->publicDirectory . 'files/tuk/ba_verifikasi/' . utf8_decode(urldecode(basename($tuk->ba_verifikasi))));
+					}
+				}
+				$ba_verifikasi->move($configPath->publicDirectory . 'files/tuk/ba_verifikasi');
+				$data['ba_verifikasi'] = site_url('files/tuk/ba_verifikasi/' . $ba_verifikasi->getName());
+			}
+
+			$spt_verifikator = $request->getFile('spt_verifikator');
+			if ($spt_verifikator->isValid()) {
+				if ($tuk->spt_verifikator != '') {
+					if (file_exists($configPath->publicDirectory . 'files/tuk/spt_verifikator/' . utf8_decode(urldecode(basename($tuk->spt_verifikator))))) {
+						unlink($configPath->publicDirectory . 'files/tuk/spt_verifikator/' . utf8_decode(urldecode(basename($tuk->spt_verifikator))));
+					}
+				}
+				$spt_verifikator->move($configPath->publicDirectory . 'files/tuk/spt_verifikator');
+				$data['spt_verifikator'] = site_url('files/tuk/spt_verifikator/' . $spt_verifikator->getName());
+			}
+
+			$sk_checklist_persyaratan = $request->getFile('sk_checklist_persyaratan');
+			if ($sk_checklist_persyaratan->isValid()) {
+				if ($tuk->sk_checklist_persyaratan != '') {
+					if (file_exists($configPath->publicDirectory . 'files/tuk/sk_checklist_persyaratan/' . utf8_decode(urldecode(basename($tuk->sk_checklist_persyaratan))))) {
+						unlink($configPath->publicDirectory . 'files/tuk/sk_checklist_persyaratan/' . utf8_decode(urldecode(basename($tuk->sk_checklist_persyaratan))));
+					}
+				}
+				$sk_checklist_persyaratan->move($configPath->publicDirectory . 'files/tuk/sk_checklist_persyaratan');
+				$data['sk_checklist_persyaratan'] = site_url('files/tuk/sk_checklist_persyaratan/' . $sk_checklist_persyaratan->getName());
+			}
+
+			$mou = $request->getFile('mou');
+			if ($mou->isValid()) {
+				if ($tuk->mou != '') {
+					if (file_exists($configPath->publicDirectory . 'files/tuk/mou/' . utf8_decode(urldecode(basename($tuk->mou))))) {
+						unlink($configPath->publicDirectory . 'files/tuk/mou/' . utf8_decode(urldecode(basename($tuk->mou))));
+					}
+				}
+				$mou->move($configPath->publicDirectory . 'files/tuk/mou');
+				$data['mou'] = site_url('files/tuk/mou/' . $mou->getName());
+			}
+			
+			$TUKModel->update($id, $data);
+			$data = $TUKModel->find($id);
+			return json_encode([
+				'status' => 'success',
+				'data' => $data
+			]);
+		} else {
+			return json_encode([
+				'status' => 'error',
+				'message' => 'ID kosong, Masukkan ID'
+			]);
+		}
 	}
 
 	/**
@@ -250,6 +399,53 @@ class TUKResource extends ResourceController
 	 */
 	public function delete($id = null)
 	{
-		//
+		$TUKModel = new TUKModel();
+		$tuk = $TUKModel->find($id);
+
+		$configPath = new Upload();
+
+			if ($tuk->panduan_mutu != '') {
+				if (file_exists($configPath->publicDirectory . 'files/tuk/panduan_mutu/' . utf8_decode(urldecode(basename($tuk->panduan_mutu))))) {
+					unlink($configPath->publicDirectory . 'files/tuk/panduan_mutu/' . utf8_decode(urldecode(basename($tuk->panduan_mutu))));
+				}
+			}
+
+			if ($tuk->sop != '') {
+				if (file_exists($configPath->publicDirectory . 'files/tuk/sop/' . utf8_decode(urldecode(basename($tuk->sop))))) {
+					unlink($configPath->publicDirectory . 'files/tuk/sop/' . utf8_decode(urldecode(basename($tuk->sop))));
+				}
+			}
+
+			if ($tuk->sk_tuk != '') {
+				if (file_exists($configPath->publicDirectory . 'files/tuk/sk_tuk/' . utf8_decode(urldecode(basename($tuk->sk_tuk))))) {
+					unlink($configPath->publicDirectory . 'files/tuk/sk_tuk/' . utf8_decode(urldecode(basename($tuk->sk_tuk))));
+				}
+			}
+
+			if ($tuk->ba_verifikasi != '') {
+				if (file_exists($configPath->publicDirectory . 'files/tuk/ba_verifikasi/' . utf8_decode(urldecode(basename($tuk->ba_verifikasi))))) {
+					unlink($configPath->publicDirectory . 'files/tuk/ba_verifikasi/' . utf8_decode(urldecode(basename($tuk->ba_verifikasi))));
+				}
+			}
+
+			if ($tuk->spt_verifikator != '') {
+				if (file_exists($configPath->publicDirectory . 'files/tuk/spt_verifikator/' . utf8_decode(urldecode(basename($tuk->spt_verifikator))))) {
+					unlink($configPath->publicDirectory . 'files/tuk/spt_verifikator/' . utf8_decode(urldecode(basename($tuk->spt_verifikator))));
+				}
+			}
+
+			if ($tuk->sk_checklist_persyaratan != '') {
+				if (file_exists($configPath->publicDirectory . 'files/tuk/sk_checklist_persyaratan/' . utf8_decode(urldecode(basename($tuk->sk_checklist_persyaratan))))) {
+					unlink($configPath->publicDirectory . 'files/tuk/sk_checklist_persyaratan/' . utf8_decode(urldecode(basename($tuk->sk_checklist_persyaratan))));
+				}
+			}
+
+			if ($tuk->mou != '') {
+				if (file_exists($configPath->publicDirectory . 'files/tuk/mou/' . utf8_decode(urldecode(basename($tuk->mou))))) {
+					unlink($configPath->publicDirectory . 'files/tuk/mou/' . utf8_decode(urldecode(basename($tuk->mou))));
+				}
+			}
+
+		$tuk->delete();
 	}
 }
