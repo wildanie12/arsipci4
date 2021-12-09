@@ -9,7 +9,7 @@
 
 <?php foreach ($data as $index => $row) : ?>
     <tr>
-        <td class="align-middle"><?= ++$index ?></td>
+        <td class="align-middle"><?= (($page-1) * $limit) + ++$index ?></td>
         <td class="align-middle">
             <strong><?= $row->nama ?></strong><br/>
             <div class="font-italic text-xs" style="line-height: 16px;">
@@ -94,13 +94,13 @@
             </table>
         </td>
         <td class="align-middle">
-            <a href="#" data-id="<?= $row->id ?>" class="mb-1 btn btn-sm btn-default rounded-circle">
+            <a href="#" data-id="<?= $row->id ?>" class="mb-1 btn btn-sm btn-default btn-detail rounded-circle">
                 <i class="fas fa-eye"></i>
             </a>
-            <a href="#" data-id="<?= $row->id ?>" class="mb-1 btn btn-sm btn-default rounded-circle">
+            <a href="#" data-id="<?= $row->id ?>" class="mb-1 btn btn-sm btn-default btn-edit rounded-circle">
                 <i class="fas fa-pencil-alt"></i>
             </a>
-            <a href="#" data-id="<?= $row->id ?>" class="mb-1 btn btn-sm btn-danger rounded-circle">
+            <a href="#" data-id="<?= $row->id ?>" class="mb-1 btn btn-sm btn-danger btn-delete rounded-circle">
                 <i class="fas fa-trash"></i>
             </a>
         </td>

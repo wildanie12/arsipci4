@@ -27,7 +27,20 @@ class TUKResource extends ResourceController
 			$TUKModel->like($berdasarkan, $pencarian, 'both');
 		}
 
-		$data['data'] = $TUKModel->findAll();
+		$limit = $request->getGet('limit');
+		if ($limit == '') {
+			$limit = 50;
+		}
+
+		$page = $request->getGet('page_tuk');
+		if ($page == '') {
+			$page = 1;
+		}
+
+		$data['data'] = $TUKModel->paginate($limit, 'tuk');
+		$data['pager'] = $TUKModel->pager;
+		$data['page'] = $page;
+		$data['limit'] = $limit;
 
 		$view_content = $request->getGet('view_content');
 		$view_pagination = $request->getGet('view_pagination');
