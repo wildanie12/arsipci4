@@ -37,6 +37,14 @@ class TUKResource extends ResourceController
 			$page = 1;
 		}
 
+		$sort = $request->getGet('sort');
+		$sortBy = $request->getGet('sortBy');
+		if ($sort != '' && $sortBy != '') {
+			$TUKModel->orderBy($sortBy, $sort);
+		} else {
+			$TUKModel->orderBy('nama', 'asc');
+		}
+
 		$data['data'] = $TUKModel->paginate($limit, 'tuk');
 		$data['pager'] = $TUKModel->pager;
 		$data['page'] = $page;

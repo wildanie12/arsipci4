@@ -69,6 +69,18 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="row mt-2">
+                                        <div class="col">
+                                            <div class="form-group">
+                                                <form action="#" method="post">
+                                                    <button type="submit" class="btn btn-sm btn-block btn-success">
+                                                        <i class="fas fa-file-excel mr-2"></i>
+                                                        Export ke Spreadsheet
+                                                    </button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="col-md-auto">
                                     <a href="#" class="btn btn-success rounded-circle btn-new-tuk">
@@ -95,25 +107,25 @@
                                     <th class="align-middle" style="width: 20%">
                                         Nama
                                         <span class="ml-2 text-danger btn-sort" data-field="nama" data-sort="asc" style="cursor: pointer">
-                                            <i class="fas fa-sort-alpha-up"></i>
+                                            <i class="fas fa-sort-amount-down-alt"></i>
                                         </span>
                                     </th>
                                     <th class="align-middle">
                                         No SK
                                         <span class="ml-2 text-warning btn-sort" data-field="no_sk" data-sort="asc" style="cursor: pointer">
-                                            <i class="fas fa-sort-numeric-up"></i>
+                                            <i class="fas fa-sort-amount-down-alt"></i>
                                         </span>
                                     </th>
                                     <th class="align-middle" style="width: 10%">
                                         Ketua
                                         <span class="ml-2 text-warning btn-sort" data-field="ketua" data-sort="asc" style="cursor: pointer">
-                                            <i class="fas fa-sort-alpha-up"></i>
+                                            <i class="fas fa-sort-amount-down-alt"></i>
                                         </span>
                                     </th>
                                     <th class="align-middle">
                                         No Telepon
                                         <span class="ml-2 text-warning btn-sort" data-field="alamat" data-sort="asc" style="cursor: pointer">
-                                            <i class="fas fa-sort-numeric-up"></i>
+                                            <i class="fas fa-sort-amount-down-alt"></i>
                                         </span>
                                     </th>
                                     <th class="align-middle" style="width: 35%">
@@ -892,6 +904,31 @@
             }
             refreshData()
         }) 
+
+        $(".btn-sort").click(function (e) {
+            e.preventDefault()
+            field = $(this).attr('data-field')
+            sort = $(this).attr('data-sort')
+            $(".btn-sort").removeClass('text-danger')
+            $(".btn-sort").addClass('text-warning')
+            $(this).addClass('text-danger')
+
+            if (sort == 'asc') {
+                sort = 'desc'
+                $(this).attr('data-sort', 'desc')
+                $(this).find('i').removeClass('fa-sort-amount-down-alt')
+                $(this).find('i').addClass('fa-sort-amount-up-alt')
+            } else {
+                sort = 'asc'
+                $(this).attr('data-sort', 'asc')
+                $(this).find('i').removeClass('fa-sort-amount-up-alt')
+                $(this).find('i').addClass('fa-sort-amount-down-alt')
+            }
+
+            dataParams.sort = sort
+            dataParams.sortBy = field
+            refreshData()
+        })
     })
 </script>
 
