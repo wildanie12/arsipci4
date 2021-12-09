@@ -6,6 +6,15 @@
         return $string;
     }
 ?>
+<?php if (count($data) <= 0) : ?>
+
+    <tr>
+        <td class="align-middle text-center" colspan="20">
+            Tidak ada data
+        </td>
+    </tr>
+
+<?php endif; ?>
 
 <?php foreach ($data as $index => $row) : ?>
     <tr>
