@@ -446,6 +446,10 @@ class TUKResource extends ResourceController
 				}
 			}
 
-		$tuk->delete();
+		$data = $TUKModel->delete($id);
+		return json_encode([
+			'status' => 'success',
+			'data' => $data
+		]);
 	}
 }

@@ -691,6 +691,25 @@
                     modalEditTUK.find('.loading').hide()
                 })
             })
+
+            $(".btn-delete").click(function (e) {
+                e.preventDefault()
+                if (confirm('Anda yakin?')) {
+                    id = $(this).data('id')
+                    $.ajax({
+                        type: "POST",
+                        url: "<?= site_url('resource/tuk/') ?>" + id,
+                        data: {
+                            _method: 'DELETE',
+                            ['<?= csrf_token() ?>']: '<?= csrf_hash() ?>'
+                        },
+                        dataType: "json",
+                    })
+                    .done(function (response) {
+                        refreshData()
+                    })
+                }
+            })
         }
         refreshData()
 
