@@ -78,6 +78,13 @@
                             </div>
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="progress progress-sm mt-1 progress-data" style="visibility: hidden;">
+                                <div class="progres-bar progress-bar-striped progress-bar-animated bg-primary" style="width: 100%;"></div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -87,14 +94,31 @@
                                     <th class="align-middle">#</th>
                                     <th class="align-middle" style="width: 20%">
                                         Nama
-                                        <span class="ml-2 text-warning btn-sort" data-sort="asc" style="cursor: pointer">
+                                        <span class="ml-2 text-danger btn-sort" data-field="nama" data-sort="asc" style="cursor: pointer">
                                             <i class="fas fa-sort-alpha-up"></i>
                                         </span>
                                     </th>
-                                    <th class="align-middle">No SK</th>
-                                    <th class="align-middle" style="width: 10%">Ketua</th>
-                                    <th class="align-middle">No Telepon</th>
-                                    <th class="align-middle" style="width: 35%">Dokumen</th>
+                                    <th class="align-middle">
+                                        No SK
+                                        <span class="ml-2 text-warning btn-sort" data-field="no_sk" data-sort="asc" style="cursor: pointer">
+                                            <i class="fas fa-sort-numeric-up"></i>
+                                        </span>
+                                    </th>
+                                    <th class="align-middle" style="width: 10%">
+                                        Ketua
+                                        <span class="ml-2 text-warning btn-sort" data-field="ketua" data-sort="asc" style="cursor: pointer">
+                                            <i class="fas fa-sort-alpha-up"></i>
+                                        </span>
+                                    </th>
+                                    <th class="align-middle">
+                                        No Telepon
+                                        <span class="ml-2 text-warning btn-sort" data-field="alamat" data-sort="asc" style="cursor: pointer">
+                                            <i class="fas fa-sort-numeric-up"></i>
+                                        </span>
+                                    </th>
+                                    <th class="align-middle" style="width: 35%">
+                                        Dokumen
+                                    </th>
                                     <th style="width: 30px"></th>
                                 </tr>
                             </thead>
@@ -628,6 +652,7 @@
         function refreshData(url) {
             url = 0 || url
             if (!url) url = "<?= site_url('resource/tuk') ?>"
+            $(".progress-data").css('visibility', 'visible');
             $.ajax({
                 type: "GET",
                 url: url,
@@ -635,6 +660,7 @@
                 dataType: "json",
             })
             .done(function (response) {
+                $(".progress-data").css('visibility', 'hidden');
                 $(".load-data").html(response.content)
                 $(".load-pagination").html(response.pagination)
                 onLoadedData()
