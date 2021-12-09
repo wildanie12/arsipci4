@@ -132,32 +132,32 @@ class TUKResource extends ResourceController
 				'errors' => ['required' => 'Nomor Telepon harus diisi']
 			],
 			'panduan_mutu' => [
-				'rules' => 'required',
-				'errors' => ['required' => 'Dokumen Panduan Mutu harus diisi']
+				'rules' => 'uploaded[panduan_mutu]',
+				'errors' => ['uploaded' => 'Dokumen Panduan Mutu harus diisi']
 			],
 			'sop' => [
-				'rules' => 'required',
-				'errors' => ['required' => 'Dokumen SOP harus diisi']
+				'rules' => 'uploaded[sop]',
+				'errors' => ['uploaded' => 'Dokumen SOP harus diisi']
 			],
 			'sk_tuk' => [
-				'rules' => 'required',
-				'errors' => ['required' => 'SK TUK harus diisi']
+				'rules' => 'uploaded[sk_tuk]',
+				'errors' => ['uploaded' => 'SK TUK harus diisi']
 			],
 			'ba_verifikasi' => [
-				'rules' => 'required',
-				'errors' => ['required' => 'Dokumen BA Verifikasi harus diisi']
+				'rules' => 'uploaded[ba_verifikasi]',
+				'errors' => ['uploaded' => 'Dokumen BA Verifikasi harus diisi']
 			],
-			'spt_verificator' => [
-				'rules' => 'required',
-				'errors' => ['required' => 'Dokumen SPT Verifikator harus diisi']
+			'spt_verifikator' => [
+				'rules' => 'uploaded[spt_verifikator]',
+				'errors' => ['uploaded' => 'Dokumen SPT Verifikator harus diisi']
 			],
 			'sk_checklist_persyaratan' => [
-				'rules' => 'required',
-				'errors' => ['required' => 'SK Checklist Persyaratan harus diisi']
+				'rules' => 'uploaded[sk_checklist_persyaratan]',
+				'errors' => ['uploaded' => 'SK Checklist Persyaratan harus diisi']
 			],
 			'mou' => [
-				'rules' => 'required',
-				'errors' => ['required' => 'Dokumen MoU harus diisi']
+				'rules' => 'uploaded[mou]',
+				'errors' => ['uploaded' => 'Dokumen MoU harus diisi']
 			],
 		];
 		if (!$this->validate($rules)) {

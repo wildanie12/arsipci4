@@ -85,7 +85,12 @@
                             <thead>
                                 <tr>
                                     <th class="align-middle">#</th>
-                                    <th class="align-middle" style="width: 20%">Nama</th>
+                                    <th class="align-middle" style="width: 20%">
+                                        Nama
+                                        <span class="ml-2 text-warning btn-sort" data-sort="asc" style="cursor: pointer">
+                                            <i class="fas fa-sort-alpha-up"></i>
+                                        </span>
+                                    </th>
                                     <th class="align-middle">No SK</th>
                                     <th class="align-middle" style="width: 10%">Ketua</th>
                                     <th class="align-middle">No Telepon</th>
@@ -636,12 +641,12 @@
             })
         }
         function onLoadedData() {
-            $(".btn-pagination").click(function (e) {
+            $(".btn-pagination").unbind('click').click(function (e) {
                 e.preventDefault()
                 link = $(this).attr('href')
                 refreshData(link)
             })
-            $(".btn-edit").click(function (e) {
+            $(".btn-edit").unbind('click').click(function (e) {
                 modalEditTUK.modal('show')
                 modalEditTUK.find('.loading').show()
                 e.preventDefault()
@@ -692,7 +697,7 @@
                 })
             })
 
-            $(".btn-delete").click(function (e) {
+            $(".btn-delete").unbind('click').click(function (e) {
                 e.preventDefault()
                 if (confirm('Anda yakin?')) {
                     id = $(this).data('id')
@@ -720,9 +725,10 @@
         })
 
         modalNewTUK.on('shown.bs.modal', function() {
-            modalNewTUK.find('form').submit(function (e) {
+            modalNewTUK.find('form').unbind('submit').submit(function (e) {
                 e.preventDefault()
                 modalNewTUK.find('.loading').show()
+                modalNewTUK.find(".error-message").hide()
                 formData = new FormData(this)
                 $.ajax({
                     type: "POST",
@@ -742,7 +748,7 @@
                     } else {
                         modalNewTUK.find('form')[0].reset()
                         modalNewTUK.modal('hide')
-                        modalEditTUK.find(".error_message").hide()
+                        modalNewTUK.find(".error-message").hide()
                         refreshData()
                     }
                 })
@@ -754,9 +760,10 @@
 
         modalEditTUK = $("#modal-edit-tuk")
         modalEditTUK.on('shown.bs.modal', function() {
-            modalEditTUK.find('form').submit(function (e) {
+            modalEditTUK.find('form').unbind('submit').submit(function (e) {
                 e.preventDefault()
                 modalEditTUK.find('.loading').show()
+                modalEditTUK.find(".error-message").hide()
                 id = modalEditTUK.find("[name='id']").val()
                 formData = new FormData(this)
                 $.ajax({
@@ -778,7 +785,7 @@
                         modalEditTUK.find('form')[0].reset()
                         modalEditTUK.modal('hide')
 
-                        modalEditTUK.find(".error_message").hide()
+                        modalEditTUK.find(".error-message").hide()
                         modalEditTUK.find(".document-panduan_mutu").show()
                         modalEditTUK.find(".document-sop").show()
                         modalEditTUK.find(".document-sk_tuk").show()
