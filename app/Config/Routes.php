@@ -44,8 +44,16 @@ $routes->get('asesi/(:any)', 'Asesi\AsesiController::$1');
 $routes->get('tuk', 'TUK\TUKController::index');
 $routes->get('tuk/(:any)', 'TUK\TUKController::$1');
 
+$routes->get('mitra_kerja', 'MitraKerja\MitraKerjaController::index');
+$routes->get('mitra_kerja/(:any)', 'MitraKerja\MitraKerjaController::$1');
+
 $routes->group('resource', function($routes) {
 	$routes->resource('tuk', ['controller' => 'Resources\TUK\TUKResource']);
+	$routes->resource('mitra_kerja', ['controller' => 'Resources\MitraKerja\MitraKerjaResource']);
+});
+
+$routes->group('export', function($routes) {
+	$routes->post('tuk/spreadsheet', 'Exports\TUKExport::spreadsheet');
 });
 
 /*

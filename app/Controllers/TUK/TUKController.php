@@ -14,7 +14,7 @@ class TUKController extends ResourceController
 	public function index()
 	{
 		$data = [
-            'ui_title' => 'Data Asesi'
+            'ui_title' => 'Data TUK'
         ];
         return view('tuk/list', $data);
 	}

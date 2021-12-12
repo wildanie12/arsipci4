@@ -23,6 +23,7 @@
     <link href="<?= base_url(); ?>/css/sb-admin-2.min.css" rel="stylesheet">
     <link rel="stylesheet" href="<?= site_url('css/custom.css') ?>">
     <link rel="stylesheet" href="<?=site_url('lib/datatables/datatables.bundle.css')?>">
+    <?= $this->renderSection('css') ?>
 
 </head>
 
