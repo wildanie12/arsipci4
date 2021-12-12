@@ -731,6 +731,8 @@
                             modalNewMitraKerja.find('.error-' + field).html(message).show()
                         })
                     } else {
+                        dokumenFileBuffer = []
+                        modalNewMitraKerja.find('.file-list').hide()
                         modalNewMitraKerja.find('form')[0].reset()
                         modalNewMitraKerja.modal('hide')
                         modalNewMitraKerja.find(".error-message").hide()

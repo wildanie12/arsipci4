@@ -4,6 +4,7 @@ namespace App\Controllers\Resources\MitraKerja;
 
 use App\Models\MitraKerja\MitraKerjaModel;
 use CodeIgniter\RESTful\ResourceController;
+use Config\Upload;
 
 class MitraKerjaResource extends ResourceController
 {
@@ -137,9 +138,30 @@ class MitraKerjaResource extends ResourceController
 				'errors' => $validation->getErrors()
 			]);
 		}
+		$data = [
+			'nama' => $request->getPost('nama'),
+			'tanggal' => $request->getPost('tanggal'),
+			'nomor_mou' => $request->getPost('nomor_mou'),
+			'keterangan' => $request->getPost('keterangan'),
+		];
+		if ($files = $request->getFiles()) {
+			$uploadPath = (new Upload())->publicDirectory;
+			$dokumen = [];
+			foreach ($files['dokumen'] as $file) {
+				$file->move($uploadPath . '/files/mitra_kerja/dokumen/');
+				$dokumen[] = utf8_decode(urldecode(site_url('/files/mitra_kerja/dokumen/' . $file->getName())));
+			}
+		}
+		$data['dokumen'] = join('|', $dokumen);
 
-		print_r($request->getFiles());
-		die;
+		$mitraKerjaModel = new MitraKerjaModel();
+		$id = $mitraKerjaModel->insert($data);
+		$mitraKerja = $mitraKerjaModel->find($id);
+
+		return json_encode([
+			'status' => 'success',
+			'data' => $mitraKerja
+		]);
 	}
 
 	/**
