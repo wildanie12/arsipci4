@@ -89,7 +89,19 @@ class MitraKerjaResource extends ResourceController
 	 */
 	public function show($id = null)
 	{
-		//
+		$mitraKerjaModel = new MitraKerjaModel();
+		$mitraKerja = $mitraKerjaModel->asArray()->find($id);
+		
+		$mitraKerja['dokumen_filename'] = [];
+		foreach (explode('|', $mitraKerja['dokumen']) as $file) {
+			$mitraKerja['dokumen_filename'][] = utf8_decode(urldecode(basename($file)));
+		}
+		$mitraKerja['dokumen'] = explode('|', $mitraKerja['dokumen']);
+
+		return json_encode([
+			'status' => 'success',
+			'data' => $mitraKerja,
+		]);
 	}
 
 	/**
@@ -117,7 +129,7 @@ class MitraKerjaResource extends ResourceController
 					'required' => 'Nama harus diisi'
 				]
 			],
-			'tanggal' => [
+			'tanggal_mou' => [
 				'rules' => 'required',
 				'errors' => [
 					'required' => 'Tanggal harus diisi'
@@ -140,7 +152,7 @@ class MitraKerjaResource extends ResourceController
 		}
 		$data = [
 			'nama' => $request->getPost('nama'),
-			'tanggal' => $request->getPost('tanggal'),
+			'tanggal_mou' => $request->getPost('tanggal_mou'),
 			'nomor_mou' => $request->getPost('nomor_mou'),
 			'keterangan' => $request->getPost('keterangan'),
 		];
@@ -181,7 +193,77 @@ class MitraKerjaResource extends ResourceController
 	 */
 	public function update($id = null)
 	{
-		//
+		$mitraKerjaModel = new MitraKerjaModel();
+		$mitraKerja = $mitraKerjaModel->find($id);
+		
+		$request = $this->request;
+		$rules = [
+			'nama' => [
+				'rules' => 'required',
+				'errors' => [
+					'required' => 'Nama harus diisi'
+				]
+			],
+			'tanggal_mou' => [
+				'rules' => 'required',
+				'errors' => [
+					'required' => 'Tanggal harus diisi'
+				]
+			],
+			'nomor_mou' => [
+				'rules' => 'required',
+				'errors' => [
+					'required' => 'Nomor MoU harus diisi'
+				]
+			]
+		];
+
+		if (!$this->validate($rules)) {
+			$validation = \Config\Services::validation();
+			return json_encode([
+				'status' => 'error',
+				'errors' => $validation->getErrors()
+			]);
+		}
+		$data = [
+			'nama' => $request->getPost('nama'),
+			'tanggal_mou' => $request->getPost('tanggal_mou'),
+			'nomor_mou' => $request->getPost('nomor_mou'),
+			'keterangan' => $request->getPost('keterangan'),
+		];
+		$uploadPath = (new Upload())->publicDirectory;
+		if ($request->getFileMultiple('dokumen')[0]->isValid()) {
+			$dokumen = [];
+			foreach ($request->getFileMultiple('dokumen') as $file) {
+				$file->move($uploadPath . '/files/mitra_kerja/dokumen/');
+				$dokumen[] = utf8_decode(urldecode(site_url('/files/mitra_kerja/dokumen/' . $file->getName())));
+			}
+			foreach (explode('|', $mitraKerja->dokumen) as $file) {
+				if (file_exists($uploadPath . 'files/mitra_kerja/dokumen/' . utf8_decode(urldecode(basename($file))))) {
+					unlink($uploadPath . 'files/mitra_kerja/dokumen/' . utf8_decode(urldecode(basename($file))));
+				}
+			}
+			$data['dokumen'] = join('|', $dokumen);
+		} else {
+			// Edit list File tanpa menggunakan file input
+			$dokumen = explode('|', $request->getPost('dokumen_edit'));
+			$mitraKerjaDokumen = explode('|', $mitraKerja->dokumen);
+			$deletedFile = array_diff($mitraKerjaDokumen, $dokumen);
+			if (count($deletedFile) > 0) {
+				$data['dokumen'] = join('|', $dokumen);
+				foreach ($deletedFile as $file) {
+					if (file_exists($uploadPath . 'files/mitra_kerja/dokumen/' . utf8_decode(urldecode(basename($file))))) {
+						unlink($uploadPath . 'files/mitra_kerja/dokumen/' . utf8_decode(urldecode(basename($file))));
+					}
+				}
+			} 
+		}
+		$id = $mitraKerjaModel->update($id, $data);
+
+		return json_encode([
+			'status' => 'success',
+			'data' => $mitraKerja
+		]);
 	}
 
 	/**
