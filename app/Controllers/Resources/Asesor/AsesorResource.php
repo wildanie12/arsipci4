@@ -106,7 +106,19 @@ class AsesorResource extends ResourceController
 	 */
 	public function show($id = null)
 	{
-		//
+		$asesorModel = new AsesorModel();
+		$asesor = $asesorModel->asArray()->find($id);
+
+		$asesor['sertifikat_asesor_filename'] = utf8_decode(urldecode(basename($asesor['sertifikat_asesor'])));
+		$asesor['portofolio_filename'] = utf8_decode(urldecode(basename($asesor['portofolio'])));
+		$asesor['cv_filename'] = utf8_decode(urldecode(basename($asesor['cv'])));
+		$asesor['pas_foto_filename'] = utf8_decode(urldecode(basename($asesor['pas_foto'])));
+		$asesor['ktp_filename'] = utf8_decode(urldecode(basename($asesor['ktp'])));
+
+		return json_encode([
+			'status' => 'success',
+			'data' => $asesor
+		]);
 	}
 
 	/**
@@ -220,25 +232,25 @@ class AsesorResource extends ResourceController
 		$portofolio = $request->getFile('portofolio');
 		if ($portofolio->isValid()) {
 			$portofolio->move($uploadPath . 'files/asesor/portofolio');
-			$data['portofolio'] = site_url('files/asesor/portofolio/' . $sertifikat_asesor->getName());
+			$data['portofolio'] = site_url('files/asesor/portofolio/' . $portofolio->getName());
 		}
 
 		$cv = $request->getFile('cv');
 		if ($cv->isValid()) {
 			$cv->move($uploadPath . 'files/asesor/cv');
-			$data['cv'] = site_url('files/asesor/cv/' . $sertifikat_asesor->getName());
+			$data['cv'] = site_url('files/asesor/cv/' . $cv->getName());
 		}
 
 		$pas_foto = $request->getFile('pas_foto');
 		if ($pas_foto->isValid()) {
 			$pas_foto->move($uploadPath . 'files/asesor/pas_foto');
-			$data['pas_foto'] = site_url('files/asesor/pas_foto/' . $sertifikat_asesor->getName());
+			$data['pas_foto'] = site_url('files/asesor/pas_foto/' . $pas_foto->getName());
 		}
 
 		$ktp = $request->getFile('ktp');
 		if ($ktp->isValid()) {
 			$ktp->move($uploadPath . 'files/asesor/ktp');
-			$data['ktp'] = site_url('files/asesor/ktp/' . $sertifikat_asesor->getName());
+			$data['ktp'] = site_url('files/asesor/ktp/' . $ktp->getName());
 		}
 
 		$asesorModel = new AsesorModel();
