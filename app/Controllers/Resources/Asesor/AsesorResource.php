@@ -280,7 +280,77 @@ class AsesorResource extends ResourceController
 	 */
 	public function update($id = null)
 	{
-		//
+		$request = $this->request;
+		$asesorModel = new AsesorModel();
+		$asesor = $asesorModel->find($id);
+
+		$data = [
+			'nama' => $request->getPost('nama'),
+			'tempat_lahir' => $request->getPost('tempat_lahir'),
+			'tanggal_lahir' => $request->getPost('tanggal_lahir'),
+			'no_blanko' => $request->getPost('no_blanko'),
+			'no_reg_sertifikat' => $request->getPost('no_reg_sertifikat'),
+			'no_met_sertifikat' => $request->getPost('no_met_sertifikat'),
+			'tanggal_sertifikat' => $request->getPost('tanggal_sertifikat'),
+			'tanggal_expired_sertifikat' => $request->getPost('tanggal_expired_sertifikat'),
+			'kompetensi_teknis' => $request->getPost('kompetensi_teknis'),
+			'sifat_penempatan' => $request->getPost('sifat_penempatan'),
+		];
+
+
+		$uploadPath = (new Upload())->publicDirectory;
+		$sertifikat_asesor = $request->getFile('sertifikat_asesor');
+		if ($sertifikat_asesor->isValid()) {
+			$sertifikat_asesor->move($uploadPath . 'files/asesor/sertifikat_asesor');
+			$data['sertifikat_asesor'] = site_url('files/asesor/sertifikat_asesor/' . $sertifikat_asesor->getName());
+			if (file_exists($uploadPath . 'files/asesor/sertifikat_asesor/' . utf8_decode(urldecode(basename($asesor->sertifikat_asesor)))) && $asesor->sertifikat_asesor != '') {
+				unlink($uploadPath . 'files/asesor/sertifikat_asesor/' . utf8_decode(urldecode(basename($asesor->sertifikat_asesor))));
+			}
+		}
+
+		$portofolio = $request->getFile('portofolio');
+		if ($portofolio->isValid()) {
+			$portofolio->move($uploadPath . 'files/asesor/portofolio');
+			$data['portofolio'] = site_url('files/asesor/portofolio/' . $portofolio->getName());
+			if (file_exists($uploadPath . 'files/asesor/portofolio/' . utf8_decode(urldecode(basename($asesor->portofolio)))) && $asesor->portofolio != '') {
+				unlink($uploadPath . 'files/asesor/portofolio/' . utf8_decode(urldecode(basename($asesor->portofolio))));
+			}
+		}
+
+		$cv = $request->getFile('cv');
+		if ($cv->isValid()) {
+			$cv->move($uploadPath . 'files/asesor/cv');
+			$data['cv'] = site_url('files/asesor/cv/' . $cv->getName());
+			if (file_exists($uploadPath . 'files/asesor/cv/' . utf8_decode(urldecode(basename($asesor->cv)))) && $asesor->cv != '') {
+				unlink($uploadPath . 'files/asesor/cv/' . utf8_decode(urldecode(basename($asesor->cv))));
+			}
+		}
+
+		$pas_foto = $request->getFile('pas_foto');
+		if ($pas_foto->isValid()) {
+			$pas_foto->move($uploadPath . 'files/asesor/pas_foto');
+			$data['pas_foto'] = site_url('files/asesor/pas_foto/' . $pas_foto->getName());
+			if (file_exists($uploadPath . 'files/asesor/pas_foto/' . utf8_decode(urldecode(basename($asesor->pas_foto)))) && $asesor->pas_foto != '') {
+				unlink($uploadPath . 'files/asesor/pas_foto/' . utf8_decode(urldecode(basename($asesor->pas_foto))));
+			}
+		}
+
+		$ktp = $request->getFile('ktp');
+		if ($ktp->isValid()) {
+			$ktp->move($uploadPath . 'files/asesor/ktp');
+			$data['ktp'] = site_url('files/asesor/ktp/' . $ktp->getName());
+			if (file_exists($uploadPath . 'files/asesor/ktp/' . utf8_decode(urldecode(basename($asesor->ktp)))) && $asesor->ktp != '') {
+				unlink($uploadPath . 'files/asesor/ktp/' . utf8_decode(urldecode(basename($asesor->ktp))));
+			}
+		}
+
+		$asesorModel->update($id, $data);
+		$asesor = $asesorModel->find($id);
+		
+		return json_encode([
+			'status' => 'success',
+			'data' => $asesor,
+		]);
 	}
 
 	/**
