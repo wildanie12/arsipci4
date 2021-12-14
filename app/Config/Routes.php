@@ -51,10 +51,15 @@ $routes->get('asesor', 'Asesor\AsesorInternalController::index');
 $routes->get('asesor/internal', 'Asesor\AsesorInternalController::index');
 $routes->get('asesor/internal/(:any)', 'Asesor\AsesorInternalController::$1');
 
+$routes->get('personil', 'Personil\PersonilController::index');
+$routes->get('personil/(:any)', 'Personil\PersonilController::$1');
+
 $routes->group('resource', function($routes) {
 	$routes->resource('tuk', ['controller' => 'Resources\TUK\TUKResource']);
 	$routes->resource('mitra_kerja', ['controller' => 'Resources\MitraKerja\MitraKerjaResource']);
 	$routes->resource('asesor', ['controller' => 'Resources\Asesor\AsesorResource']);
+	$routes->resource('personil', ['controller' => 'Resources\Personil\PersonilResource']);
+	$routes->resource('jabatan', ['controller' => 'Resources\JabatanResource']);
 });
 
 $routes->group('export', function($routes) {
