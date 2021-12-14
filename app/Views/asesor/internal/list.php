@@ -116,7 +116,8 @@
                                     <div class="row mt-2">
                                         <div class="col">
                                             <div class="form-group">
-                                                <form action="<?= site_url('export/tuk/spreadsheet') ?>" method="post">
+                                                <form action="<?= site_url('export/asesor/spreadsheet') ?>" method="post">
+                                                    <input type="hidden" name="sifat_penempatan" value="internal">
                                                     <button type="submit" class="btn btn-sm btn-block btn-success">
                                                         <i class="fas fa-file-excel mr-2"></i>
                                                         Export
@@ -780,7 +781,7 @@
                     id = $(this).data('id')
                     $.ajax({
                         type: "POST",
-                        url: "<?= site_url('resource/tuk/') ?>" + id,
+                        url: "<?= site_url('resource/asesor/') ?>" + id,
                         data: {
                             _method: 'DELETE',
                             ['<?= csrf_token() ?>']: '<?= csrf_hash() ?>'
@@ -843,6 +844,7 @@
                         modalNewAsesor.find('form')[0].reset()
                         modalNewAsesor.modal('hide')
                         modalNewAsesor.find(".error-message").hide()
+                        modalNewAsesor.find(".preview-image").hide()
                         refreshData()
                     }
                 })
@@ -897,7 +899,7 @@
                         modalEditAsesor.find('form')[0].reset()
                         modalEditAsesor.modal('hide')
                         modalEditAsesor.find(".error-message").hide()
-                        modalEditAsesor.find(".preview-document").hide()
+                        modalEditAsesor.find(".preview-image").hide()
                         refreshData()
                     }
                 })

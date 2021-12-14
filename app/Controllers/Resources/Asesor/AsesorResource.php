@@ -360,6 +360,44 @@ class AsesorResource extends ResourceController
 	 */
 	public function delete($id = null)
 	{
-		//
+		$asesorModel = new AsesorModel();
+		$asesor = $asesorModel->find($id);
+		$uploadPath = (new Upload())->publicDirectory;
+		if ($asesor->sertifikat_asesor != '') {
+			if (file_exists($uploadPath . 'files/asesor/sertifikat_asesor/' . utf8_decode(urldecode(basename($asesor->sertifikat_asesor))))) {
+				unlink($uploadPath . 'files/asesor/sertifikat_asesor/' . utf8_decode(urldecode(basename($asesor->sertifikat_asesor))));
+			}
+		}
+		if ($asesor->portofolio != '') {
+			if (file_exists($uploadPath . 'files/asesor/portofolio/' . utf8_decode(urldecode(basename($asesor->portofolio))))) {
+				unlink($uploadPath . 'files/asesor/portofolio/' . utf8_decode(urldecode(basename($asesor->portofolio))));
+			}
+		}
+		if ($asesor->cv != '') {
+			if (file_exists($uploadPath . 'files/asesor/cv/' . utf8_decode(urldecode(basename($asesor->cv))))) {
+				unlink($uploadPath . 'files/asesor/cv/' . utf8_decode(urldecode(basename($asesor->cv))));
+			}
+		}
+		if ($asesor->pas_foto != '') {
+			if (file_exists($uploadPath . 'files/asesor/pas_foto/' . utf8_decode(urldecode(basename($asesor->pas_foto))))) {
+				unlink($uploadPath . 'files/asesor/pas_foto/' . utf8_decode(urldecode(basename($asesor->pas_foto))));
+			}
+		}
+		if ($asesor->ktp != '') {
+			if (file_exists($uploadPath . 'files/asesor/ktp/' . utf8_decode(urldecode(basename($asesor->ktp))))) {
+				unlink($uploadPath . 'files/asesor/ktp/' . utf8_decode(urldecode(basename($asesor->ktp))));
+			}
+		}
+		if ($asesor->sifat_penempatan != '') {
+			if (file_exists($uploadPath . 'files/asesor/sifat_penempatan/' . utf8_decode(urldecode(basename($asesor->sifat_penempatan))))) {
+				unlink($uploadPath . 'files/asesor/sifat_penempatan/' . utf8_decode(urldecode(basename($asesor->sifat_penempatan))));
+			}
+		}
+
+		$asesorModel->delete($id);
+		return json_encode([
+			'status' => 'success',
+			'data' => $id
+		]);
 	}
 }
