@@ -239,8 +239,10 @@ class MitraKerjaResource extends ResourceController
 				$dokumen[] = utf8_decode(urldecode(site_url('/files/mitra_kerja/dokumen/' . $file->getName())));
 			}
 			foreach (explode('|', $mitraKerja->dokumen) as $file) {
-				if (file_exists($uploadPath . 'files/mitra_kerja/dokumen/' . utf8_decode(urldecode(basename($file))))) {
-					unlink($uploadPath . 'files/mitra_kerja/dokumen/' . utf8_decode(urldecode(basename($file))));
+				if ($file != '') {
+					if (file_exists($uploadPath . 'files/mitra_kerja/dokumen/' . utf8_decode(urldecode(basename($file))))) {
+						unlink($uploadPath . 'files/mitra_kerja/dokumen/' . utf8_decode(urldecode(basename($file))));
+					}
 				}
 			}
 			$data['dokumen'] = join('|', $dokumen);
@@ -252,8 +254,10 @@ class MitraKerjaResource extends ResourceController
 			if (count($deletedFile) > 0) {
 				$data['dokumen'] = join('|', $dokumen);
 				foreach ($deletedFile as $file) {
-					if (file_exists($uploadPath . 'files/mitra_kerja/dokumen/' . utf8_decode(urldecode(basename($file))))) {
-						unlink($uploadPath . 'files/mitra_kerja/dokumen/' . utf8_decode(urldecode(basename($file))));
+					if ($file != '') {
+						if (file_exists($uploadPath . 'files/mitra_kerja/dokumen/' . utf8_decode(urldecode(basename($file))))) {
+							unlink($uploadPath . 'files/mitra_kerja/dokumen/' . utf8_decode(urldecode(basename($file))));
+						}
 					}
 				}
 			} 
@@ -273,6 +277,21 @@ class MitraKerjaResource extends ResourceController
 	 */
 	public function delete($id = null)
 	{
-		//
+		$mitraKerjaModel = new MitraKerjaModel();
+		$mitraKerja = $mitraKerjaModel->find($id);
+
+		$uploadPath = (new Upload())->publicDirectory;
+		foreach (explode('|', $mitraKerja->dokumen) as $dokumen) {
+			if ($dokumen != '') {
+				if (file_exists($uploadPath . 'files/mitra_kerja/dokumen/' . utf8_decode(basename($dokumen)))) {
+					unlink($uploadPath . 'files/mitra_kerja/dokumen/' . utf8_decode(basename($dokumen)));
+				}
+			}
+		}
+		$mitraKerjaModel->delete($id);
+		return json_encode([
+			'status' => 'success',
+			'data' => $id
+		]);
 	}
 }

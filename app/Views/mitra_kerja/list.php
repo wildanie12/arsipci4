@@ -81,7 +81,7 @@
                                     <div class="row mt-4">
                                         <div class="col">
                                             <div class="form-group">
-                                                <form action="<?= site_url('export/tuk/spreadsheet') ?>" method="post">
+                                                <form action="<?= site_url('export/mitra_kerja/spreadsheet') ?>" method="post">
                                                     <button type="submit" class="btn btn-sm btn-block btn-success">
                                                         <i class="fas fa-file-excel mr-2"></i>
                                                         Export ke Spreadsheet

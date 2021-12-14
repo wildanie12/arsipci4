@@ -54,6 +54,7 @@ $routes->group('resource', function($routes) {
 
 $routes->group('export', function($routes) {
 	$routes->post('tuk/spreadsheet', 'Exports\TUKExport::spreadsheet');
+	$routes->post('mitra_kerja/spreadsheet', 'Exports\MitraKerjaExport::spreadsheet');
 });
 
 /*
