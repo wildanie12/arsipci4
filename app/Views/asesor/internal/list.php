@@ -127,7 +127,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-auto">
-                                    <a href="#" class="btn btn-success rounded-circle btn-new-tuk">
+                                    <a href="#" class="btn btn-success rounded-circle btn-new-asesor">
                                         <i class="fas fa-plus"></i>
                                     </a>
                                 </div>
@@ -193,11 +193,11 @@
 
 <?= $this->section('js_script')?>
 
-<div class="modal fade" id="modal-new-tuk">
+<div class="modal fade" id="modal-new-asesor">
     <div class="modal-dialog modal-lg">
         <div class="modal-content rounded">
             <div class="modal-header bg-success">
-                <h6 class="modal-title font-weight-bold mb-0 text-white">Tambah data TUK</h6>
+                <h6 class="modal-title font-weight-bold mb-0 text-white">Tambah data Asesor Internal</h6>
                 <button type="button" class="close" data-dismiss="modal">
                     <i class="fas fa-times"></i>
                 </button>
@@ -211,70 +211,118 @@
                 </div>
                 <form>
                     <?= csrf_field() ?>
-                    <!-- <input type="hidden" name="_method" value="POST"> -->
+                    <input type="hidden" name="sifat_penempatan" value="internal">
                     <div class="row">
                         <div class="col-md">
                             <div class="form-group">
-                                <label for="new-tuk-nama" class="text-sm mb-0 font-weight-bold">Nama TUK</label>
+                                <label for="new-asesor-nama" class="text-sm mb-0 font-weight-bold">Nama Lengkap</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fas fa-signature"></i></span>
                                     </div>
-                                    <input type="text" id="new-tuk-nama" class="form-control" name="nama" placeholder="Tuliskan nama TUK...">
+                                    <input type="text" id="new-asesor-nama" class="form-control" name="nama" placeholder="Tuliskan nama lengkap asesor...">
                                 </div>
                                 <div class="text-xs text-danger font-weight-bold font-italic error-message error-nama" style="display: none;"></div>
                             </div>
                         </div>
+                    </div>
+                    <div class="row">
                         <div class="col-md">
                             <div class="form-group">
-                                <label for="new-tuk-no_sk" class="text-sm mb-0 font-weight-bold">Nomor SK TUK</label>
+                                <label for="new-asesor-tempat_lahir" class="text-sm mb-0 font-weight-bold">Tempat Lahir</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
-                                        <span class="input-group-text"><i class="fas fa-signature"></i></span>
+                                        <span class="input-group-text">
+                                            <i class="fas fa-birthday-cake"></i> 
+                                        </span>
                                     </div>
-                                    <input type="text" id="new-tuk-no_sk" class="form-control" name="no_sk" placeholder="Tuliskan Nomor SK TUK...">
+                                    <input type="text" class="form-control" name="tempat_lahir" placeholder="Tuliskan Tempat lahir..">
+                                    <input type="date" class="form-control" name="tanggal_lahir">
                                 </div>
-                                <div class="text-xs text-danger font-weight-bold font-italic error-message error-no_sk" style="display: none;"></div>
+                                <div class="text-xs text-danger font-weight-bold font-italic error-message error-tempat_lahir" style="display: none;"></div>
+                                <div class="text-xs text-danger font-weight-bold font-italic error-message error-tanggal_lahir" style="display: none;"></div>
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md">
                             <div class="form-group">
-                                <label for="new-tuk-alamat" class="text-sm mb-0 font-weight-bold">Alamat TUK</label>
+                                <label for="new-asesor-no_blanko" class="text-sm mb-0 font-weight-bold">Nomor Blanko</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
-                                        <span class="input-group-text"><i class="fas fa-map-marked-alt"></i></span>
+                                        <span class="input-group-text">
+                                            <i class="fas fa-file-alt"></i> 
+                                        </span>
                                     </div>
-                                    <textarea name="alamat" id="new-tuk-alamat" class="form-control"></textarea>
+                                    <input type="text" class="form-control" name="no_blanko" placeholder="Tuliskan nomor blanko..">
                                 </div>
-                                <div class="text-xs text-danger font-weight-bold font-italic error-message error-alamat" style="display: none;"></div>
+                                <div class="text-xs text-danger font-weight-bold font-italic error-message error-no_blanko" style="display: none;"></div>
+                            </div>
+                        </div>
+                        <div class="col-md">
+                            <div class="form-group">
+                                <label for="new-asesor-no_reg_sertifikat" class="text-sm mb-0 font-weight-bold">Nomor REG Sertifikat</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            <i class="fas fa-file-alt"></i> 
+                                        </span>
+                                    </div>
+                                    <input type="text" class="form-control" name="no_reg_sertifikat" placeholder="Tuliskan REG..">
+                                </div>
+                                <div class="text-xs text-danger font-weight-bold font-italic error-message error-no_reg_sertifikat" style="display: none;"></div>
+                            </div>
+                        </div>
+                        <div class="col-md">
+                            <div class="form-group">
+                                <label for="new-asesor-no_met_sertifikat" class="text-sm mb-0 font-weight-bold">Nomor MET Sertifikat</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            <i class="fas fa-file-alt"></i> 
+                                        </span>
+                                    </div>
+                                    <input type="text" class="form-control" id="no_met_sertifikat" name="no_met_sertifikat" placeholder="Tuliskan MET..">
+                                </div>
+                                <div class="text-xs text-danger font-weight-bold font-italic error-message error-no_met_sertifikat" style="display: none;"></div>
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md">
                             <div class="form-group">
-                                <label for="new-tuk-ketua" class="text-sm mb-0 font-weight-bold">Ketua TUK</label>
+                                <label for="new-asesor-kompetensi_teknis" class="text-sm mb-0 font-weight-bold">Kompetensi Teknis</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
-                                        <span class="input-group-text"><i class="fas fa-briefcase"></i></span>
+                                        <span class="input-group-text"><i class="fas fa-flask"></i></span>
                                     </div>
-                                    <input type="text" id="new-tuk-ketua" class="form-control" name="ketua" placeholder="Tuliskan Ketua TUK...">
+                                    <input type="text" id="new-asesor-kompetensi_teknis" class="form-control" name="kompetensi_teknis" placeholder="Tuliskan kompetensi teknis">
                                 </div>
-                                <div class="text-xs text-danger font-weight-bold font-italic error-message error-ketua" style="display: none;"></div>
+                                <div class="text-xs text-danger font-weight-bold font-italic error-message error-kompetensi_teknis" style="display: none;"></div>
                             </div>
                         </div>
                         <div class="col-md">
                             <div class="form-group">
-                                <label for="new-tuk-no_telepon" class="text-sm mb-0 font-weight-bold">Nomor Telepon TUK</label>
+                                <label for="new-asesor-tanggal_sertifikat" class="text-sm mb-0 font-weight-bold">Tanggal Sertifikat</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
-                                        <span class="input-group-text"><i class="fas fa-phone-alt"></i></span>
+                                        <span class="input-group-text"><i class="fas fa-scroll"></i></span>
                                     </div>
-                                    <input type="text" id="new-tuk-no_telepon" class="form-control" name="no_telepon" placeholder="Tuliskan Nomor Telepon TUK...">
+                                    <input type="date" id="new-asesor-tanggal_sertifikat" class="form-control" name="tanggal_sertifikat">
                                 </div>
-                                <div class="text-xs text-danger font-weight-bold font-italic error-message error-no_telepon" style="display: none;"></div>
+                                <div class="text-xs text-danger font-weight-bold font-italic error-message error-tanggal_sertifikat" style="display: none;"></div>
+                            </div>
+                        </div>
+                        <div class="col-md">
+                            <div class="form-group">
+                                <label for="new-asesor-tanggal_expired_sertifikat" class="text-sm mb-0 font-weight-bold">Tanggal Expired Sertifikat</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fas fa-scroll"></i></span>
+                                    </div>
+                                    <input type="date" id="new-asesor-tanggal_expired_sertifikat" class="form-control" name="tanggal_expired_sertifikat">
+                                </div>
+                                <div class="text-xs text-danger font-weight-bold font-italic error-message error-tanggal_expired_sertifikat" style="display: none;"></div>
                             </div>
                         </div>
                     </div>
@@ -286,99 +334,77 @@
                     </div>
                     <div class="row">
                         <div class="col-md">
-                            <div class="form-group">
-                                <label for="new-tuk-panduan_mutu" class="text-sm mb-0 font-weight-bold">Panduan Mutu</label>
+                            <div class="form-group mb-0">
+                                <label for="new-asesor-sertifikat_asesor" class="text-sm mb-0 font-weight-bold">Sertifikat Asesor</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fas fa-file-pdf"></i></span>
                                     </div>
-                                    <input type="file" accept="application/pdf" id="new-tuk-panduan_mutu" class="form-control pt-1" name="panduan_mutu">
+                                    <input type="file" accept=".doc,.docx,.pdf,.ppt,.pptx" id="new-asesor-sertifikat_asesor" class="form-control pt-1" name="sertifikat_asesor">
                                 </div>
-                                <span class="text-muted text-xs font-italic">Upload file dokumen (pdf). Ukuran Max: 6MB</span>
-                                <div class="text-xs text-danger font-weight-bold font-italic error-message error-panduan_mutu" style="display: none;"></div>
+                                <span class="text-muted text-xs font-italic">Upload file dokumen (doc/docx/pdf). Ukuran Max: 6MB</span>
+                                <div class="text-xs text-danger font-weight-bold font-italic error-message error-sertifikat_asesor" style="display: none;"></div>
                             </div>
                         </div>
                         <div class="col-md">
-                            <div class="form-group">
-                                <label for="new-tuk-sop" class="text-sm mb-0 font-weight-bold">Dokumen SOP</label>
+                            <div class="form-group mb-0">
+                                <label for="new-asesor-portofolio" class="text-sm mb-0 font-weight-bold">Portofolio</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fas fa-file-pdf"></i></span>
                                     </div>
-                                    <input type="file" accept="application/pdf" id="new-tuk-sop" class="form-control pt-1" name="sop">
+                                    <input type="file" accept=".doc,.docx,.pdf,.ppt,.pptx" id="new-asesor-portofolio" class="form-control pt-1" name="portofolio">
                                 </div>
-                                <span class="text-muted text-xs font-italic">Upload file dokumen (pdf). Ukuran Max: 6MB</span>
-                                <div class="text-xs text-danger font-weight-bold font-italic error-message error-sop" style="display: none;"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md">
-                            <div class="form-group">
-                                <label for="new-tuk-sk_tuk" class="text-sm mb-0 font-weight-bold">Surat Keputusan TUK</label>
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text"><i class="fas fa-file-pdf"></i></span>
-                                    </div>
-                                    <input type="file" accept="application/pdf" id="new-tuk-sk_tuk" class="form-control pt-1" name="sk_tuk">
-                                </div>
-                                <span class="text-muted text-xs font-italic">Upload file dokumen (pdf). Ukuran Max: 6MB</span>
-                                <div class="text-xs text-danger font-weight-bold font-italic error-message error-sk_tuk" style="display: none;"></div>
+                                <span class="text-muted text-xs font-italic">Upload file dokumen (doc/docx/pdf). Ukuran Max: 6MB</span>
+                                <div class="text-xs text-danger font-weight-bold font-italic error-message error-portofolio" style="display: none;"></div>
                             </div>
                         </div>
                         <div class="col-md">
-                            <div class="form-group">
-                                <label for="new-tuk-ba_verifikasi" class="text-sm mb-0 font-weight-bold">B.A. Verifikasi</label>
+                            <div class="form-group mb-0">
+                                <label for="new-asesor-cv" class="text-sm mb-0 font-weight-bold">CV</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fas fa-file-pdf"></i></span>
                                     </div>
-                                    <input type="file" accept="application/pdf" id="new-tuk-ba_verifikasi" class="form-control pt-1" name="ba_verifikasi">
+                                    <input type="file" accept=".doc,.docx,.pdf,.ppt,.pptx" id="new-asesor-cv" class="form-control pt-1" name="cv">
                                 </div>
-                                <span class="text-muted text-xs font-italic">Upload file dokumen (pdf). Ukuran Max: 6MB</span>
-                                <div class="text-xs text-danger font-weight-bold font-italic error-message error-ba_verifikasi" style="display: none;"></div>
+                                <span class="text-muted text-xs font-italic">Upload file dokumen (doc/docx/pdf). Ukuran Max: 6MB</span>
+                                <div class="text-xs text-danger font-weight-bold font-italic error-message error-cv" style="display: none;"></div>
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md">
-                            <div class="form-group">
-                                <label for="new-tuk-spt_verifikator" class="text-sm mb-0 font-weight-bold">SPT Verifikator</label>
+                            <div class="form-group mb-0">
+                                <label for="new-asesor-pas_foto" class="text-sm mb-0 font-weight-bold">Pas Foto</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fas fa-file-pdf"></i></span>
                                     </div>
-                                    <input type="file" accept="application/pdf" id="new-tuk-spt_verifikator" class="form-control pt-1" name="spt_verifikator">
+                                    <input type="file" accept="image/*" id="new-asesor-pas_foto" class="form-control pt-1" name="pas_foto">
                                 </div>
-                                <span class="text-muted text-xs font-italic">(pdf). Ukuran Max: 6MB</span>
-                                <div class="text-xs text-danger font-weight-bold font-italic error-message error-spt_verifikator" style="display: none;"></div>
+                                <span class="text-muted text-xs font-italic">Upload file gambar. Ukuran Max: 6MB</span>
+                                <div class="text-xs text-danger font-weight-bold font-italic error-message error-pas_foto" style="display: none;"></div>
                             </div>
+                            <div class="image-preview preview-pas_foto mb-2" style="display:none">
+                                <img class="img-thumbnail" src="<?= site_url('img/img_unavailable.png') ?>">
+                            </div> 
                         </div>
                         <div class="col-md">
-                            <div class="form-group">
-                                <label for="new-tuk-sk_checklist_persyaratan" class="text-sm mb-0 font-weight-bold">SK Checklist Persyaratan</label>
+                            <div class="form-group mb-0">
+                                <label for="new-asesor-ktp" class="text-sm mb-0 font-weight-bold">Scan KTP</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fas fa-file-pdf"></i></span>
                                     </div>
-                                    <input type="file" accept="application/pdf" id="new-tuk-sk_checklist_persyaratan" class="form-control pt-1" name="sk_checklist_persyaratan">
+                                    <input type="file" accept="image/*" id="new-asesor-ktp" class="form-control pt-1" name="ktp">
                                 </div>
-                                <span class="text-muted text-xs font-italic">(pdf). Ukuran Max: 6MB</span>
-                                <div class="text-xs text-danger font-weight-bold font-italic error-message error-sk_checklist_persyaratan" style="display: none;"></div>
+                                <span class="text-muted text-xs font-italic">Upload file gambar. Ukuran Max: 6MB</span>
+                                <div class="text-xs text-danger font-weight-bold font-italic error-message error-ktp" style="display: none;"></div>
                             </div>
-                        </div>
-                        <div class="col-md">
-                            <div class="form-group">
-                                <label for="new-tuk-mou" class="text-sm mb-0 font-weight-bold">Dokumen MoU</label>
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text"><i class="fas fa-file-pdf"></i></span>
-                                    </div>
-                                    <input type="file" accept="application/pdf" id="new-tuk-mou" class="form-control pt-1" name="mou">
-                                </div>
-                                <span class="text-muted text-xs font-italic">(pdf). Ukuran Max: 6MB</span>
-                                <div class="text-xs text-danger font-weight-bold font-italic error-message error-mou" style="display: none;"></div>
-                            </div>
+                            <div class="image-preview preview-ktp mb-2" style="display:none">
+                                <img class="img-thumbnail" src="<?= site_url('img/img_unavailable.png') ?>">
+                            </div> 
                         </div>
                     </div>
                     <div class="row">
@@ -798,21 +824,38 @@
         }
         refreshData()
 
-        let modalNewTUK = $("#modal-new-tuk")
-        $(".btn-new-tuk").click(function (e) {
+        let modalNewAsesor = $("#modal-new-asesor")
+        $(".btn-new-asesor").click(function (e) {
             e.preventDefault()
-            modalNewTUK.modal('show')
+            modalNewAsesor.modal('show')
         })
 
-        modalNewTUK.on('shown.bs.modal', function() {
-            modalNewTUK.find('form').unbind('submit').submit(function (e) {
+        modalNewAsesor.on('shown.bs.modal', function() {
+            modalNewAsesor.find("[name='pas_foto']").change(function(e) {
+                const pasFoto = new FileReader()
+                pasFoto.readAsDataURL(this.files[0])
+                pasFoto.onload = function (e) {
+                    modalNewAsesor.find(".preview-pas_foto img").attr('src', e.target.result)
+                    modalNewAsesor.find(".preview-pas_foto").show()
+                }
+            })
+            modalNewAsesor.find("[name='ktp']").change(function (e) {
+                const ktpReader = new FileReader()
+                ktpReader.readAsDataURL(this.files[0])
+                ktpReader.onload = function (e) {
+                    modalNewAsesor.find(".preview-ktp img").attr('src', e.target.result)
+                    modalNewAsesor.find(".preview-ktp").show()
+                }
+            })
+
+            modalNewAsesor.find('form').unbind('submit').submit(function (e) {
                 e.preventDefault()
-                modalNewTUK.find('.loading').show()
-                modalNewTUK.find(".error-message").hide()
+                modalNewAsesor.find('.loading').show()
+                modalNewAsesor.find(".error-message").hide()
                 formData = new FormData(this)
                 $.ajax({
                     type: "POST",
-                    url: "<?= site_url('resource/tuk') ?>",
+                    url: "<?= site_url('resource/asesor') ?>",
                     data: formData,
                     dataType: "json",
                     contentType: false,
@@ -823,17 +866,17 @@
                     if (response.status == 'error') {
                         Object.entries(response.errors).forEach((error) => {
                             const [field, message] = error
-                            modalNewTUK.find('.error-' + field).html(message).show()
+                            modalNewAsesor.find('.error-' + field).html(message).show()
                         })
                     } else {
-                        modalNewTUK.find('form')[0].reset()
-                        modalNewTUK.modal('hide')
-                        modalNewTUK.find(".error-message").hide()
+                        modalNewAsesor.find('form')[0].reset()
+                        modalNewAsesor.modal('hide')
+                        modalNewAsesor.find(".error-message").hide()
                         refreshData()
                     }
                 })
                 .always(function() {
-                    modalNewTUK.find('.loading').hide()
+                    modalNewAsesor.find('.loading').hide()
                 })
             })
         })

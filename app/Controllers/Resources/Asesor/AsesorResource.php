@@ -4,6 +4,7 @@ namespace App\Controllers\Resources\Asesor;
 
 use App\Models\Asesor\AsesorModel;
 use CodeIgniter\RESTful\ResourceController;
+use Config\Upload;
 
 class AsesorResource extends ResourceController
 {
@@ -125,7 +126,129 @@ class AsesorResource extends ResourceController
 	 */
 	public function create()
 	{
-		//
+		$request = $this->request;
+		$rules = [
+			'nama' => [
+				'rules' => 'required',
+				'errors' => ['required' => 'Nama wajib diisi']
+			],
+			'tempat_lahir' => [
+				'rules' => 'required',
+				'errors' => ['required' => 'Tempat lahir wajib diisi']
+			],
+			'tanggal_lahir' => [
+				'rules' => 'required',
+				'errors' => ['required' => 'Tanggal lahir wajib diisi']
+			],
+			'no_blanko' => [
+				'rules' => 'required',
+				'errors' => ['required' => 'No blanko wajib diisi']
+			],
+			'no_reg_sertifikat' => [
+				'rules' => 'required',
+				'errors' => ['required' => 'No REG Sertifikat wajib diisi']
+			],
+			'no_met_sertifikat' => [
+				'rules' => 'required',
+				'errors' => ['required' => 'no MET sertifikat wajib diisi']
+			],
+			'tanggal_sertifikat' => [
+				'rules' => 'required',
+				'errors' => ['required' => 'tanggal sertifikat wajib diisi']
+			],
+			'tanggal_expired_sertifikat' => [
+				'rules' => 'required',
+				'errors' => ['required' => 'tanggal expired sertifikat wajib diisi']
+			],
+			'kompetensi_teknis' => [
+				'rules' => 'required',
+				'errors' => ['required' => 'kompetensiteknis wajib diisi']
+			],
+			'sertifikat_asesor' => [
+				'rules' => 'uploaded[sertifikat_asesor]',
+				'errors' => ['uploaded' => 'sertifikat asesor wajib diisi']
+			],
+			'portofolio' => [
+				'rules' => 'uploaded[portofolio]',
+				'errors' => ['uploaded' => 'portofolio wajib diisi']
+			],
+			'cv' => [
+				'rules' => 'uploaded[cv]',
+				'errors' => ['uploaded' => 'cv wajib diisi']
+			],
+			'pas_foto' => [
+				'rules' => 'uploaded[pas_foto]',
+				'errors' => ['uploaded' => 'pas foto wajib diisi']
+			],
+			'ktp' => [
+				'rules' => 'uploaded[ktp]',
+				'errors' => ['uploaded' => 'ktp wajib diisi']
+			],
+			'sifat_penempatan' => [
+				'rules' => 'required',
+				'errors' => ['required' => 'sifat_penempatan wajib diisi']
+			]
+		];
+		if (!$this->validate($rules)) {
+			$validation = \Config\Services::validation();
+			return json_encode([
+				'status' => 'error',
+				'errors' => $validation->getErrors()
+			]);
+		}
+
+		$data = [
+			'nama' => $request->getPost('nama'),
+			'tempat_lahir' => $request->getPost('tempat_lahir'),
+			'tanggal_lahir' => $request->getPost('tanggal_lahir'),
+			'no_blanko' => $request->getPost('no_blanko'),
+			'no_reg_sertifikat' => $request->getPost('no_reg_sertifikat'),
+			'no_met_sertifikat' => $request->getPost('no_met_sertifikat'),
+			'tanggal_sertifikat' => $request->getPost('tanggal_sertifikat'),
+			'tanggal_expired_sertifikat' => $request->getPost('tanggal_expired_sertifikat'),
+			'kompetensi_teknis' => $request->getPost('kompetensi_teknis'),
+			'sifat_penempatan' => $request->getPost('sifat_penempatan'),
+		];
+
+		$uploadPath = (new Upload())->publicDirectory;
+		$sertifikat_asesor = $request->getFile('sertifikat_asesor');
+		if ($sertifikat_asesor->isValid()) {
+			$sertifikat_asesor->move($uploadPath . 'files/asesor/sertifikat_asesor');
+			$data['sertifikat_asesor'] = site_url('files/asesor/sertifikat_asesor/' . $sertifikat_asesor->getName());
+		}
+
+		$portofolio = $request->getFile('portofolio');
+		if ($portofolio->isValid()) {
+			$portofolio->move($uploadPath . 'files/asesor/portofolio');
+			$data['portofolio'] = site_url('files/asesor/portofolio/' . $sertifikat_asesor->getName());
+		}
+
+		$cv = $request->getFile('cv');
+		if ($cv->isValid()) {
+			$cv->move($uploadPath . 'files/asesor/cv');
+			$data['cv'] = site_url('files/asesor/cv/' . $sertifikat_asesor->getName());
+		}
+
+		$pas_foto = $request->getFile('pas_foto');
+		if ($pas_foto->isValid()) {
+			$pas_foto->move($uploadPath . 'files/asesor/pas_foto');
+			$data['pas_foto'] = site_url('files/asesor/pas_foto/' . $sertifikat_asesor->getName());
+		}
+
+		$ktp = $request->getFile('ktp');
+		if ($ktp->isValid()) {
+			$ktp->move($uploadPath . 'files/asesor/ktp');
+			$data['ktp'] = site_url('files/asesor/ktp/' . $sertifikat_asesor->getName());
+		}
+
+		$asesorModel = new AsesorModel();
+		$insertedId = $asesorModel->insert($data);
+		$asesor = $asesorModel->find($insertedId);
+
+		return json_encode([
+			'status' => 'success',
+			'data' => $asesor
+		]);
 	}
 
 	/**
