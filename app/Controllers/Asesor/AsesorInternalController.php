@@ -3,6 +3,7 @@
 namespace App\Controllers\Asesor;
 
 use App\Controllers\BaseController;
+use App\Models\Asesor\AsesorModel;
 
 class AsesorInternalController extends BaseController
 {
@@ -16,6 +17,9 @@ class AsesorInternalController extends BaseController
 		$data = [
             'ui_title' => 'Data Asesor Internal'
         ];
+
+		$asesorModel = new AsesorModel();
+		$data['dataKompetensiTeknis'] = $asesorModel->select('kompetensi_teknis')->distinct()->findAll();
 		return view('asesor/internal/list', $data);
 	}
 }

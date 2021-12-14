@@ -17,7 +17,7 @@
                         </div>
                         <div class="col-md">
                             <div class="row align-items-center">
-                                <div class="col-md-8">
+                                <div class="col-md-7">
                                     <div class="row">
                                         <div class="col">
                                             <div class="form-group mb-0">
@@ -32,25 +32,69 @@
                                         </div>
                                     </div>
                                     <div class="row mb-1">
-                                        <div class="col">
+                                        <div class="col-md-8">
                                             <div class="form-group mb-0 text-center" style="padding-bottom: 1px;">
                                                 <label for="filter-limit" class="mb-0 font-weight-bold text-xs">Cari berdasarkan</label><br/>
                                                 <div class="custom-control custom-control-inline custom-radio">
                                                     <input type="radio" name="berdasarkan" id="filter-berdasarkan-nama" value="nama" class="filter-berdasarkan custom-control-input" checked>
-                                                    <label for="filter-berdasarkan-nama" class="custom-control-label text-xs font-weight-bold text-primary" style="line-height: 25px;">Nama TUK</label>
+                                                    <label for="filter-berdasarkan-nama" class="custom-control-label text-xs font-weight-bold text-primary" style="line-height: 25px;">Nama</label>
                                                 </div>
                                                 <div class="custom-control custom-control-inline custom-radio">
-                                                    <input type="radio" name="berdasarkan" id="filter-berdasarkan-no_sk" value="no_sk" class="filter-berdasarkan custom-control-input">
-                                                    <label for="filter-berdasarkan-no_sk" class="custom-control-label text-xs font-weight-bold text-primary" style="line-height: 25px;">No. SK</label>
+                                                    <input type="radio" name="berdasarkan" id="filter-berdasarkan-no_sk" value="no_reg_sertifikat" class="filter-berdasarkan custom-control-input">
+                                                    <label for="filter-berdasarkan-no_sk" class="custom-control-label text-xs font-weight-bold text-primary" style="line-height: 25px;">No Reg Sertifikat</label>
                                                 </div>
                                                 <div class="custom-control custom-control-inline custom-radio">
-                                                    <input type="radio" name="berdasarkan" id="filter-berdasarkan-ketua" value="ketua" class="filter-berdasarkan custom-control-input">
-                                                    <label for="filter-berdasarkan-ketua" class="custom-control-label text-xs font-weight-bold text-primary" style="line-height: 25px;">Ketua TUK</label>
+                                                    <input type="radio" name="berdasarkan" id="filter-berdasarkan-ketua" value="no_met_sertifikat" class="filter-berdasarkan custom-control-input">
+                                                    <label for="filter-berdasarkan-ketua" class="custom-control-label text-xs font-weight-bold text-primary" style="line-height: 25px;">No Met Sertifikat</label>
                                                 </div>
-                                                <div class="custom-control custom-control-inline custom-radio">
-                                                    <input type="radio" name="berdasarkan" id="filter-berdasarkan-alamat" value="alamat" class="filter-berdasarkan custom-control-input">
-                                                    <label for="filter-berdasarkan-alamat" class="custom-control-label text-xs font-weight-bold text-primary" style="line-height: 25px;">Alamat TUK</label>
-                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group mb-0">
+                                                <label for="filter-kompetensi_teknis" class="mb-0 font-weight-bold text-xs">Kompetensi Teknis</label>
+                                                <div class="input-group input-group">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text"><i class="fas fa-flask"></i></span>
+                                                    </div>
+                                                    <select id="filter-kompetensi_teknis" class="form-control form-control-sm filter-kompetensi_teknis">
+                                                        <option value="">-- Pilih kompetensi --</option>
+                                                        <?php foreach($dataKompetensiTeknis as $kompetensi) : ?>
+                                                            <option value="<?= $kompetensi->kompetensi_teknis ?>"><?= $kompetensi->kompetensi_teknis ?></option>
+                                                        <?php endforeach; ?>
+                                                    </select>
+                                                </div> 
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md">
+                                    <div class="row">
+                                        <div class="col">
+                                            <div class="form-group mb-0">
+                                                <label for="filter-tanggal_sertifikat" class="mb-0 font-weight-bold text-xs">Tanggal Sertifikat</label>
+                                                <div class="input-group input-group">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text"><i class="fas fa-calendar"></i></span>
+                                                    </div>
+                                                    <input type="date" class="form-control form-control-sm filter-tanggal_sertifikat" id="filter-tanggal_sertifikat">
+                                                </div> 
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">
+                                            <div class="form-group mb-0">
+                                                <label for="filter-status_sertifikat" class="mb-0 font-weight-bold text-xs">Status Sertifikat</label>
+                                                <div class="input-group input-group">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text"><i class="fas fa-check-circle"></i></span>
+                                                    </div>
+                                                    <select id="filter-status_sertifikat" class="form-control form-control-sm filter-status_sertifikat">
+                                                        <option value="">-- Pilih --</option>
+                                                        <option value="aktif">Aktif</option>
+                                                        <option value="expired">Expired</option>
+                                                    </select>
+                                                </div> 
                                             </div>
                                         </div>
                                     </div>
@@ -75,7 +119,7 @@
                                                 <form action="<?= site_url('export/tuk/spreadsheet') ?>" method="post">
                                                     <button type="submit" class="btn btn-sm btn-block btn-success">
                                                         <i class="fas fa-file-excel mr-2"></i>
-                                                        Export ke Spreadsheet
+                                                        Export
                                                     </button>
                                                 </form>
                                             </div>
@@ -902,6 +946,33 @@
             }
             refreshData()
         }) 
+        $(".filter-kompetensi_teknis").change(function (e) {
+            value = $(this).val()
+            if (value != '') {
+                dataParams.kompetensi_teknis = value
+            } else {
+                delete dataParams.kompetensi_teknis
+            }
+            refreshData()
+        })
+        $(".filter-tanggal_sertifikat").change(function (e) {
+            value = $(this).val()
+            if (value != '') {
+                dataParams.tanggal_sertifikat = value
+            } else {
+                delete dataParams.tanggal_sertifikat
+            }
+            refreshData()
+        })
+        $(".filter-status_sertifikat").change(function (e) {
+            value = $(this).val()
+            if (value != '') {
+                dataParams.status_sertifikat = value
+            } else {
+                delete dataParams.status_sertifikat
+            }
+            refreshData()
+        })
 
         $(".btn-sort").click(function (e) {
             e.preventDefault()

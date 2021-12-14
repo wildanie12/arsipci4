@@ -26,17 +26,22 @@ class AsesorResource extends ResourceController
 			$asesorModel->like($berdasarkan, $pencarian, 'both');
 		}
 
-		$tempatLahir = $request->getGet('tempat_lahir');
+		$tempatLahir = $request->getGet('kompetensi_teknis');
 		if ($tempatLahir != '') {
-			$asesorModel->where('tempat_lahir', $tempatLahir);
+			$asesorModel->where('kompetensi_teknis', $tempatLahir);
+		}
+
+		$tempatLahir = $request->getGet('tanggal_sertifikat');
+		if ($tempatLahir != '') {
+			$asesorModel->where('tanggal_sertifikat', $tempatLahir);
 		}
 
 		$statusSertifikat = $request->getGet('status_sertifikat');
 		if ($statusSertifikat != '') {
 			if ($statusSertifikat == 'expired')
-				$asesorModel->where('tanggal_expired_sertifikat >', date('Y-m-d'));
+				$asesorModel->where('tanggal_expired_sertifikat <', date('Y-m-d'));
 			else 
-				$asesorModel->where('tanggal_expired_sertifikat <=', date('Y-m-d'));
+				$asesorModel->where('tanggal_expired_sertifikat >=', date('Y-m-d'));
 		}
 
 		$sifatPenempatan = $request->getGet('sifat_penempatan');
