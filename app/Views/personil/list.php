@@ -973,7 +973,7 @@
                     id = $(this).data('id')
                     $.ajax({
                         type: "POST",
-                        url: "<?= site_url('resource/asesor/') ?>" + id,
+                        url: "<?= site_url('resource/personil/') ?>" + id,
                         data: {
                             _method: 'DELETE',
                             ['<?= csrf_token() ?>']: '<?= csrf_hash() ?>'

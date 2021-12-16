@@ -400,5 +400,10 @@ class PersonilResource extends ResourceController
 		}
 
 		$personilModel->delete($id);
+
+		return json_encode([
+			'status' => 'success',
+			'data' => $id
+		]);
 	}
 }
