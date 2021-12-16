@@ -91,7 +91,17 @@ class PersonilResource extends ResourceController
 	 */
 	public function show($id = null)
 	{
-		//
+		$personilModel = new PersonilModel();
+		$personil = $personilModel->asArray()->find($id);
+		$personil['cv_filename'] = utf8_decode(urldecode(basename($personil['cv'])));
+		$personil['portofolio_filename'] = utf8_decode(urldecode(basename($personil['portofolio'])));
+		$personil['pas_foto_filename'] = utf8_decode(urldecode(basename($personil['pas_foto'])));
+		$personil['ktp_filename'] = utf8_decode(urldecode(basename($personil['ktp'])));
+		$personil['sk_pengangkatan_filename'] = utf8_decode(urldecode(basename($personil['sk_pengangkatan'])));
+		return json_encode([
+			'status' => 'success',
+			'data' => $personil
+		]);
 	}
 
 	/**
@@ -251,7 +261,115 @@ class PersonilResource extends ResourceController
 	 */
 	public function update($id = null)
 	{
-		//
+		$rules = [
+			'nama' => [
+				'rules' => 'required',
+				'errors' => [
+					'required' => 'Nama harus diisi',
+				]
+			],
+			'tempat_lahir' => [
+				'rules' => 'required',
+				'errors' => [
+					'required' => 'Tempat lahir harus diisi',
+				]
+			],
+			'tanggal_lahir' => [
+				'rules' => 'required',
+				'errors' => [
+					'required' => 'Tanggal lahir harus diisi',
+				]
+			],
+			'jabatan_id' => [
+				'rules' => 'required',
+				'errors' => [
+					'required' => 'Jabatan harus diisi',
+				]
+			],
+			'nik' => [
+				'rules' => 'required',
+				'errors' => [
+					'required' => 'NIK harus diisi',
+				]
+			],
+			'alamat' => [
+				'rules' => 'required',
+				'errors' => [
+					'required' => 'Alamat harus diisi',
+				]
+			]
+		];
+		if (!$this->validate($rules)) {
+			$validation = \Config\Services::validation();
+			return json_encode([
+				'status' => 'error',
+				'errors' => $validation->getErrors()
+			]);
+		}
+
+		$personilModel = new PersonilModel();
+		$personil = $personilModel->find($id);
+
+		$request =  $this->request;
+		$data = [
+			'nama' => $request->getPost('nama'),
+			'alamat' => $request->getPost('alamat'),
+			'tempat_lahir' => $request->getPost('tempat_lahir'),
+			'tanggal_lahir' => $request->getPost('tanggal_lahir'),
+			'nik' => $request->getPost('nik'),
+			'jabatan_id' => $request->getPost('jabatan_id'),
+		];
+
+		$uploadPath = (new Upload())->publicDirectory;
+		$sk_pengangkatan = $request->getFile('sk_pengangkatan');
+		if ($sk_pengangkatan->isValid()) {
+			$sk_pengangkatan->move($uploadPath . 'files/personil/sk_pengangkatan');
+			$data['sk_pengangkatan'] = site_url('files/personil/sk_pengangkatan/' . $sk_pengangkatan->getName());
+			if (file_exists($uploadPath . 'files/personil/sk_pengangkatan/' . utf8_decode(urldecode(basename($personil->sk_pengangkatan)))) && $personil->sk_pengangkatan != '') {
+				unlink($uploadPath . 'files/personil/sk_pengangkatan/' . utf8_decode(urldecode(basename($personil->sk_pengangkatan))));
+			}
+		}
+		$portofolio = $request->getFile('portofolio');
+		if ($portofolio->isValid()) {
+			$portofolio->move($uploadPath . 'files/personil/portofolio');
+			$data['portofolio'] = site_url('files/personil/portofolio/' . $portofolio->getName());
+			if (file_exists($uploadPath . 'files/personil/portofolio/' . utf8_decode(urldecode(basename($personil->portofolio)))) && $personil->portofolio != '') {
+				unlink($uploadPath . 'files/personil/portofolio/' . utf8_decode(urldecode(basename($personil->portofolio))));
+			}
+		}
+		$cv = $request->getFile('cv');
+		if ($cv->isValid()) {
+			$cv->move($uploadPath . 'files/personil/cv');
+			$data['cv'] = site_url('files/personil/cv/' . $cv->getName());
+			if (file_exists($uploadPath . 'files/personil/cv/' . utf8_decode(urldecode(basename($personil->cv)))) && $personil->cv != '') {
+				unlink($uploadPath . 'files/personil/cv/' . utf8_decode(urldecode(basename($personil->cv))));
+			}
+		}
+		$pas_foto = $request->getFile('pas_foto');
+		if ($pas_foto->isValid()) {
+			$pas_foto->move($uploadPath . 'files/personil/pas_foto');
+			$data['pas_foto'] = site_url('files/personil/pas_foto/' . $pas_foto->getName());
+			if (file_exists($uploadPath . 'files/personil/pas_foto/' . utf8_decode(urldecode(basename($personil->pas_foto)))) && $personil->pas_foto != '') {
+				unlink($uploadPath . 'files/personil/pas_foto/' . utf8_decode(urldecode(basename($personil->pas_foto))));
+			}
+		}
+		$ktp = $request->getFile('ktp');
+		if ($ktp->isValid()) {
+			$ktp->move($uploadPath . 'files/personil/ktp');
+			$data['ktp'] = site_url('files/personil/ktp/' . $ktp->getName());
+			if (file_exists($uploadPath . 'files/personil/ktp/' . utf8_decode(urldecode(basename($personil->ktp)))) && $personil->ktp != '') {
+				unlink($uploadPath . 'files/personil/ktp/' . utf8_decode(urldecode(basename($personil->ktp))));
+			}
+		}
+
+		$personilModel = new PersonilModel();
+		$insertedId = $personilModel->update($id, $data);
+		$personil = $personilModel->find($insertedId);
+
+		return json_encode([
+			'status' => 'success',
+			'data' => $personil
+		]);
 	}
 
 	/**
@@ -261,6 +379,26 @@ class PersonilResource extends ResourceController
 	 */
 	public function delete($id = null)
 	{
-		//
+		$personilModel = new PersonilModel();
+		$personil = $personilModel->find($id);
+
+		$uploadPath = (new Upload())->publicDirectory;
+		if (file_exists($uploadPath . 'files/personil/sk_pengangkatan/' . utf8_decode(urldecode(basename($personil->sk_pengangkatan)))) && $personil->sk_pengangkatan != '') {
+			unlink($uploadPath . 'files/personil/sk_pengangkatan/' . utf8_decode(urldecode(basename($personil->sk_pengangkatan))));
+		}
+		if (file_exists($uploadPath . 'files/personil/portofolio/' . utf8_decode(urldecode(basename($personil->portofolio)))) && $personil->portofolio != '') {
+			unlink($uploadPath . 'files/personil/portofolio/' . utf8_decode(urldecode(basename($personil->portofolio))));
+		}
+		if (file_exists($uploadPath . 'files/personil/cv/' . utf8_decode(urldecode(basename($personil->cv)))) && $personil->cv != '') {
+			unlink($uploadPath . 'files/personil/cv/' . utf8_decode(urldecode(basename($personil->cv))));
+		}
+		if (file_exists($uploadPath . 'files/personil/pas_foto/' . utf8_decode(urldecode(basename($personil->pas_foto)))) && $personil->pas_foto != '') {
+			unlink($uploadPath . 'files/personil/pas_foto/' . utf8_decode(urldecode(basename($personil->pas_foto))));
+		}
+		if (file_exists($uploadPath . 'files/personil/ktp/' . utf8_decode(urldecode(basename($personil->ktp)))) && $personil->ktp != '') {
+			unlink($uploadPath . 'files/personil/ktp/' . utf8_decode(urldecode(basename($personil->ktp))));
+		}
+
+		$personilModel->delete($id);
 	}
 }

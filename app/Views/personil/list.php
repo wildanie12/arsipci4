@@ -160,7 +160,7 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content rounded">
             <div class="modal-header bg-success">
-                <h6 class="modal-title font-weight-bold mb-0 text-white">Tambah data Asesor Internal</h6>
+                <h6 class="modal-title font-weight-bold mb-0 text-white">Tambah data Personil</h6>
                 <button type="button" class="close" data-dismiss="modal">
                     <i class="fas fa-times"></i>
                 </button>
@@ -210,17 +210,17 @@
                     <div class="row">
                         <div class="col-md">
                             <div class="form-group">
-                                <label for="new-personil-jabatan" class="text-sm mb-0 font-weight-bold">Jabatan</label>
+                                <label for="new-personil-jabatan_id" class="text-sm mb-0 font-weight-bold">Jabatan</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fas icon-jabatan fa-user-tie"></i></span>
                                     </div>
-                                    <select name="jabatan_id" id="new-personil-jabatan" class="form-control">
+                                    <select name="jabatan_id" id="new-personil-jabatan_id" class="form-control">
                                         <option value="">- Pilih Jabatan -</option>
                                     </select>
                                 </div>
                                 <span class="font-italic text-xs">Tidak ada jabatan yang diinginkan? <a href="#" class="btn-new-jabatan">Buat jabatan</a></span>
-                                <div class="text-xs text-danger font-weight-bold font-italic error-message error-jabatan" style="display: none;"></div>
+                                <div class="text-xs text-danger font-weight-bold font-italic error-message error-jabatan_id" style="display: none;"></div>
                             </div>
                         </div>
                         <div class="col-md">
@@ -322,6 +322,214 @@
                                         <span class="input-group-text"><i class="fas fa-file-pdf"></i></span>
                                     </div>
                                     <input type="file" accept="image/*" id="new-personil-ktp" class="form-control pt-1" name="ktp">
+                                </div>
+                                <span class="text-muted text-xs font-italic">Upload file gambar. Ukuran Max: 6MB</span>
+                                <div class="text-xs text-danger font-weight-bold font-italic error-message error-ktp" style="display: none;"></div>
+                            </div>
+                            <div class="preview-image image-ktp mb-2" style="display:none">
+                                <img class="img-thumbnail" src="<?= site_url('img/img_unavailable.png') ?>">
+                            </div> 
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <hr>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col d-flex justify-content-center">
+                            <button type="button" class="btn btn-default px-4 mr-2" data-dismiss="modal">
+                                <i class="fas fa-times mr-2"></i>
+                                Tutup
+                            </button>
+                            <button type="submit" class="btn btn-primary flex-fill">
+                                <i class="fas fa-paper-plane mr-2"></i>
+                                Kirim
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div> 
+</div>
+
+<div class="modal fade" id="modal-edit-personil">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content rounded">
+            <div class="modal-header bg-success">
+                <h6 class="modal-title font-weight-bold mb-0 text-white">Edit data Personil</h6>
+                <button type="button" class="close" data-dismiss="modal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="loading position-absolute top-0 bottom-0 left-0 right-0 rounded" style="display: none;">
+                    <div class="d-flex justify-content-center align-items-center h-100 flex-column">
+                        <i class="fas fa-spin fa-sync text-white" style="font-size: 48px"></i>
+                        <h4 class="text-center mt-3 text-white">Loading<br/>.....</h4>
+                    </div>
+                </div>
+                <form>
+                    <?= csrf_field() ?>
+                    <input type="hidden" name="id">
+                    <input type="hidden" name="_method" value="PATCH">
+                    <div class="row">
+                        <div class="col-md">
+                            <div class="form-group">
+                                <label for="edit-personil-nama" class="text-sm mb-0 font-weight-bold">Nama Lengkap</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fas fa-signature"></i></span>
+                                    </div>
+                                    <input type="text" id="edit-personil-nama" class="form-control" name="nama" placeholder="Tuliskan nama lengkap asesor...">
+                                </div>
+                                <div class="text-xs text-danger font-weight-bold font-italic error-message error-nama" style="display: none;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md">
+                            <div class="form-group">
+                                <label for="edit-personil-tempat_lahir" class="text-sm mb-0 font-weight-bold">Tempat, Tanggal Lahir</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            <i class="fas fa-birthday-cake"></i> 
+                                        </span>
+                                    </div>
+                                    <input type="text" class="form-control" name="tempat_lahir" placeholder="Tuliskan Tempat lahir..">
+                                    <input type="date" class="form-control" name="tanggal_lahir">
+                                </div>
+                                <div class="text-xs text-danger font-weight-bold font-italic error-message error-tempat_lahir" style="display: none;"></div>
+                                <div class="text-xs text-danger font-weight-bold font-italic error-message error-tanggal_lahir" style="display: none;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md">
+                            <div class="form-group">
+                                <label for="edit-personil-jabatan_id" class="text-sm mb-0 font-weight-bold">Jabatan</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fas icon-jabatan fa-user-tie"></i></span>
+                                    </div>
+                                    <select name="jabatan_id" id="edit-personil-jabatan_id" class="form-control">
+                                        <option value="">- Pilih Jabatan -</option>
+                                    </select>
+                                </div>
+                                <span class="font-italic text-xs">Tidak ada jabatan yang diinginkan? <a href="#" class="btn-new-jabatan">Buat jabatan</a></span>
+                                <div class="text-xs text-danger font-weight-bold font-italic error-message error-jabatan_id" style="display: none;"></div>
+                            </div>
+                        </div>
+                        <div class="col-md">
+                            <div class="form-group">
+                                <label for="edit-personil-nik" class="text-sm mb-0 font-weight-bold">NIK</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fas fa-id-card"></i></span>
+                                    </div>
+                                    <input type="text" id="edit-personil-nik" class="form-control" name="nik" placeholder="Tuliskan nik ...">
+                                </div>
+                                <div class="text-xs text-danger font-weight-bold font-italic error-message error-nik" style="display: none;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md">
+                            <div class="form-group">
+                                <label for="edit-personil-alamat" class="text-sm mb-0 font-weight-bold">Alamat</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fas fa-map-marked"></i></span>
+                                    </div>
+                                    <textarea name="alamat" id="edit-personil-alamat" class="form-control"></textarea>
+                                </div>
+                                <div class="text-xs text-danger font-weight-bold font-italic error-message error-alamat" style="display: none;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col">
+                            <div class="text-xs text-uppercase font-weight-bold" style="color: #c5c5c5">Dokumen-dokumen</div>
+                            <hr class="mt-0">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md">
+                            <div class="form-group mb-0">
+                                <label for="edit-personil-sk_pengangkatan" class="text-sm mb-0 font-weight-bold">SK Pengangkatan</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fas fa-file-pdf"></i></span>
+                                    </div>
+                                    <input type="file" accept=".doc,.docx,.pdf,.ppt,.pptx" id="edit-personil-sk_pengangkatan" class="form-control pt-1" name="sk_pengangkatan">
+                                </div>
+                                <span class="text-muted text-xs font-italic">Upload file dokumen (doc/docx/pdf). Ukuran Max: 6MB</span>
+                                <div class="text-xs text-danger font-weight-bold font-italic error-message error-sk_pengangkatan" style="display: none;"></div>
+                            </div>
+                            <div class="preview-document document-sk_pengangkatan" style="display: none;">
+                                <a target="_blank" href=""></a>
+                            </div>
+                        </div>
+                        <div class="col-md">
+                            <div class="form-group mb-0">
+                                <label for="edit-personil-portofolio" class="text-sm mb-0 font-weight-bold">Portofolio</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fas fa-file-pdf"></i></span>
+                                    </div>
+                                    <input type="file" accept=".doc,.docx,.pdf,.ppt,.pptx" id="edit-personil-portofolio" class="form-control pt-1" name="portofolio">
+                                </div>
+                                <span class="text-muted text-xs font-italic">Upload file dokumen (doc/docx/pdf). Ukuran Max: 6MB</span>
+                                <div class="text-xs text-danger font-weight-bold font-italic error-message error-portofolio" style="display: none;"></div>
+                            </div>
+                            <div class="preview-document document-portofolio" style="display: none;">
+                                <a target="_blank" href=""></a>
+                            </div>
+                        </div>
+                        <div class="col-md">
+                            <div class="form-group mb-0">
+                                <label for="edit-personil-cv" class="text-sm mb-0 font-weight-bold">CV</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fas fa-file-pdf"></i></span>
+                                    </div>
+                                    <input type="file" accept=".doc,.docx,.pdf,.ppt,.pptx" id="edit-personil-cv" class="form-control pt-1" name="cv">
+                                </div>
+                                <span class="text-muted text-xs font-italic">Upload file dokumen (doc/docx/pdf). Ukuran Max: 6MB</span>
+                                <div class="text-xs text-danger font-weight-bold font-italic error-message error-cv" style="display: none;"></div>
+                            </div>
+                            <div class="preview-document document-cv" style="display: none;">
+                                <a target="_blank" href=""></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md">
+                            <div class="form-group mb-0">
+                                <label for="edit-personil-pas_foto" class="text-sm mb-0 font-weight-bold">Pas Foto</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fas fa-file-pdf"></i></span>
+                                    </div>
+                                    <input type="file" accept="image/*" id="edit-personil-pas_foto" class="form-control pt-1" name="pas_foto">
+                                </div>
+                                <span class="text-muted text-xs font-italic">Upload file gambar. Ukuran Max: 6MB</span>
+                                <div class="text-xs text-danger font-weight-bold font-italic error-message error-pas_foto" style="display: none;"></div>
+                            </div>
+                            <div class="preview-image image-pas_foto mb-2" style="display:none">
+                                <img class="img-thumbnail" src="<?= site_url('img/img_unavailable.png') ?>">
+                            </div> 
+                        </div>
+                        <div class="col-md">
+                            <div class="form-group mb-0">
+                                <label for="edit-personil-ktp" class="text-sm mb-0 font-weight-bold">Scan KTP</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fas fa-file-pdf"></i></span>
+                                    </div>
+                                    <input type="file" accept="image/*" id="edit-personil-ktp" class="form-control pt-1" name="ktp">
                                 </div>
                                 <span class="text-muted text-xs font-italic">Upload file gambar. Ukuran Max: 6MB</span>
                                 <div class="text-xs text-danger font-weight-bold font-italic error-message error-ktp" style="display: none;"></div>
@@ -698,65 +906,64 @@
                 refreshData(link)
             })
             $(".btn-edit").unbind('click').click(function (e) {
-                modalEditAsesor.modal('show')
-                modalEditAsesor.find('.loading').show()
+                modalEditPersonil.modal('show')
+                modalEditPersonil.find('.loading').show()
                 e.preventDefault()
                 id = $(this).data('id')
-                modalEditAsesor.find("[name='id']").val(id)
+                modalEditPersonil.find("[name='id']").val(id)
                 $.ajax({
                     type: "GET",
-                    url: "<?= site_url('resource/asesor/') ?>" + id,
+                    url: "<?= site_url('resource/personil/') ?>" + id,
                     dataType: "json",
                 })
                 .done(function(response) {
-                    modalEditAsesor.find("[name='id']").val(response.data.id)
-                    modalEditAsesor.find("[name='nama']").val(response.data.nama)
-                    modalEditAsesor.find("[name='tempat_lahir']").val(response.data.tempat_lahir)
-                    modalEditAsesor.find("[name='tanggal_lahir']").val(response.data.tanggal_lahir)
-                    modalEditAsesor.find("[name='no_blanko']").val(response.data.no_blanko)
-                    modalEditAsesor.find("[name='no_reg_sertifikat']").val(response.data.no_reg_sertifikat)
-                    modalEditAsesor.find("[name='no_met_sertifikat']").val(response.data.no_met_sertifikat)
-                    modalEditAsesor.find("[name='kompetensi_teknis']").val(response.data.kompetensi_teknis)
-                    modalEditAsesor.find("[name='tanggal_sertifikat']").val(response.data.tanggal_sertifikat)
-                    modalEditAsesor.find("[name='tanggal_expired_sertifikat']").val(response.data.tanggal_expired_sertifikat)
+                    modalEditPersonil.find("[name='id']").val(response.data.id)
+                    modalEditPersonil.find("[name='nama']").val(response.data.nama)
+                    modalEditPersonil.find("[name='tempat_lahir']").val(response.data.tempat_lahir)
+                    modalEditPersonil.find("[name='tanggal_lahir']").val(response.data.tanggal_lahir)
+                    modalEditPersonil.find("[name='nik']").val(response.data.nik)
+                    modalEditPersonil.find("[name='alamat']").val(response.data.alamat)
 
-                    if (response.data.sertifikat_asesor_filename )
-                    modalEditAsesor.find(".document-sertifikat_asesor a").html(
+                    if (response.data.sk_pengangkatan_filename )
+                    modalEditPersonil.find(".document-sk_pengangkatan a").html(
                         `
                         <i class='fas fa-download mr-2'></i>
-                        ${response.data.sertifikat_asesor_filename}
+                        ${response.data.sk_pengangkatan_filename}
                         `
                     )
-                    modalEditAsesor.find(".document-sertifikat_asesor a").attr('href', response.data.sertifikat_asesor)
-                    modalEditAsesor.find(".document-sertifikat_asesor").show()
+                    modalEditPersonil.find(".document-sk_pengangkatan a").attr('href', response.data.sertifikat_asesor)
+                    modalEditPersonil.find(".document-sk_pengangkatan").show()
 
                     if (response.data.portofolio_filename )
-                    modalEditAsesor.find(".document-portofolio a").html(
+                    modalEditPersonil.find(".document-portofolio a").html(
                         `
                         <i class='fas fa-download mr-2'></i>
                         ${response.data.portofolio_filename}
                         `
                     )
-                    modalEditAsesor.find(".document-portofolio a").attr('href', response.data.portofolio)
-                    modalEditAsesor.find(".document-portofolio").show()
+                    modalEditPersonil.find(".document-portofolio a").attr('href', response.data.portofolio)
+                    modalEditPersonil.find(".document-portofolio").show()
 
                     if (response.data.cv_filename )
-                    modalEditAsesor.find(".document-cv a").html(
+                    modalEditPersonil.find(".document-cv a").html(
                         `
                         <i class='fas fa-download mr-2'></i>
                         ${response.data.cv_filename}
                         `
                     )
-                    modalEditAsesor.find(".document-cv a").attr('href', response.data.cv)
-                    modalEditAsesor.find(".document-cv").show()
+                    modalEditPersonil.find(".document-cv a").attr('href', response.data.cv)
+                    modalEditPersonil.find(".document-cv").show()
 
+                    modalEditPersonil.find(".image-pas_foto img").attr('src', response.data.pas_foto)
+                    modalEditPersonil.find(".image-pas_foto").show()
+                    modalEditPersonil.find(".image-ktp img").attr('src', response.data.ktp)
+                    modalEditPersonil.find(".image-ktp").show()
                     
-                    modalEditAsesor.find(".image-pas_foto img").attr('src', response.data.pas_foto)
-                    modalEditAsesor.find(".image-pas_foto").show()
-                    modalEditAsesor.find(".image-ktp img").attr('src', response.data.ktp)
-                    modalEditAsesor.find(".image-ktp").show()
+                    refreshJabatan(function() {
+                        modalEditPersonil.find("[name='jabatan_id']").val(response.data.jabatan_id)
+                    })
 
-                    modalEditAsesor.find(".loading").hide()
+                    modalEditPersonil.find(".loading").hide()
                 })
             })
 
@@ -839,35 +1046,35 @@
             })
         })
 
-        modalEditAsesor = $("#modal-edit-asesor")
-        modalEditAsesor.on('shown.bs.modal', function() {
-            modalEditAsesor.find("[name='pas_foto']").change(function (e) {
+        modalEditPersonil = $("#modal-edit-personil")
+        modalEditPersonil.on('shown.bs.modal', function() {
+            modalEditPersonil.find("[name='pas_foto']").change(function (e) {
                 const pasFotoReader = new FileReader()
                 pasFotoReader.readAsDataURL(this.files[0])
                 pasFotoReader.onload = function (e) {
                     console.log(e)
-                    modalEditAsesor.find(".image-pas_foto img").attr('src', e.target.result)
-                    modalEditAsesor.find(".image-pas_foto").show()
+                    modalEditPersonil.find(".image-pas_foto img").attr('src', e.target.result)
+                    modalEditPersonil.find(".image-pas_foto").show()
                 }
             })
-            modalEditAsesor.find("[name='ktp']").change(function (e) {
+            modalEditPersonil.find("[name='ktp']").change(function (e) {
                 const pasFotoReader = new FileReader()
                 pasFotoReader.readAsDataURL(this.files[0])
                 pasFotoReader.onload = function (e) {
                     console.log(e)
-                    modalEditAsesor.find(".image-ktp img").attr('src', e.target.result)
-                    modalEditAsesor.find(".image-ktp").show()
+                    modalEditPersonil.find(".image-ktp img").attr('src', e.target.result)
+                    modalEditPersonil.find(".image-ktp").show()
                 }
             })
-            modalEditAsesor.find('form').unbind('submit').submit(function (e) {
+            modalEditPersonil.find('form').unbind('submit').submit(function (e) {
                 e.preventDefault()
-                modalEditAsesor.find('.loading').show()
-                modalEditAsesor.find(".error-message").hide()
-                id = modalEditAsesor.find("[name='id']").val()
+                modalEditPersonil.find('.loading').show()
+                modalEditPersonil.find(".error-message").hide()
+                id = modalEditPersonil.find("[name='id']").val()
                 formData = new FormData(this)
                 $.ajax({
                     type: "POST",
-                    url: "<?= site_url('resource/asesor/') ?>" + id,
+                    url: "<?= site_url('resource/personil/') ?>" + id,
                     data: formData,
                     dataType: "json",
                     contentType: false,
@@ -878,18 +1085,18 @@
                     if (response.status == 'error') {
                         Object.entries(response.errors).forEach((error) => {
                             const [field, message] = error
-                            modalEditAsesor.find('.error-' + field).html(message).show()
+                            modalEditPersonil.find('.error-' + field).html(message).show()
                         })
                     } else {
-                        modalEditAsesor.find('form')[0].reset()
-                        modalEditAsesor.modal('hide')
-                        modalEditAsesor.find(".error-message").hide()
-                        modalEditAsesor.find(".preview-image").hide()
+                        modalEditPersonil.find('form')[0].reset()
+                        modalEditPersonil.modal('hide')
+                        modalEditPersonil.find(".error-message").hide()
+                        modalEditPersonil.find(".preview-image").hide()
                         refreshData()
                     }
                 })
                 .always(function() {
-                    modalEditAsesor.find('.loading').hide()
+                    modalEditPersonil.find('.loading').hide()
                 })
             })
         })
