@@ -81,8 +81,7 @@
                                     <div class="row mt-2">
                                         <div class="col">
                                             <div class="form-group">
-                                                <form action="<?= site_url('export/asesor/spreadsheet') ?>" method="post">
-                                                    <input type="hidden" name="sifat_penempatan" value="internal">
+                                                <form action="<?= site_url('export/personil/spreadsheet') ?>" method="post">
                                                     <button type="submit" class="btn btn-sm btn-block btn-success">
                                                         <i class="fas fa-file-excel mr-2"></i>
                                                         Export

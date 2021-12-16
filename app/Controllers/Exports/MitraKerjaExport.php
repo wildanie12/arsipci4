@@ -14,7 +14,7 @@ class MitraKerjaExport extends BaseController
 	{
 		$spreadsheet = new Spreadsheet();
 		$worksheet = $spreadsheet->getActiveSheet();
-		$worksheet->setCellValue('A1', 'LAPORAN DATA TEMPAT UJI KOMPETENSI (TUK)');
+		$worksheet->setCellValue('A1', 'LAPORAN DATA MITRA KERJA');
 		$worksheet->getStyle('A1')->getFont()->setSize(20);
 		$worksheet->mergeCells('A1:L1');
 
