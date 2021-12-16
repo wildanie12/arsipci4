@@ -51,16 +51,13 @@
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-group mb-0">
-                                                <label for="filter-jabatan" class="mb-0 font-weight-bold text-xs">Jabatan</label>
+                                                <label for="filter-jabatan_id" class="mb-0 font-weight-bold text-xs">Jabatan</label>
                                                 <div class="input-group input-group">
                                                     <div class="input-group-prepend">
                                                         <span class="input-group-text"><i class="fas fa-user-tie"></i></span>
                                                     </div>
-                                                    <select id="filter-jabatan" class="form-control form-control-sm filter-jabatan">
+                                                    <select id="filter-jabatan_id" name="jabatan_id" class="form-control form-control-sm filter-jabatan_id">
                                                         <option value="">-- Pilih Jabatan --</option>
-                                                        <?php foreach($dataJabatan as $jabatan) : ?>
-                                                            <option value="<?= $jabatan->id ?>"><?= $jabatan->nama ?></option>
-                                                        <?php endforeach; ?>
                                                     </select>
                                                 </div> 
                                             </div>
@@ -791,7 +788,6 @@
         })
 
         modalNewPersonil.on('shown.bs.modal', function() {
-            refreshJabatan()
             modalNewPersonil.find("[name='pas_foto']").change(function(e) {
                 const pasFoto = new FileReader()
                 pasFoto.readAsDataURL(this.files[0])
@@ -816,7 +812,7 @@
                 formData = new FormData(this)
                 $.ajax({
                     type: "POST",
-                    url: "<?= site_url('resource/asesor') ?>",
+                    url: "<?= site_url('resource/personil') ?>",
                     data: formData,
                     dataType: "json",
                     contentType: false,
@@ -925,7 +921,7 @@
             }
             refreshData()
         }) 
-        $(".filter-jabatan").change(function (e) {
+        $(".filter-jabatan_id").change(function (e) {
             value = $(this).val()
             if (value != '') {
                 dataParams.jabatan_id = value
@@ -994,6 +990,7 @@
                 }
             })
         }
+        refreshJabatan()
         function onLoadJabatan() {
             modalJabatan.find('.btn-delete-jabatan').unbind('click').click(function (e) {
                 e.preventDefault()
@@ -1041,6 +1038,7 @@
                             refreshJabatan(function () {
                                 $("[name='jabatan_id']").val(response.data.id)
                             })
+                            modalJabatan.find('.error-message').hide()
                             modalJabatan.find('form')[0].reset()
                             modalJabatan.modal('hide')
                         }

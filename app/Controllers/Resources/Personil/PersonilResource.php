@@ -4,6 +4,7 @@ namespace App\Controllers\Resources\Personil;
 
 use App\Models\Personil\PersonilModel;
 use CodeIgniter\RESTful\ResourceController;
+use Config\Upload;
 
 class PersonilResource extends ResourceController
 {
@@ -110,7 +111,127 @@ class PersonilResource extends ResourceController
 	 */
 	public function create()
 	{
-		//
+		$rules = [
+			'nama' => [
+				'rules' => 'required',
+				'errors' => [
+					'required' => 'Nama harus diisi',
+				]
+			],
+			'tempat_lahir' => [
+				'rules' => 'required',
+				'errors' => [
+					'required' => 'Tempat lahir harus diisi',
+				]
+			],
+			'tanggal_lahir' => [
+				'rules' => 'required',
+				'errors' => [
+					'required' => 'Tanggal lahir harus diisi',
+				]
+			],
+			'jabatan_id' => [
+				'rules' => 'required',
+				'errors' => [
+					'required' => 'Jabatan harus diisi',
+				]
+			],
+			'nik' => [
+				'rules' => 'required',
+				'errors' => [
+					'required' => 'NIK harus diisi',
+				]
+			],
+			'alamat' => [
+				'rules' => 'required',
+				'errors' => [
+					'required' => 'Alamat harus diisi',
+				]
+			],
+			'sk_pengangkatan' => [
+				'rules' => 'uploaded[sk_pengangkatan]',
+				'errors' => [
+					'uploaded' => 'sk_pengangkatan harus diisi'
+				]
+			],
+			'portofolio' => [
+				'rules' => 'uploaded[portofolio]',
+				'errors' => [
+					'uploaded' => 'portofolio harus diisi'
+				]
+			],
+			'cv' => [
+				'rules' => 'uploaded[cv]',
+				'errors' => [
+					'uploaded' => 'cv harus diisi'
+				]
+			],
+			'pas_foto' => [
+				'rules' => 'uploaded[pas_foto]',
+				'errors' => [
+					'uploaded' => 'pas_foto harus diisi'
+				]
+			],
+			'ktp' => [
+				'rules' => 'uploaded[ktp]',
+				'errors' => [
+					'uploaded' => 'ktp harus diisi'
+				]
+			]
+		];
+		if (!$this->validate($rules)) {
+			$validation = \Config\Services::validation();
+			return json_encode([
+				'status' => 'error',
+				'errors' => $validation->getErrors()
+			]);
+		}
+
+		$request =  $this->request;
+		$data = [
+			'nama' => $request->getPost('nama'),
+			'alamat' => $request->getPost('alamat'),
+			'tempat_lahir' => $request->getPost('tempat_lahir'),
+			'tanggal_lahir' => $request->getPost('tanggal_lahir'),
+			'nik' => $request->getPost('nik'),
+			'jabatan_id' => $request->getPost('jabatan_id'),
+		];
+
+		$uploadPath = (new Upload())->publicDirectory;
+		$sk_pengangkatan = $request->getFile('sk_pengangkatan');
+		if ($sk_pengangkatan->isValid()) {
+			$sk_pengangkatan->move($uploadPath . 'files/personil/sk_pengangkatan');
+			$data['sk_pengangkatan'] = site_url('files/personil/sk_pengangkatan/' . $sk_pengangkatan->getName());
+		}
+		$portofolio = $request->getFile('portofolio');
+		if ($portofolio->isValid()) {
+			$portofolio->move($uploadPath . 'files/personil/portofolio');
+			$data['portofolio'] = site_url('files/personil/portofolio/' . $portofolio->getName());
+		}
+		$cv = $request->getFile('cv');
+		if ($cv->isValid()) {
+			$cv->move($uploadPath . 'files/personil/cv');
+			$data['cv'] = site_url('files/personil/cv/' . $cv->getName());
+		}
+		$pas_foto = $request->getFile('pas_foto');
+		if ($pas_foto->isValid()) {
+			$pas_foto->move($uploadPath . 'files/personil/pas_foto');
+			$data['pas_foto'] = site_url('files/personil/pas_foto/' . $pas_foto->getName());
+		}
+		$ktp = $request->getFile('ktp');
+		if ($ktp->isValid()) {
+			$ktp->move($uploadPath . 'files/personil/ktp');
+			$data['ktp'] = site_url('files/personil/ktp/' . $ktp->getName());
+		}
+
+		$personilModel = new PersonilModel();
+		$insertedId = $personilModel->insert($data);
+		$personil = $personilModel->find($insertedId);
+
+		return json_encode([
+			'status' => 'success',
+			'data' => $personil
+		]);
 	}
 
 	/**
