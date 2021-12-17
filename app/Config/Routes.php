@@ -64,6 +64,7 @@ $routes->group('resource', function($routes) {
 	$routes->resource('personil', ['controller' => 'Resources\Personil\PersonilResource']);
 	$routes->resource('jabatan', ['controller' => 'Resources\JabatanResource']);
 	$routes->resource('asesi', ['controller' => 'Resources\Asesi\AsesiResource']);
+	$routes->resource('skema_sertifikasi', ['controller' => 'Resources\SkemaSertifikasiResource']);
 });
 
 $routes->group('export', function($routes) {

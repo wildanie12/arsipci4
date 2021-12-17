@@ -98,7 +98,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-auto">
-                                    <a href="#" class="btn btn-success rounded-circle btn-new-asesor">
+                                    <a href="#" class="btn btn-success rounded-circle btn-new-asesi">
                                         <i class="fas fa-plus"></i>
                                     </a>
                                 </div>
@@ -143,7 +143,7 @@
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text"><i class="fas fa-scroll"></i></span>
                                             </div>
-                                            <select class="form-control form-control-sm filter-skema_sertifikasi_id" id="filter-skema_sertifikasi_id">
+                                            <select name="skema_sertifikasi" class="form-control form-control-sm filter-skema_sertifikasi_id" id="filter-skema_sertifikasi_id">
                                                 <option value="">- Pilih Skema -</option>
                                                 <?php foreach ($dataTuk as $tuk) : ?>
                                                     <option value="<?= $tuk->id ?>"><?= $tuk->nama ?></option>
@@ -286,7 +286,7 @@
 
 <?= $this->section('js_script')?>
 
-<div class="modal fade" id="modal-new-asesor">
+<div class="modal fade" id="modal-new-asesi">
     <div class="modal-dialog modal-xl">
         <div class="modal-content rounded">
             <div class="modal-header bg-success">
@@ -308,12 +308,12 @@
                     <div class="row">
                         <div class="col-md">
                             <div class="form-group">
-                                <label for="new-asesor-nama" class="text-sm mb-0 font-weight-bold">Nama Lengkap</label>
+                                <label for="new-asesi-nama" class="text-sm mb-0 font-weight-bold">Nama Lengkap</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fas fa-signature"></i></span>
                                     </div>
-                                    <input type="text" id="new-asesor-nama" class="form-control" name="nama" placeholder="Tuliskan nama lengkap asesor...">
+                                    <input type="text" id="new-asesi-nama" class="form-control" name="nama" placeholder="Tuliskan nama lengkap asesor...">
                                 </div>
                                 <div class="text-xs text-danger font-weight-bold font-italic error-message error-nama" style="display: none;"></div>
                             </div>
@@ -322,7 +322,7 @@
                     <div class="row">
                         <div class="col-md">
                             <div class="form-group">
-                                <label for="new-asesor-tempat_lahir" class="text-sm mb-0 font-weight-bold">Tempat & Tanggal Lahir</label>
+                                <label for="new-asesi-tempat_lahir" class="text-sm mb-0 font-weight-bold">Tempat & Tanggal Lahir</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text">
@@ -340,7 +340,7 @@
                     <div class="row">
                         <div class="col-md">
                             <div class="form-group">
-                                <label for="new-asesor-nik" class="text-sm mb-0 font-weight-bold">NIK</label>
+                                <label for="new-asesi-nik" class="text-sm mb-0 font-weight-bold">NIK</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text">
@@ -354,7 +354,7 @@
                         </div>
                         <div class="col-md">
                             <div class="form-group">
-                                <label for="new-asesor-pekerjaan" class="text-sm mb-0 font-weight-bold">Pekerjaan</label>
+                                <label for="new-asesi-pekerjaan" class="text-sm mb-0 font-weight-bold">Pekerjaan</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text">
@@ -368,7 +368,7 @@
                         </div>
                         <div class="col-md">
                             <div class="form-group">
-                                <label for="new-asesor-pendidikan_terakhir" class="text-sm mb-0 font-weight-bold">Pendidikan Terakhir</label>
+                                <label for="new-asesi-pendidikan_terakhir" class="text-sm mb-0 font-weight-bold">Pendidikan Terakhir</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text">
@@ -384,24 +384,24 @@
                     <div class="row">
                         <div class="col-md">
                             <div class="form-group">
-                                <label for="new-asesor-email" class="text-sm mb-0 font-weight-bold">Email</label>
+                                <label for="new-asesi-email" class="text-sm mb-0 font-weight-bold">Email</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fas fa-envelope"></i></span>
                                     </div>
-                                    <input type="text" id="new-asesor-email" class="form-control" name="email" placeholder="Tuliskan email..">
+                                    <input type="text" id="new-asesi-email" class="form-control" name="email" placeholder="Tuliskan email..">
                                 </div>
                                 <div class="text-xs text-danger font-weight-bold font-italic error-message error-email" style="display: none;"></div>
                             </div>
                         </div>
                         <div class="col-md">
                             <div class="form-group">
-                                <label for="new-asesor-no_telepon" class="text-sm mb-0 font-weight-bold">Nomor Telepon</label>
+                                <label for="new-asesi-no_telepon" class="text-sm mb-0 font-weight-bold">Nomor Telepon</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fas fa-phone-alt"></i></span>
                                     </div>
-                                    <input type="text" id="new-asesor-no_telepon" class="form-control" name="no_telepon" placeholder="tuliskan nomor telepon">
+                                    <input type="text" id="new-asesi-no_telepon" class="form-control" name="no_telepon" placeholder="tuliskan nomor telepon">
                                 </div>
                                 <div class="text-xs text-danger font-weight-bold font-italic error-message error-no_telepon" style="display: none;"></div>
                             </div>
@@ -410,12 +410,12 @@
                     <div class="row">
                         <div class="col-md">
                             <div class="form-group">
-                                <label for="new-asesor-alamat" class="text-sm mb-0 font-weight-bold">Alamat</label>
+                                <label for="new-asesi-alamat" class="text-sm mb-0 font-weight-bold">Alamat</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fas fa-map-marked-alt"></i></span>
                                     </div>
-                                    <textarea name="alamat" id="new-asesor-alamat" class="form-control"></textarea>
+                                    <textarea name="alamat" id="new-asesi-alamat" class="form-control"></textarea>
                                 </div>
                                 <div class="text-xs text-danger font-weight-bold font-italic error-message error-alamat" style="display: none;"></div>
                             </div>
@@ -430,12 +430,12 @@
                     <div class="row">
                         <div class="col-md">
                             <div class="form-group">
-                                <label for="new-asesor-asesor_kompetensi" class="text-sm mb-0 font-weight-bold">Asesor Kompetensi</label>
+                                <label for="new-asesi-asesor_kompetensi" class="text-sm mb-0 font-weight-bold">Asesor Kompetensi</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fas fa-check-square"></i></span>
                                     </div>
-                                    <select name="asesor_kompetensi" id="new-asesor-asesor_kompetensi" class="form-control">
+                                    <select name="asesor_kompetensi" id="new-asesi-asesor_kompetensi" class="form-control">
                                         <option value="">- Pilih asesor -</option>
                                         <?php foreach($dataAsesor as $asesor) : ?>
                                             <option value="<?= $asesor->id ?>"><?= $asesor->nama ?></option>
@@ -447,12 +447,12 @@
                         </div>
                         <div class="col-md">
                             <div class="form-group">
-                                <label for="new-asesor-tuk" class="text-sm mb-0 font-weight-bold">TUK</label>
+                                <label for="new-asesi-tuk" class="text-sm mb-0 font-weight-bold">TUK</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fas fa-chalkboard-teacher"></i></span>
                                     </div>
-                                    <select name="tuk" id="new-asesor-tuk" class="form-control">
+                                    <select name="tuk" id="new-asesi-tuk" class="form-control">
                                         <option value="">- Pilih TUK -</option>
                                         <?php foreach($dataTuk as $tuk) : ?>
                                             <option value="<?= $tuk->id ?>"><?= $tuk->nama ?></option>
@@ -466,7 +466,7 @@
                     <div class="row">
                         <div class="col-md">
                             <div class="form-group">
-                                <label for="new-asesor-tanggal_uji" class="text-sm mb-0 font-weight-bold">Tanggal Uji</label>
+                                <label for="new-asesi-tanggal_uji" class="text-sm mb-0 font-weight-bold">Tanggal Uji</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fas fa-calendar"></i></span>
@@ -478,12 +478,12 @@
                         </div>
                         <div class="col-md">
                             <div class="form-group">
-                                <label for="new-asesor-skema_sertifikasi" class="text-sm mb-0 font-weight-bold">Skema Sertifikasi</label>
+                                <label for="new-asesi-skema_sertifikasi" class="text-sm mb-0 font-weight-bold">Skema Sertifikasi</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fas fa-scroll"></i></span>
                                     </div>
-                                    <select name="skema_sertifikasi" id="new-asesor-skema_sertifikasi" class="form-control">
+                                    <select name="skema_sertifikasi" id="new-asesi-skema_sertifikasi" class="form-control">
                                         <option value="">- Pilih Skema -</option>
                                     </select>
                                 </div>
@@ -497,52 +497,50 @@
                     <div class="row">
                         <div class="col-md">
                             <div class="form-group">
-                                <label for="new-asesor-no_blanko" class="text-sm mb-0 font-weight-bold">Nomor Blanko</label>
+                                <label for="new-asesi-no_blanko" class="text-sm mb-0 font-weight-bold">Nomor Blanko</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fas fa-id-card-alt"></i></span>
                                     </div>
-                                    <input type="text" class="form-control" id="new-aseseor-no_blanko" name="no_blanko" placeholder="Tuliskan nomor blanko...">
+                                    <input type="text" class="form-control" id="new-asesi-no_blanko" name="no_blanko" placeholder="Tuliskan nomor blanko...">
                                 </div>
                                 <div class="text-xs text-danger font-weight-bold font-italic error-message error-no_blanko" style="display: none;"></div>
                             </div>
                         </div>
                         <div class="col-md">
                             <div class="form-group">
-                                <label for="new-asesor-no_sertifikasi" class="text-sm mb-0 font-weight-bold">Nomor Sertifikasi</label>
+                                <label for="new-asesi-no_sertifikat" class="text-sm mb-0 font-weight-bold">Nomor Sertifikat</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fas fa-id-card-alt"></i></span>
                                     </div>
-                                    <input type="text" class="form-control" id="new-aseseor-no_sertifikasi" name="no_sertifikasi" placeholder="Tuliskan nomor sertifikasi...">
+                                    <input type="text" class="form-control" id="new-asesi-no_sertifikat" name="no_sertifikat" placeholder="Tuliskan nomor sertifikat...">
                                 </div>
-                                <div class="text-xs text-danger font-weight-bold font-italic error-message error-no_sertifikasi" style="display: none;"></div>
+                                <div class="text-xs text-danger font-weight-bold font-italic error-message error-no_sertifikat" style="display: none;"></div>
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md">
                             <div class="form-group">
-                                <label for="new-asesor-tanggal_sertifikat" class="text-sm mb-0 font-weight-bold">Tanggal Sertifikat</label>
+                                <label for="new-asesi-tanggal_sertifikat" class="text-sm mb-0 font-weight-bold">Tanggal Sertifikat</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fas fa-calendar"></i></span>
                                     </div>
-                                    <input type="date" class="form-control" id="new-aseseor-tanggal_sertifikat" name="tanggal_sertifikat">
+                                    <input type="date" class="form-control" id="new-asesi-tanggal_sertifikat" name="tanggal_sertifikat">
                                 </div>
                                 <div class="text-xs text-danger font-weight-bold font-italic error-message error-tanggal_sertifikat" style="display: none;"></div>
                             </div>
                         </div>
                         <div class="col-md">
                             <div class="form-group">
-                                <label for="new-asesor-tanggal_expired_sertifikat" class="text-sm mb-0 font-weight-bold">Tanggal Expired Sertifikat</label>
+                                <label for="new-asesi-tanggal_expired_sertifikat" class="text-sm mb-0 font-weight-bold">Tanggal Expired Sertifikat</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fas fa-calendar"></i></span>
                                     </div>
-                                    <select name="tanggal_expired_sertifikat" id="new-asesor-tanggal_expired_sertifikat" class="form-control">
-                                        <option value="">- Pilih Skema -</option>
-                                    </select>
+                                    <input type="date" class="form-control" name="tanggal_expired_sertifikat" id="new-asesi-tanggal_expired_sertifikat">
                                 </div>
                                 <div class="text-xs text-danger font-weight-bold font-italic error-message error-tanggal_expired_sertifikat" style="display: none;"></div>
                             </div>
@@ -557,12 +555,12 @@
                     <div class="row">
                         <div class="col-md">
                             <div class="form-group mb-0">
-                                <label for="new-asesor-foto" class="text-sm mb-0 font-weight-bold">Foto</label>
+                                <label for="new-asesi-foto" class="text-sm mb-0 font-weight-bold">Foto</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fas fa-file-pdf"></i></span>
                                     </div>
-                                    <input type="file" accept="image/*" id="new-asesor-foto" class="form-control pt-1" name="foto">
+                                    <input type="file" accept="image/*" id="new-asesi-foto" class="form-control pt-1" name="foto">
                                 </div>
                                 <span class="text-muted text-xs font-italic">Upload file gambar. Ukuran Max: 6MB</span>
                                 <div class="text-xs text-danger font-weight-bold font-italic error-message error-foto" style="display: none;"></div>
@@ -573,12 +571,12 @@
                         </div>
                         <div class="col-md">
                             <div class="form-group mb-0">
-                                <label for="new-asesor-portofolio" class="text-sm mb-0 font-weight-bold">Portofolio</label>
+                                <label for="new-asesi-portofolio" class="text-sm mb-0 font-weight-bold">Portofolio</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fas fa-file-pdf"></i></span>
                                     </div>
-                                    <input type="file" accept=".doc,.docx,.pdf,.ppt,.pptx" id="new-asesor-portofolio" class="form-control pt-1" name="portofolio">
+                                    <input type="file" accept=".doc,.docx,.pdf,.ppt,.pptx" id="new-asesi-portofolio" class="form-control pt-1" name="portofolio">
                                 </div>
                                 <span class="text-muted text-xs font-italic">Upload file dokumen (doc/docx/pdf). Ukuran Max: 6MB</span>
                                 <div class="text-xs text-danger font-weight-bold font-italic error-message error-portofolio" style="display: none;"></div>
@@ -588,12 +586,12 @@
                     <div class="row">
                         <div class="col-md">
                             <div class="form-group mb-0">
-                                <label for="new-asesor-muk" class="text-sm mb-0 font-weight-bold">MUK</label>
+                                <label for="new-asesi-muk" class="text-sm mb-0 font-weight-bold">MUK</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fas fa-file-pdf"></i></span>
                                     </div>
-                                    <input type="file" accept=".doc,.docx,.pdf,.ppt,.pptx" id="new-asesor-muk" class="form-control pt-1" name="muk">
+                                    <input type="file" accept=".doc,.docx,.pdf,.ppt,.pptx" id="new-asesi-muk" class="form-control pt-1" name="muk">
                                 </div>
                                 <span class="text-muted text-xs font-italic">Upload file dokumen (doc/docx/pdf). Ukuran Max: 6MB</span>
                                 <div class="text-xs text-danger font-weight-bold font-italic error-message error-muk" style="display: none;"></div>
@@ -601,12 +599,12 @@
                         </div>
                         <div class="col-md">
                             <div class="form-group mb-0">
-                                <label for="new-asesor-sertifikat_kompetensi" class="text-sm mb-0 font-weight-bold">Sertifikat</label>
+                                <label for="new-asesi-sertifikat_kompetensi" class="text-sm mb-0 font-weight-bold">Sertifikat</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fas fa-file-pdf"></i></span>
                                     </div>
-                                    <input type="file" accept=".doc,.docx,.pdf,.ppt,.pptx" id="new-asesor-sertifikat_kompetensi" class="form-control pt-1" name="sertifikat_kompetensi">
+                                    <input type="file" accept=".doc,.docx,.pdf,.ppt,.pptx" id="new-asesi-sertifikat_kompetensi" class="form-control pt-1" name="sertifikat_kompetensi">
                                 </div>
                                 <span class="text-muted text-xs font-italic">Upload file dokumen (doc/docx/pdf). Ukuran Max: 6MB</span>
                                 <div class="text-xs text-danger font-weight-bold font-italic error-message error-sertifikat_kompetensi" style="display: none;"></div>
@@ -636,6 +634,68 @@
     </div> 
 </div>
 
+<div class="modal fade" id="modal-skema">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Skema Sertifikasi</h4>
+                <button class="close" data-dismiss="modal" type="button">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="loading position-absolute top-0 bottom-0 left-0 right-0 rounded" style="display: none;">
+                    <div class="d-flex justify-content-center align-items-center h-100 flex-column">
+                        <i class="fas fa-spin fa-sync text-white" style="font-size: 48px"></i>
+                        <h4 class="text-center mt-3 text-white">Loading<br/>.....</h4>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md">
+                        <form>
+                            <?= csrf_field() ?>
+                            <div class="form-group">
+                                <label for="new-skema-nama">Nama Skema Sertifikasi</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fas fa-user-tie"></i></span>
+                                    </div>
+                                    <input type="text" class="form-control" name="nama" placeholder="Tuliskan nama skema...">
+                                </div>
+                                <div class="text-xs text-danger font-weight-bold font-italic error-message error-nama" style="display: none;"></div>
+                            </div>
+                            <div class="form-group d-flex">
+                                <button data-dismiss="modal" class="btn btn-light mr-2">
+                                    Close
+                                </button>
+                                <button type="submit" class="btn btn-primary flex-grow-1">
+                                    <i class="fas fa-paper-plane mr-2"></i>
+                                    Tambah Skema
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Nama</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>  
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="modal fade" id="modal-edit-asesor">
     <div class="modal-dialog modal-xl">
         <div class="modal-content rounded">
@@ -660,12 +720,12 @@
                     <div class="row">
                         <div class="col-md">
                             <div class="form-group">
-                                <label for="new-asesor-nama" class="text-sm mb-0 font-weight-bold">Nama Lengkap</label>
+                                <label for="new-asesi-nama" class="text-sm mb-0 font-weight-bold">Nama Lengkap</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fas fa-signature"></i></span>
                                     </div>
-                                    <input type="text" id="new-asesor-nama" class="form-control" name="nama" placeholder="Tuliskan nama lengkap asesor...">
+                                    <input type="text" id="new-asesi-nama" class="form-control" name="nama" placeholder="Tuliskan nama lengkap asesor...">
                                 </div>
                                 <div class="text-xs text-danger font-weight-bold font-italic error-message error-nama" style="display: none;"></div>
                             </div>
@@ -674,7 +734,7 @@
                     <div class="row">
                         <div class="col-md">
                             <div class="form-group">
-                                <label for="new-asesor-tempat_lahir" class="text-sm mb-0 font-weight-bold">Tempat Lahir</label>
+                                <label for="new-asesi-tempat_lahir" class="text-sm mb-0 font-weight-bold">Tempat Lahir</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text">
@@ -692,7 +752,7 @@
                     <div class="row">
                         <div class="col-md">
                             <div class="form-group">
-                                <label for="new-asesor-no_blanko" class="text-sm mb-0 font-weight-bold">Nomor Blanko</label>
+                                <label for="new-asesi-no_blanko" class="text-sm mb-0 font-weight-bold">Nomor Blanko</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text">
@@ -706,7 +766,7 @@
                         </div>
                         <div class="col-md">
                             <div class="form-group">
-                                <label for="new-asesor-no_reg_sertifikat" class="text-sm mb-0 font-weight-bold">Nomor REG Sertifikat</label>
+                                <label for="new-asesi-no_reg_sertifikat" class="text-sm mb-0 font-weight-bold">Nomor REG Sertifikat</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text">
@@ -720,7 +780,7 @@
                         </div>
                         <div class="col-md">
                             <div class="form-group">
-                                <label for="new-asesor-no_met_sertifikat" class="text-sm mb-0 font-weight-bold">Nomor MET Sertifikat</label>
+                                <label for="new-asesi-no_met_sertifikat" class="text-sm mb-0 font-weight-bold">Nomor MET Sertifikat</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text">
@@ -736,36 +796,36 @@
                     <div class="row">
                         <div class="col-md">
                             <div class="form-group">
-                                <label for="new-asesor-kompetensi_teknis" class="text-sm mb-0 font-weight-bold">Kompetensi Teknis</label>
+                                <label for="new-asesi-kompetensi_teknis" class="text-sm mb-0 font-weight-bold">Kompetensi Teknis</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fas fa-flask"></i></span>
                                     </div>
-                                    <input type="text" id="new-asesor-kompetensi_teknis" class="form-control" name="kompetensi_teknis" placeholder="Tuliskan kompetensi teknis">
+                                    <input type="text" id="new-asesi-kompetensi_teknis" class="form-control" name="kompetensi_teknis" placeholder="Tuliskan kompetensi teknis">
                                 </div>
                                 <div class="text-xs text-danger font-weight-bold font-italic error-message error-kompetensi_teknis" style="display: none;"></div>
                             </div>
                         </div>
                         <div class="col-md">
                             <div class="form-group">
-                                <label for="new-asesor-tanggal_sertifikat" class="text-sm mb-0 font-weight-bold">Tanggal Sertifikat</label>
+                                <label for="new-asesi-tanggal_sertifikat" class="text-sm mb-0 font-weight-bold">Tanggal Sertifikat</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fas fa-scroll"></i></span>
                                     </div>
-                                    <input type="date" id="new-asesor-tanggal_sertifikat" class="form-control" name="tanggal_sertifikat">
+                                    <input type="date" id="new-asesi-tanggal_sertifikat" class="form-control" name="tanggal_sertifikat">
                                 </div>
                                 <div class="text-xs text-danger font-weight-bold font-italic error-message error-tanggal_sertifikat" style="display: none;"></div>
                             </div>
                         </div>
                         <div class="col-md">
                             <div class="form-group">
-                                <label for="new-asesor-tanggal_expired_sertifikat" class="text-sm mb-0 font-weight-bold">Tanggal Expired Sertifikat</label>
+                                <label for="new-asesi-tanggal_expired_sertifikat" class="text-sm mb-0 font-weight-bold">Tanggal Expired Sertifikat</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fas fa-scroll"></i></span>
                                     </div>
-                                    <input type="date" id="new-asesor-tanggal_expired_sertifikat" class="form-control" name="tanggal_expired_sertifikat">
+                                    <input type="date" id="new-asesi-tanggal_expired_sertifikat" class="form-control" name="tanggal_expired_sertifikat">
                                 </div>
                                 <div class="text-xs text-danger font-weight-bold font-italic error-message error-tanggal_expired_sertifikat" style="display: none;"></div>
                             </div>
@@ -780,12 +840,12 @@
                     <div class="row">
                         <div class="col-md">
                             <div class="form-group mb-0">
-                                <label for="new-asesor-sertifikat_asesor" class="text-sm mb-0 font-weight-bold">Sertifikat Asesor</label>
+                                <label for="new-asesi-sertifikat_asesor" class="text-sm mb-0 font-weight-bold">Sertifikat Asesor</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fas fa-file-pdf"></i></span>
                                     </div>
-                                    <input type="file" accept=".doc,.docx,.pdf,.ppt,.pptx" id="new-asesor-sertifikat_asesor" class="form-control pt-1" name="sertifikat_asesor">
+                                    <input type="file" accept=".doc,.docx,.pdf,.ppt,.pptx" id="new-asesi-sertifikat_asesor" class="form-control pt-1" name="sertifikat_asesor">
                                 </div>
                                 <div class="text-muted text-xs font-italic">Upload file dokumen (doc/docx/pdf). Ukuran Max: 6MB <br/>Abaikan jika tidak ingin merubah</div>
                                 <div class="text-xs text-danger font-weight-bold font-italic error-message error-sertifikat_asesor" style="display: none;"></div>
@@ -796,12 +856,12 @@
                         </div>
                         <div class="col-md">
                             <div class="form-group mb-0">
-                                <label for="new-asesor-portofolio" class="text-sm mb-0 font-weight-bold">Portofolio</label>
+                                <label for="new-asesi-portofolio" class="text-sm mb-0 font-weight-bold">Portofolio</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fas fa-file-pdf"></i></span>
                                     </div>
-                                    <input type="file" accept=".doc,.docx,.pdf,.ppt,.pptx" id="new-asesor-portofolio" class="form-control pt-1" name="portofolio">
+                                    <input type="file" accept=".doc,.docx,.pdf,.ppt,.pptx" id="new-asesi-portofolio" class="form-control pt-1" name="portofolio">
                                 </div>
                                 <div class="text-muted text-xs font-italic">Upload file dokumen (doc/docx/pdf). Ukuran Max: 6MB <br/>Abaikan jika tidak ingin merubah</div>
                                 <div class="text-xs text-danger font-weight-bold font-italic error-message error-portofolio" style="display: none;"></div>
@@ -812,12 +872,12 @@
                         </div>
                         <div class="col-md">
                             <div class="form-group mb-0">
-                                <label for="new-asesor-cv" class="text-sm mb-0 font-weight-bold">CV</label>
+                                <label for="new-asesi-cv" class="text-sm mb-0 font-weight-bold">CV</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fas fa-file-pdf"></i></span>
                                     </div>
-                                    <input type="file" accept=".doc,.docx,.pdf,.ppt,.pptx" id="new-asesor-cv" class="form-control pt-1" name="cv">
+                                    <input type="file" accept=".doc,.docx,.pdf,.ppt,.pptx" id="new-asesi-cv" class="form-control pt-1" name="cv">
                                 </div>
                                 <div class="text-muted text-xs font-italic">Upload file dokumen (doc/docx/pdf). Ukuran Max: 6MB <br/>Abaikan jika tidak ingin merubah</div>
                                 <div class="text-xs text-danger font-weight-bold font-italic error-message error-cv" style="display: none;"></div>
@@ -830,12 +890,12 @@
                     <div class="row">
                         <div class="col-md">
                             <div class="form-group mb-0">
-                                <label for="new-asesor-pas_foto" class="text-sm mb-0 font-weight-bold">Pas Foto</label>
+                                <label for="new-asesi-pas_foto" class="text-sm mb-0 font-weight-bold">Pas Foto</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fas fa-file-pdf"></i></span>
                                     </div>
-                                    <input type="file" accept="image/*" id="new-asesor-pas_foto" class="form-control pt-1" name="pas_foto">
+                                    <input type="file" accept="image/*" id="new-asesi-pas_foto" class="form-control pt-1" name="pas_foto">
                                 </div>
                                 <span class="text-muted text-xs font-italic">Upload file gambar. Ukuran Max: 6MB</span>
                                 <div class="text-xs text-danger font-weight-bold font-italic error-message error-pas_foto" style="display: none;"></div>
@@ -846,12 +906,12 @@
                         </div>
                         <div class="col-md">
                             <div class="form-group mb-0">
-                                <label for="new-asesor-ktp" class="text-sm mb-0 font-weight-bold">Scan KTP</label>
+                                <label for="new-asesi-ktp" class="text-sm mb-0 font-weight-bold">Scan KTP</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fas fa-file-pdf"></i></span>
                                     </div>
-                                    <input type="file" accept="image/*" id="new-asesor-ktp" class="form-control pt-1" name="ktp">
+                                    <input type="file" accept="image/*" id="new-asesi-ktp" class="form-control pt-1" name="ktp">
                                 </div>
                                 <span class="text-muted text-xs font-italic">Upload file gambar. Ukuran Max: 6MB</span>
                                 <div class="text-xs text-danger font-weight-bold font-italic error-message error-ktp" style="display: none;"></div>
@@ -1002,38 +1062,30 @@
         }
         refreshData()
 
-        let modalNewAsesor = $("#modal-new-asesor")
-        $(".btn-new-asesor").click(function (e) {
+        let modalNewAsesi = $("#modal-new-asesi")
+        $(".btn-new-asesi").click(function (e) {
             e.preventDefault()
-            modalNewAsesor.modal('show')
+            modalNewAsesi.modal('show')
         })
 
-        modalNewAsesor.on('shown.bs.modal', function() {
-            modalNewAsesor.find("[name='pas_foto']").change(function(e) {
+        modalNewAsesi.on('shown.bs.modal', function() {
+            modalNewAsesi.find("[name='foto']").change(function(e) {
                 const pasFoto = new FileReader()
                 pasFoto.readAsDataURL(this.files[0])
                 pasFoto.onload = function (e) {
-                    modalNewAsesor.find(".image-pas_foto img").attr('src', e.target.result)
-                    modalNewAsesor.find(".image-pas_foto").show()
-                }
-            })
-            modalNewAsesor.find("[name='ktp']").change(function (e) {
-                const ktpReader = new FileReader()
-                ktpReader.readAsDataURL(this.files[0])
-                ktpReader.onload = function (e) {
-                    modalNewAsesor.find(".image-ktp img").attr('src', e.target.result)
-                    modalNewAsesor.find(".image-ktp").show()
+                    modalNewAsesi.find(".image-foto img").attr('src', e.target.result)
+                    modalNewAsesi.find(".image-foto").show()
                 }
             })
 
-            modalNewAsesor.find('form').unbind('submit').submit(function (e) {
+            modalNewAsesi.find('form').unbind('submit').submit(function (e) {
                 e.preventDefault()
-                modalNewAsesor.find('.loading').show()
-                modalNewAsesor.find(".error-message").hide()
+                modalNewAsesi.find('.loading').show()
+                modalNewAsesi.find(".error-message").hide()
                 formData = new FormData(this)
                 $.ajax({
                     type: "POST",
-                    url: "<?= site_url('resource/asesor') ?>",
+                    url: "<?= site_url('resource/asesi') ?>",
                     data: formData,
                     dataType: "json",
                     contentType: false,
@@ -1044,18 +1096,18 @@
                     if (response.status == 'error') {
                         Object.entries(response.errors).forEach((error) => {
                             const [field, message] = error
-                            modalNewAsesor.find('.error-' + field).html(message).show()
+                            modalNewAsesi.find('.error-' + field).html(message).show()
                         })
                     } else {
-                        modalNewAsesor.find('form')[0].reset()
-                        modalNewAsesor.modal('hide')
-                        modalNewAsesor.find(".error-message").hide()
-                        modalNewAsesor.find(".preview-image").hide()
+                        modalNewAsesi.find('form')[0].reset()
+                        modalNewAsesi.modal('hide')
+                        modalNewAsesi.find(".error-message").hide()
+                        modalNewAsesi.find(".preview-image").hide()
                         refreshData()
                     }
                 })
                 .always(function() {
-                    modalNewAsesor.find('.loading').hide()
+                    modalNewAsesi.find('.loading').hide()
                 })
             })
         })
@@ -1229,6 +1281,122 @@
             dataParams.sort = sort
             dataParams.sortBy = field
             refreshData()
+        })
+
+
+
+
+
+        function refreshSkema(callback) {
+            $.ajax({
+                type: "GET",
+                url: "<?= site_url('resource/skema_sertifikasi') ?>",
+                dataType: "json",
+            })
+            .done(function(response) {
+                if (response.status == 'success') {
+                    optionView = "<option value=''>- Pilih Skema -</option>"
+                    tableView = ''
+                    response.data.forEach(function(item, index) {
+                        optionView += `
+                            <option value='${item.id}'>${item.nama}</option>
+                        `
+                        tableView += `
+                            <tr>
+                                <td>${index + 1}</td>
+                                <td>${item.nama}</td>
+                                <td>
+                                    <a href='#' data-id='${item.id}' class='btn btn-sm btn-delete-skema text-danger btn-link'>
+                                        <i class="fas fa-times"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        `
+                    })
+                    $("[name='skema_sertifikasi']").html(optionView)
+                    modalSkema.find("tbody").html(tableView)
+                    onLoadSkema()
+                    callback = 0 || callback
+                    if (callback) callback()
+                }
+            })
+        }
+        refreshSkema()
+        function onLoadSkema() {
+            modalSkema.find('.btn-delete-skema').unbind('click').click(function (e) {
+                e.preventDefault()
+                if (confirm('Anda yakin?')) {       
+                    id = $(this).data('id')
+                    modalSkema.find('.loading').show()
+                    $.ajax({
+                        type: "POST",
+                        url: "<?= site_url('resource/skema_sertifikasi/') ?>" + id,
+                        dataType: "json",
+                        data: {
+                            _method: 'DELETE',
+                            ['<?= csrf_token() ?>']: '<?= csrf_hash() ?>'
+                        }
+                    })
+                    .done(function (response) {
+                        refreshSkema()
+                    })
+                    .always(function () {
+                        modalSkema.find('.loading').hide()
+                    })
+                }
+            })
+            modalSkema.find('form').unbind('submit').submit(function(e) {
+                e.preventDefault()
+                if (confirm('Tambahkan data skema?')) {
+                    modalSkema.find('.loading').show()
+                    formData = new FormData(this)
+                    $.ajax({
+                        type: "POST",
+                        url: "<?= site_url('resource/skema_sertifikasi') ?>",
+                        data: formData,
+                        dataType: "json",
+                        processData: false,
+                        contentType: false,
+                        cache: false,
+                    })
+                    .done(function (response) {
+                        if (response.status == 'error') {
+                            Object.entries(response.errors).forEach((error) => {
+                                const [field, message] = error
+                                modalSkema.find('.error-' + field).html(message).show()
+                            })
+                        } else {
+                            refreshSkema(function () {
+                                $("[name='skema_sertifikasi']").val(response.data.id)
+                            })
+                            modalSkema.find('.error-message').hide()
+                            modalSkema.find('form')[0].reset()
+                            modalSkema.modal('hide')
+                        }
+                    })
+                    .always(function () {
+                        modalSkema.find('.loading').hide()
+                    })
+                }
+            })
+        }
+
+        modalSkema = $("#modal-skema")
+        $(".btn-new-skema").click(function (e) {
+            e.preventDefault()
+            modalSkema.modal('show')
+        })
+        modalSkema.on('show.bs.modal', function (e) {
+            modalNewAsesi.css('z-index', '1020')
+            // modalEditPersonil.css('z-index', '1020')
+        })
+        modalSkema.on('hidden.bs.modal', function (e) {
+            modalNewAsesi.css('z-index', '1050')
+            $("body").addClass('modal-open')
+            // modalEditPersonil.css('z-index', '1050')
+        })
+        modalSkema.on('shown.bs.modal', function (e) {
+            refreshSkema()
         })
     })
 </script>

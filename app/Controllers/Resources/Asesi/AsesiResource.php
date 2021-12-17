@@ -4,6 +4,7 @@ namespace App\Controllers\Resources\Asesi;
 
 use App\Models\Asesi\AsesiModel;
 use CodeIgniter\RESTful\ResourceController;
+use Config\Upload;
 
 class AsesiResource extends ResourceController
 {
@@ -135,7 +136,196 @@ class AsesiResource extends ResourceController
 	 */
 	public function create()
 	{
-		//
+		$rules = [
+			'nama' => [
+				'rules' => 'required',
+				'errors' => [
+					'required' => 'Nama harus diisi'
+				]
+			],
+			'alamat' => [
+				'rules' => 'required',
+				'errors' => [
+					'required' => 'Alalmat harus diisi'
+				]
+			],
+			'tempat_lahir' => [
+				'rules' => 'required',
+				'errors' => [
+					'required' => 'Tempat lahir harus diisi'
+				]
+			],
+			'tanggal_lahir' => [
+				'rules' => 'required',
+				'errors' => [
+					'required' => 'Tanggal lahir harus diisi'
+				]
+			],
+			'nik' => [
+				'rules' => 'required',
+				'errors' => [
+					'required' => 'NIK harus diisi'
+				]
+			],
+			'pekerjaan' => [
+				'rules' => 'required',
+				'errors' => [
+					'required' => 'Pekerjaan harus diisi'
+				]
+			],
+			'pendidikan_terakhir' => [
+				'rules' => 'required',
+				'errors' => [
+					'required' => 'Pendidikan terakhir harus diisi'
+				]
+			],
+			'email' => [
+				'rules' => 'required',
+				'errors' => [
+					'required' => 'Email harus diisi'
+				]
+			],
+			'no_telepon' => [
+				'rules' => 'required',
+				'errors' => [
+					'required' => 'No telepon harus diisi'
+				]
+			],
+			'tanggal_uji' => [
+				'rules' => 'required',
+				'errors' => [
+					'required' => 'Tanggal Uji harus diisi'
+				]
+			],
+			'asesor_kompetensi' => [
+				'rules' => 'required',
+				'errors' => [
+					'required' => 'Asesor Kompetensi harus diisi'
+				]
+			],
+			'tuk' => [
+				'rules' => 'required',
+				'errors' => [
+					'required' => 'TUK harus diisi'
+				]
+			],
+			'skema_sertifikasi' => [
+				'rules' => 'required',
+				'errors' => [
+					'required' => 'Skema sertifikasi harus diisi'
+				]
+			],
+			'no_blanko' => [
+				'rules' => 'required',
+				'errors' => [
+					'required' => 'No blanko harus diisi'
+				]
+			],
+			'no_sertifikat' => [
+				'rules' => 'required',
+				'errors' => [
+					'required' => 'No sertifikat harus diisi'
+				]
+			],
+			'tanggal_sertifikat' => [
+				'rules' => 'required',
+				'errors' => [
+					'required' => 'Tanggal sertifikat harus diisi'
+				]
+			],
+			'tanggal_expired_sertifikat' => [
+				'rules' => 'required',
+				'errors' => [
+					'required' => 'Tanggal expired sertifikat harus diisi'
+				]
+				],
+			'foto' => [
+				'rules' => 'uploaded[foto]',
+				'errors' => [
+					'uploaded' => 'foto harus diisi'
+				],
+			],
+			'muk' => [
+				'rules' => 'uploaded[muk]',
+				'errors' => [
+					'uploaded' => 'muk harus diisi'
+				],
+			],
+			'portofolio' => [
+				'rules' => 'uploaded[portofolio]',
+				'errors' => [
+					'uploaded' => 'portofolio harus diisi'
+				],
+			],
+			'sertifikat_kompetensi' => [
+				'rules' => 'uploaded[sertifikat_kompetensi]',
+				'errors' => [
+					'uploaded' => 'sertifikat_kompetensi harus diisi'
+				],
+			],
+		];
+
+		if (!$this->validate($rules)) {
+			$validation = \Config\Services::validation();
+			return json_encode([
+				'status' => 'error',
+				'errors' => $validation->getErrors()
+			]);
+		}
+		
+		$request = $this->request;
+		$data = [
+			'nama' => $request->getPost('nama'),
+			'alamat' => $request->getPost('alamat'),
+			'tempat_lahir' => $request->getPost('tempat_lahir'),
+			'tanggal_lahir' => $request->getPost('tanggal_lahir'),
+			'nik' => $request->getPost('nik'),
+			'pekerjaan' => $request->getPost('pekerjaan'),
+			'pendidikan_terakhir' => $request->getPost('pendidikan_terakhir'),
+			'email' => $request->getPost('email'),
+			'no_telepon' => $request->getPost('no_telepon'),
+			'tanggal_uji' => $request->getPost('tanggal_uji'),
+			'asesor_kompetensi' => $request->getPost('asesor_kompetensi'),
+			'tuk' => $request->getPost('tuk'),
+			'skema_sertifikasi' => $request->getPost('skema_sertifikasi'),
+			'no_blanko' => $request->getPost('no_blanko'),
+			'no_sertifikat' => $request->getPost('no_sertifikat'),
+			'tanggal_sertifikat' => $request->getPost('tanggal_sertifikat'),
+			'tanggal_expired_sertifikat' => $request->getPost('tanggal_expired_sertifikat'),
+			'is_notified' => $request->getPost('is_notified'),
+		];
+
+		$uploadPath = (new Upload())->publicDirectory;
+		
+		$foto = $request->getFile('foto');
+		if ($foto->isValid()) {
+			$foto->move($uploadPath . '/files/asesi/foto');
+			$data['foto'] = site_url('files/asesi/foto/' . $foto->getName());
+		}
+		$muk = $request->getFile('muk');
+		if ($muk->isValid()) {
+			$muk->move($uploadPath . '/files/asesi/muk');
+			$data['muk'] = site_url('files/asesi/muk/' . $muk->getName());
+		}
+		$portofolio = $request->getFile('portofolio');
+		if ($portofolio->isValid()) {
+			$portofolio->move($uploadPath . '/files/asesi/portofolio');
+			$data['portofolio'] = site_url('files/asesi/portofolio/' . $portofolio->getName());
+		}
+		$sertifikat_kompetensi = $request->getFile('sertifikat_kompetensi');
+		if ($sertifikat_kompetensi->isValid()) {
+			$sertifikat_kompetensi->move($uploadPath . '/files/asesi/sertifikat_kompetensi');
+			$data['sertifikat_kompetensi'] = site_url('files/asesi/sertifikat_kompetensi/' . $sertifikat_kompetensi->getName());
+		}
+
+		$asesiModel = new AsesiModel();
+		$insertedId = $asesiModel->insert($data);
+		$asesi = $asesiModel->find($insertedId);
+
+		return json_encode([
+			'status' => 'success',
+			'data' => $asesi,
+		]);
 	}
 
 	/**
