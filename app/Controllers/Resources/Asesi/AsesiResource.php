@@ -546,6 +546,27 @@ class AsesiResource extends ResourceController
 	 */
 	public function delete($id = null)
 	{
-		//
+		$asesiModel = new AsesiModel();
+		$asesi = $asesiModel->find($id);
+
+		$uploadPath = (new Upload())->publicDirectory;
+		if (file_exists($uploadPath . 'files/asesi/foto/' . utf8_decode(urldecode(basename($asesi->foto)))) && $asesi->foto != '') {
+			unlink($uploadPath . 'files/asesi/foto/' . utf8_decode(urldecode(basename($asesi->foto))));
+		}
+		if (file_exists($uploadPath . 'files/asesi/muk/' . utf8_decode(urldecode(basename($asesi->muk)))) && $asesi->muk != '') {
+			unlink($uploadPath . 'files/asesi/muk/' . utf8_decode(urldecode(basename($asesi->muk))));
+		}
+		if (file_exists($uploadPath . 'files/asesi/portofolio/' . utf8_decode(urldecode(basename($asesi->portofolio)))) && $asesi->portofolio != '') {
+			unlink($uploadPath . 'files/asesi/portofolio/' . utf8_decode(urldecode(basename($asesi->portofolio))));
+		}
+		if (file_exists($uploadPath . 'files/asesi/sertifikat_kompetensi/' . utf8_decode(urldecode(basename($asesi->sertifikat_kompetensi)))) && $asesi->sertifikat_kompetensi != '') {
+			unlink($uploadPath . 'files/asesi/sertifikat_kompetensi/' . utf8_decode(urldecode(basename($asesi->sertifikat_kompetensi))));
+		}
+		$asesiModel->delete($id);
+
+		return json_encode([
+			'status' => 'success',
+			'data' => $id
+		]);
 	}
 }

@@ -198,75 +198,75 @@
                                             <i class="fas fa-sort-amount-down-alt"></i>
                                         </span>
                                     </th>
-                                    <th class="align-middle">
+                                    <th class="align-middle text-center">
                                         TTL
                                         <span class="ml-2 text-warning btn-sort" data-field="tempat_lahir" data-sort="asc" style="cursor: pointer">
                                             <i class="fas fa-sort-amount-down-alt"></i>
                                         </span>
                                     </th>
-                                    <th class="align-middle">
+                                    <th class="align-middle text-center">
                                         NIK
                                         <span class="ml-2 text-warning btn-sort" data-field="nik" data-sort="asc" style="cursor: pointer">
                                             <i class="fas fa-sort-amount-down-alt"></i>
                                         </span>
                                     </th>
-                                    <th class="align-middle">
+                                    <th class="align-middle text-center">
                                         Pekerjaan
                                         <span class="ml-2 text-warning btn-sort" data-field="pekerjaan" data-sort="asc" style="cursor: pointer">
                                             <i class="fas fa-sort-amount-down-alt"></i>
                                         </span>
                                     </th>
-                                    <th class="align-middle">
+                                    <th class="align-middle text-center">
                                         Pendidikan Terakhir
                                         <span class="ml-2 text-warning btn-sort" data-field="pendidikan_terakhir" data-sort="asc" style="cursor: pointer">
                                             <i class="fas fa-sort-amount-down-alt"></i>
                                         </span>
                                     </th>
-                                    <th>
+                                    <th class="align-middle text-center">
                                         Email
                                         <span class="ml-2 text-warning btn-sort" data-field="email" data-sort="asc" style="cursor: pointer">
                                             <i class="fas fa-sort-amount-down-alt"></i>
                                         </span>
                                     </th>
-                                    <th>
+                                    <th class="align-middle text-center">
                                         No Telepon
                                         <span class="ml-2 text-warning btn-sort" data-field="no_telepon" data-sort="asc" style="cursor: pointer">
                                             <i class="fas fa-sort-amount-down-alt"></i>
                                         </span>
                                     </th>
-                                    <th>
+                                    <th class="align-middle text-center">
                                         Tanggal Uji
                                         <span class="ml-2 text-warning btn-sort" data-field="tanggal_uji" data-sort="asc" style="cursor: pointer">
                                             <i class="fas fa-sort-amount-down-alt"></i>
                                         </span>
                                     </th>
-                                    <th>
+                                    <th class="align-middle text-center">
                                         Asesor
                                         <span class="ml-2 text-warning btn-sort" data-field="asesor_kompetensi" data-sort="asc" style="cursor: pointer">
                                             <i class="fas fa-sort-amount-down-alt"></i>
                                         </span>
                                     </th>
-                                    <th>TUK</th>
-                                    <th>Skema Sertifikasi</th>
-                                    <th>
+                                    <th class="align-middle text-center">TUK</th>
+                                    <th class="align-middle text-center">Skema Sertifikasi</th>
+                                    <th class="align-middle text-center">
                                         No Blanko
                                         <span class="ml-2 text-warning btn-sort" data-field="no_blanko" data-sort="asc" style="cursor: pointer">
                                             <i class="fas fa-sort-amount-down-alt"></i>
                                         </span>
                                     </th>
-                                    <th>
+                                    <th class="align-middle text-center">
                                         No Sertifikat
                                         <span class="ml-2 text-warning btn-sort" data-field="no_sertifikat" data-sort="asc" style="cursor: pointer">
                                             <i class="fas fa-sort-amount-down-alt"></i>
                                         </span>
                                     </th>
-                                    <th>
+                                    <th class="align-middle text-center">
                                         Tanggal Sertifikat
                                         <span class="ml-2 text-warning btn-sort" data-field="tanggal_sertifikat" data-sort="asc" style="cursor: pointer">
                                             <i class="fas fa-sort-amount-down-alt"></i>
                                         </span>
                                     </th>
-                                    <th>Dokumen</th>
+                                    <th class="align-middle text-center">Dokumen</th>
                                 </tr>
                             </thead>
                             <tbody class="load-data">
@@ -681,8 +681,8 @@
                         <table class="table table-striped">
                             <thead>
                                 <tr>
-                                    <th>#</th>
-                                    <th>Nama</th>
+                                    <th class="align-middle text-center">#</th>
+                                    <th class="align-middle text-center">Nama</th>
                                     <th></th>
                                 </tr>
                             </thead>
@@ -1173,7 +1173,7 @@
                     id = $(this).data('id')
                     $.ajax({
                         type: "POST",
-                        url: "<?= site_url('resource/asesor/') ?>" + id,
+                        url: "<?= site_url('resource/asesi/') ?>" + id,
                         data: {
                             _method: 'DELETE',
                             ['<?= csrf_token() ?>']: '<?= csrf_hash() ?>'
