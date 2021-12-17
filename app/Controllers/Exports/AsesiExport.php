@@ -14,7 +14,7 @@ class AsesiExport extends BaseController
 	{
 		$request = $this->request;
 
-		$asesorModel = new AsesiModel();
+		$asesiModel = new AsesiModel();
 
 		$spreadsheet = new Spreadsheet();
 		$worksheet = $spreadsheet->getActiveSheet();
@@ -80,7 +80,12 @@ class AsesiExport extends BaseController
 		];
 		$worksheet->getStyle('A3:W3')->applyFromArray($styleArray);
 
-		$data = $asesorModel->orderBy('nama', 'asc')->findAll();
+		$asesiModel->select('asesor.nama AS asesor_nama, tuk.nama AS tuk_nama, skema_sertifikasi.nama AS skema_sertifikasi_nama, asesi.*');
+		$asesiModel->join('asesor', 'asesor.id = asesi.asesor_kompetensi', 'left');
+		$asesiModel->join('tuk', 'tuk.id = asesi.tuk', 'left');
+		$asesiModel->join('skema_sertifikasi', 'skema_sertifikasi.id = asesi.skema_sertifikasi', 'left');
+		$data = $asesiModel->orderBy('nama', 'asc')->findAll();
+
 		foreach ($data as $index => $row) {
 			$worksheet->setCellValueByColumnAndRow(1, 4 + $index, $index+1);
 			$worksheet->setCellValueByColumnAndRow(2, 4 + $index, $row->id);
@@ -94,9 +99,9 @@ class AsesiExport extends BaseController
 			$worksheet->setCellValueByColumnAndRow(10, 4 + $index, $row->email);
 			$worksheet->setCellValueByColumnAndRow(11, 4 + $index, '="' . $row->no_telepon . '"');
 			$worksheet->setCellValueByColumnAndRow(12, 4 + $index, $row->tanggal_uji);
-			$worksheet->setCellValueByColumnAndRow(13, 4 + $index, $row->asesor_kompetensi);
-			$worksheet->setCellValueByColumnAndRow(14, 4 + $index, $row->tuk);
-			$worksheet->setCellValueByColumnAndRow(15, 4 + $index, $row->skema_sertifikasi);
+			$worksheet->setCellValueByColumnAndRow(13, 4 + $index, ($row->asesor_nama != '') ? $row->asesor_nama : $row->asesi_kompetensi);
+			$worksheet->setCellValueByColumnAndRow(14, 4 + $index, ($row->tuk_nama != '') ? $row->tuk_nama : $row->tuk);
+			$worksheet->setCellValueByColumnAndRow(15, 4 + $index, ($row->skema_sertifikasi_nama != '') ? $row->skema_sertifikasi_nama : $row->skema_sertifikasi);
 			$worksheet->setCellValueByColumnAndRow(16, 4 + $index, '="' . $row->no_blanko . '"');
 			$worksheet->setCellValueByColumnAndRow(17, 4 + $index, '="' . $row->no_sertifikat . '"');
 			$worksheet->setCellValueByColumnAndRow(18, 4 + $index, $row->tanggal_sertifikat);

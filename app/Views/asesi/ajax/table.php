@@ -43,9 +43,9 @@
         <td class="align-middle"><?= $row->email ?></td>
         <td class="align-middle"><?= $row->no_telepon ?></td>
         <td class="align-middle"><?= date('d-m-Y',strtotime($row->tanggal_uji)) ?></td>
-        <td class="align-middle"><?= $row->asesor_kompetensi ?></td>
-        <td class="align-middle"><?= $row->tuk ?></td>
-        <td class="align-middle"><?= $row->skema_sertifikasi ?></td>
+        <td class="align-middle"><?= ($row->asesor_nama != '') ? $row->asesor_nama : $row->asesi_kompetensi ?></td>
+        <td class="align-middle"><?= ($row->tuk_nama != '') ? $row->tuk_nama : $row->tuk ?></td>
+        <td class="align-middle"><?= ($row->skema_sertifikasi_nama != '') ? $row->skema_sertifikasi_nama : $row->skema_sertifikasi ?></td>
         <td class="align-middle"><?= $row->no_blanko ?></td>
         <td class="align-middle"><?= $row->no_sertifikat ?></td>
         <td class="align-middle">
