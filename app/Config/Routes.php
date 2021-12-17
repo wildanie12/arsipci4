@@ -72,6 +72,7 @@ $routes->group('export', function($routes) {
 	$routes->post('mitra_kerja/spreadsheet', 'Exports\MitraKerjaExport::spreadsheet');
 	$routes->post('asesor/spreadsheet', 'Exports\AsesorExport::spreadsheet');
 	$routes->post('personil/spreadsheet', 'Exports\PersonilExport::spreadsheet');
+	$routes->post('asesi/spreadsheet', 'Exports\AsesiExport::spreadsheet');
 });
 
 /*

@@ -165,7 +165,7 @@
                                 </div>
                                 <div class="col-md d-flex justify-content-center align-items-end">
                                     <div class="form-group mb-0 flex-grow-1">
-                                        <form action="<?= site_url('export/asesor/spreadsheet') ?>" method="post">
+                                        <form action="<?= site_url('export/asesi/spreadsheet') ?>" method="post">
                                             <input type="hidden" name="sifat_penempatan" value="internal">
                                             <button type="submit" class="btn btn-sm btn-block btn-success">
                                                 <i class="fas fa-file-excel mr-2"></i>
