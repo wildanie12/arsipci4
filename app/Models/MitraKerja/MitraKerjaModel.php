@@ -14,6 +14,7 @@ class MitraKerjaModel extends Model
 		'tanggal_mou',
 		'nomor_mou',
 		'keterangan',
+		'jenis_mitra',
 		'dokumen'
 	];
 	protected $useTimestamps        = true;

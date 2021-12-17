@@ -20,7 +20,11 @@
 <?php foreach ($data as $index => $row) : ?>
     <tr>
         <td class="align-middle"><?= (($page-1) * $limit) + ++$index ?></td>
-        <td class="align-middle"><?= $row->nama ?></td>
+        <td class="align-middle">
+            <?= $row->nama ?>
+            <br/>
+            <div class="text-xs font-italic">(<?= $row->jenis_mitra ?>)</div>
+        </td>
         <td class="align-middle"><?= date('d-m-Y', strtotime($row->tanggal_mou)) ?></td>
         <td class="align-middle"><?= $row->nomor_mou ?></td>
         <td class="align-middle"><?= $row->keterangan ?></td>

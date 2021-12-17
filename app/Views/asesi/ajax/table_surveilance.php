@@ -19,14 +19,16 @@
 <?php foreach ($data as $index => $row) : ?>
     <tr>
         <td class="align-middle">
-            <a href="#" data-id="<?= $row->id ?>" class="mb-1 btn btn-sm btn-default btn-detail rounded-circle">
+            <a href="#" data-id="<?= $row->id ?>" class="mb-1 btn btn-sm btn-primary btn-detail rounded-circle">
                 <i class="fas fa-eye"></i>
             </a>
-            <a href="#" data-id="<?= $row->id ?>" class="mb-1 btn btn-sm btn-default btn-edit rounded-circle">
-                <i class="fas fa-pencil-alt"></i>
-            </a>
-            <a href="#" data-id="<?= $row->id ?>" class="mb-1 btn btn-sm btn-danger btn-delete rounded-circle">
-                <i class="fas fa-trash"></i>
+            <a href="#" data-id="<?= $row->id ?>" data-toggle='tooltip' title='<?= ($row->is_notified) ? 'Sudah dikirim pemberitahuan via email' : 'Belum dikirim pemberitahuan via email' ?>' class="mb-1 position-relative btn btn-sm btn-info btn-detail rounded-circle">
+                <i class="fas fa-envelope" style="font-size: 14px;"></i>
+                <?php if ($row->is_notified) : ?>
+                    <i class="fas fa-check text-white" style="position: absolute; left: 16px; top: 16px; font-size: 10px;"></i>
+                <?php else : ?>
+                    <i class="fas fa-times text-danger" style="position: absolute; left: 16px; top: 16px; font-size: 10px;"></i>
+                <?php endif; ?>
             </a>
         </td>
         <td class="align-middle"><?= (($page-1) * $limit) + ++$index ?></td>

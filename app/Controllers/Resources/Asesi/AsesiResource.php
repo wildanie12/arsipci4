@@ -39,6 +39,11 @@ class AsesiResource extends ResourceController
 		if ($skemaSertifikasiId != '') {
 			$asesiModel->where('skema_sertifikasi', $skemaSertifikasiId);
 		}
+
+		$expired = $request->getGet('expired');
+		if ($expired != '') {
+			$asesiModel->where("asesi.tanggal_expired_sertifikat < '" . date('Y-m-d') . "'");
+		}
 		
 		$tanggalUjiAwal = $request->getGet('tanggal_uji_awal');
 		$tanggalUjiAkhir = $request->getGet('tanggal_uji_akhir');
@@ -78,7 +83,12 @@ class AsesiResource extends ResourceController
 			$asesiModel->orderBy('nama', 'asc');
 		}
 
-		$asesiModel->select('asesor.nama AS asesor_nama, tuk.nama AS tuk_nama, skema_sertifikasi.nama AS skema_sertifikasi_nama, asesi.*');
+		$asesiModel->select('
+			asesor.nama AS asesor_nama, 
+			tuk.nama AS tuk_nama, 
+			skema_sertifikasi.nama AS skema_sertifikasi_nama, 
+			asesi.*
+		');
 		$asesiModel->join('asesor', 'asesor.id = asesi.asesor_kompetensi', 'left');
 		$asesiModel->join('tuk', 'tuk.id = asesi.tuk', 'left');
 		$asesiModel->join('skema_sertifikasi', 'skema_sertifikasi.id = asesi.skema_sertifikasi', 'left');
@@ -91,7 +101,6 @@ class AsesiResource extends ResourceController
 		$view_content = $request->getGet('view_content');
 		$view_pagination = $request->getGet('view_pagination');
 		$view_filter = $request->getGet('view_filter');
-
 
 		if ($view_content != '') {
 			if ($view_content != 'json') {

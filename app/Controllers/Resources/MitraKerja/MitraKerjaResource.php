@@ -33,6 +33,11 @@ class MitraKerjaResource extends ResourceController
 			$mitraKerjaModel->where("tanggal_mou BETWEEN '$tanggalAwalMou' AND '$tanggalAkhirMou'");
 		}
 
+		$jenisMitra = $request->getGet('jenis_mitra');
+		if ($jenisMitra != '') {
+			$mitraKerjaModel->where('jenis_mitra', $jenisMitra);
+		}
+
 		$limit = $request->getGet('limit');
 		if ($limit == '') {
 			$limit = 50;
@@ -140,6 +145,12 @@ class MitraKerjaResource extends ResourceController
 				'errors' => [
 					'required' => 'Nomor MoU harus diisi'
 				]
+			],
+			'jenis_mitra' => [
+				'rules' => 'required',
+				'errors' => [
+					'required' => 'Jenis mitra harus diisi',
+				]
 			]
 		];
 
@@ -155,6 +166,7 @@ class MitraKerjaResource extends ResourceController
 			'tanggal_mou' => $request->getPost('tanggal_mou'),
 			'nomor_mou' => $request->getPost('nomor_mou'),
 			'keterangan' => $request->getPost('keterangan'),
+			'jenis_mitra' => $request->getPost('jenis_mitra'),
 		];
 		if ($files = $request->getFiles()) {
 			$uploadPath = (new Upload())->publicDirectory;
@@ -215,6 +227,12 @@ class MitraKerjaResource extends ResourceController
 				'errors' => [
 					'required' => 'Nomor MoU harus diisi'
 				]
+			],
+			'jenis_mitra' => [
+				'rules' => 'required',
+				'errors' => [
+					'required' => 'Jenis mitra harus diisi',
+				]
 			]
 		];
 
@@ -230,6 +248,7 @@ class MitraKerjaResource extends ResourceController
 			'tanggal_mou' => $request->getPost('tanggal_mou'),
 			'nomor_mou' => $request->getPost('nomor_mou'),
 			'keterangan' => $request->getPost('keterangan'),
+			'jenis_mitra' => $request->getPost('jenis_mitra'),
 		];
 		$uploadPath = (new Upload())->publicDirectory;
 		if ($request->getFileMultiple('dokumen')[0]->isValid()) {

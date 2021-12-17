@@ -55,7 +55,10 @@ $routes->get('personil', 'Personil\PersonilController::index');
 $routes->get('personil/(:any)', 'Personil\PersonilController::$1');
 
 $routes->get('asesi', 'Asesi\AsesiController::index');
-$routes->get('asesi/(:any)', 'Asesi\AsesiController::$1');
+$routes->get('asesi/asesi', 'Asesi\AsesiController::index');
+$routes->get('asesi/asesi/(:any)', 'Asesi\AsesiController::$1');
+$routes->get('asesi/surveilance', 'Asesi\SurveilanceController::index');
+$routes->get('asesi/surveilance/(:any)', 'Asesi\SurveilanceController::$1');
 
 $routes->group('resource', function($routes) {
 	$routes->resource('tuk', ['controller' => 'Resources\TUK\TUKResource']);

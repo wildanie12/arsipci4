@@ -62,6 +62,23 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <div class="col-md">
+                                            <div class="form-group">
+                                                <label for="filter-jenis_mitra" class="text-sm mb-0 font-weight-bold">Jenis Mitra Kerja</label>
+                                                <div class="input-group input-group-sm">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text"><i class="fas fa-asterisk"></i></span>
+                                                    </div>
+                                                    <select class="form-control form-control-sm filter-jenis_mitra" id="filter-jenis_mitra">
+                                                        <option value="">- Pilih -</option>
+                                                        <option value="Instansi Pemerintah">Instansi Pemerintah</option>
+                                                        <option value="Lembaga Pemerintah">Lembaga Pemerintah</option>
+                                                        <option value="Perusahaan / Industri">Perusahaan / Industri</option>
+                                                        <option value="Lainnya">Lainnya</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="col-md">
@@ -192,6 +209,24 @@
                                 <div class="text-xs text-danger font-weight-bold font-italic error-message error-nama" style="display: none;"></div>
                             </div>
                         </div>
+                        <div class="col-md">
+                            <div class="form-group">
+                                <label for="new-mitra_kerja-jenis_mitra" class="text-sm mb-0 font-weight-bold">Jenis Mitra Kerja</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fas fa-asterisk"></i></span>
+                                    </div>
+                                    <select class="form-control" name="jenis_mitra" id="new-mitra_kerja-jenis_mitra">
+                                        <option value="">- Pilih -</option>
+                                        <option value="Instansi Pemerintah">Instansi Pemerintah</option>
+                                        <option value="Lembaga Pemerintah">Lembaga Pemerintah</option>
+                                        <option value="Perusahaan / Industri">Perusahaan / Industri</option>
+                                        <option value="Lainnya">Lainnya</option>
+                                    </select>
+                                </div>
+                                <div class="text-xs text-danger font-weight-bold font-italic error-message error-jenis_mitra" style="display: none;"></div>
+                            </div>
+                        </div>
                     </div>
                     <div class="row">
                         <div class="col-md">
@@ -299,38 +334,56 @@
                     <div class="row">
                         <div class="col-md">
                             <div class="form-group">
-                                <label for="new-mitra_kerja-nama" class="text-sm mb-0 font-weight-bold">Nama Mitra Kerja</label>
+                                <label for="edit-mitra_kerja-nama" class="text-sm mb-0 font-weight-bold">Nama Mitra Kerja</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fas fa-signature"></i></span>
                                     </div>
-                                    <input type="text" id="new-mitra_kerja-nama" class="form-control" name="nama" placeholder="Tuliskan nama TUK...">
+                                    <input type="text" id="edit-mitra_kerja-nama" class="form-control" name="nama" placeholder="Tuliskan nama TUK...">
                                 </div>
                                 <div class="text-xs text-danger font-weight-bold font-italic error-message error-nama" style="display: none;"></div>
+                            </div>
+                        </div>
+                        <div class="col-md">
+                            <div class="form-group">
+                                <label for="edit-mitra_kerja-jenis_mitra" class="text-sm mb-0 font-weight-bold">Jenis Mitra Kerja</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fas fa-asterisk"></i></span>
+                                    </div>
+                                    <select class="form-control" name="jenis_mitra" id="edit-mitra_kerja-jenis_mitra">
+                                        <option value="">- Pilih -</option>
+                                        <option value="Instansi Pemerintah">Instansi Pemerintah</option>
+                                        <option value="Lembaga Pemerintah">Lembaga Pemerintah</option>
+                                        <option value="Perusahaan / Industri">Perusahaan / Industri</option>
+                                        <option value="Lainnya">Lainnya</option>
+                                    </select>
+                                </div>
+                                <div class="text-xs text-danger font-weight-bold font-italic error-message error-jenis_mitra" style="display: none;"></div>
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md">
                             <div class="form-group">
-                                <label for="new-mitra_kerja-tanggal" class="text-sm mb-0 font-weight-bold">Tanggal MoU</label>
+                                <label for="edit-mitra_kerja-tanggal" class="text-sm mb-0 font-weight-bold">Tanggal MoU</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fas fa-calendar"></i></span>
                                     </div>
-                                    <input type="date" id="new-mitra_kerja-tanggal" class="form-control" name="tanggal_mou" placeholder="Tuliskan Nomor SK TUK...">
+                                    <input type="date" id="edit-mitra_kerja-tanggal" class="form-control" name="tanggal_mou" placeholder="Tuliskan Nomor SK TUK...">
                                 </div>
                                 <div class="text-xs text-danger font-weight-bold font-italic error-message error-tanggal_mou" style="display: none;"></div>
                             </div>
                         </div>
                         <div class="col-md">
                             <div class="form-group">
-                                <label for="new-mitra_kerja-nomor_mou" class="text-sm mb-0 font-weight-bold">Nomor MoU</label>
+                                <label for="edit-mitra_kerja-nomor_mou" class="text-sm mb-0 font-weight-bold">Nomor MoU</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fas fa-key"></i></span>
                                     </div>
-                                    <input type="text" id="new-mitra_kerja-nomor_mou" class="form-control" name="nomor_mou" placeholder="Tuliskan Nomor SK TUK...">
+                                    <input type="text" id="edit-mitra_kerja-nomor_mou" class="form-control" name="nomor_mou" placeholder="Tuliskan Nomor SK TUK...">
                                 </div>
                                 <div class="text-xs text-danger font-weight-bold font-italic error-message error-nomor_mou" style="display: none;"></div>
                             </div>
@@ -339,12 +392,12 @@
                     <div class="row">
                         <div class="col-md">
                             <div class="form-group">
-                                <label for="new-mitra_kerja-keterangan" class="text-sm mb-0 font-weight-bold">Keterangan</label>
+                                <label for="edit-mitra_kerja-keterangan" class="text-sm mb-0 font-weight-bold">Keterangan</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fas fa-map-marked-alt"></i></span>
                                     </div>
-                                    <textarea name="keterangan" id="new-mitra_kerja-keterangan" class="form-control"></textarea>
+                                    <textarea name="keterangan" id="edit-mitra_kerja-keterangan" class="form-control"></textarea>
                                 </div>
                                 <div class="text-xs text-danger font-weight-bold font-italic error-message error-keterangan" style="display: none;"></div>
                             </div>
@@ -685,6 +738,15 @@
                 dataParams.tanggal_akhir_mou = value
             } else {
                 delete dataParams.tanggal_akhir_mou
+            }
+            refreshData()
+        })
+        $(".filter-jenis_mitra").change(function(e) {
+            value = $(this).val()
+            if (value != '') {
+                dataParams.jenis_mitra = value
+            } else {
+                delete dataParams.jenis_mitra
             }
             refreshData()
         })
