@@ -562,11 +562,11 @@
                                     </div>
                                     <input type="file" accept="image/*" id="new-asesi-foto" class="form-control pt-1" name="foto">
                                 </div>
-                                <span class="text-muted text-xs font-italic">Upload file gambar. Ukuran Max: 6MB</span>
+                                <div class="text-muted text-xs font-italic">Upload file gambar. Ukuran Max: 6MB</div>
                                 <div class="text-xs text-danger font-weight-bold font-italic error-message error-foto" style="display: none;"></div>
                             </div>
                             <div class="preview-image image-foto mb-2" style="display:none">
-                                <img class="img-thumbnail" src="<?= site_url('img/img_unavailable.png') ?>">
+                                <img class="img-thumbnail" style="max-width: 150px" src="<?= site_url('img/img_unavailable.png') ?>">
                             </div> 
                         </div>
                         <div class="col-md">
@@ -696,11 +696,11 @@
     </div>
 </div>
 
-<div class="modal fade" id="modal-edit-asesor">
+<div class="modal fade" id="modal-edit-asesi">
     <div class="modal-dialog modal-xl">
         <div class="modal-content rounded">
             <div class="modal-header bg-success">
-                <h6 class="modal-title font-weight-bold mb-0 text-white">Edit data Asesor Internal</h6>
+                <h6 class="modal-title font-weight-bold mb-0 text-white">Edit data Asesi</h6>
                 <button type="button" class="close" data-dismiss="modal">
                     <i class="fas fa-times"></i>
                 </button>
@@ -714,18 +714,17 @@
                 </div>
                 <form>
                     <?= csrf_field() ?>
-                    <input type="hidden" name="sifat_penempatan" value="internal">
-                    <input type="hidden" name="id">
                     <input type="hidden" name="_method" value="PATCH">
+                    <input type="hidden" name="id">
                     <div class="row">
                         <div class="col-md">
                             <div class="form-group">
-                                <label for="new-asesi-nama" class="text-sm mb-0 font-weight-bold">Nama Lengkap</label>
+                                <label for="edit-asesi-nama" class="text-sm mb-0 font-weight-bold">Nama Lengkap</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fas fa-signature"></i></span>
                                     </div>
-                                    <input type="text" id="new-asesi-nama" class="form-control" name="nama" placeholder="Tuliskan nama lengkap asesor...">
+                                    <input type="text" id="edit-asesi-nama" class="form-control" name="nama" placeholder="Tuliskan nama lengkap asesor...">
                                 </div>
                                 <div class="text-xs text-danger font-weight-bold font-italic error-message error-nama" style="display: none;"></div>
                             </div>
@@ -734,7 +733,7 @@
                     <div class="row">
                         <div class="col-md">
                             <div class="form-group">
-                                <label for="new-asesi-tempat_lahir" class="text-sm mb-0 font-weight-bold">Tempat Lahir</label>
+                                <label for="edit-asesi-tempat_lahir" class="text-sm mb-0 font-weight-bold">Tempat & Tanggal Lahir</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text">
@@ -752,80 +751,207 @@
                     <div class="row">
                         <div class="col-md">
                             <div class="form-group">
-                                <label for="new-asesi-no_blanko" class="text-sm mb-0 font-weight-bold">Nomor Blanko</label>
+                                <label for="edit-asesi-nik" class="text-sm mb-0 font-weight-bold">NIK</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text">
-                                            <i class="fas fa-file-alt"></i> 
+                                            <i class="fas fa-id-card"></i> 
                                         </span>
                                     </div>
-                                    <input type="text" class="form-control" name="no_blanko" placeholder="Tuliskan nomor blanko..">
+                                    <input type="text" class="form-control" name="nik" placeholder="Tuliskan nomor NIK..">
                                 </div>
-                                <div class="text-xs text-danger font-weight-bold font-italic error-message error-no_blanko" style="display: none;"></div>
+                                <div class="text-xs text-danger font-weight-bold font-italic error-message error-nik" style="display: none;"></div>
                             </div>
                         </div>
                         <div class="col-md">
                             <div class="form-group">
-                                <label for="new-asesi-no_reg_sertifikat" class="text-sm mb-0 font-weight-bold">Nomor REG Sertifikat</label>
+                                <label for="edit-asesi-pekerjaan" class="text-sm mb-0 font-weight-bold">Pekerjaan</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text">
-                                            <i class="fas fa-file-alt"></i> 
+                                            <i class="fas fa-briefcase"></i> 
                                         </span>
                                     </div>
-                                    <input type="text" class="form-control" name="no_reg_sertifikat" placeholder="Tuliskan REG..">
+                                    <input type="text" class="form-control" name="pekerjaan" placeholder="Tuliskan Pekerjaan..">
                                 </div>
-                                <div class="text-xs text-danger font-weight-bold font-italic error-message error-no_reg_sertifikat" style="display: none;"></div>
+                                <div class="text-xs text-danger font-weight-bold font-italic error-message error-pekerjaan" style="display: none;"></div>
                             </div>
                         </div>
                         <div class="col-md">
                             <div class="form-group">
-                                <label for="new-asesi-no_met_sertifikat" class="text-sm mb-0 font-weight-bold">Nomor MET Sertifikat</label>
+                                <label for="edit-asesi-pendidikan_terakhir" class="text-sm mb-0 font-weight-bold">Pendidikan Terakhir</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text">
-                                            <i class="fas fa-file-alt"></i> 
+                                            <i class="fas fa-university"></i> 
                                         </span>
                                     </div>
-                                    <input type="text" class="form-control" id="no_met_sertifikat" name="no_met_sertifikat" placeholder="Tuliskan MET..">
+                                    <input type="text" class="form-control" name="pendidikan_terakhir" placeholder="Tuliskan Pendidikan terakhir..">
                                 </div>
-                                <div class="text-xs text-danger font-weight-bold font-italic error-message error-no_met_sertifikat" style="display: none;"></div>
+                                <div class="text-xs text-danger font-weight-bold font-italic error-message error-pendidikan_terakhir" style="display: none;"></div>
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md">
                             <div class="form-group">
-                                <label for="new-asesi-kompetensi_teknis" class="text-sm mb-0 font-weight-bold">Kompetensi Teknis</label>
+                                <label for="edit-asesi-email" class="text-sm mb-0 font-weight-bold">Email</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
-                                        <span class="input-group-text"><i class="fas fa-flask"></i></span>
+                                        <span class="input-group-text"><i class="fas fa-envelope"></i></span>
                                     </div>
-                                    <input type="text" id="new-asesi-kompetensi_teknis" class="form-control" name="kompetensi_teknis" placeholder="Tuliskan kompetensi teknis">
+                                    <input type="text" id="edit-asesi-email" class="form-control" name="email" placeholder="Tuliskan email..">
                                 </div>
-                                <div class="text-xs text-danger font-weight-bold font-italic error-message error-kompetensi_teknis" style="display: none;"></div>
+                                <div class="text-xs text-danger font-weight-bold font-italic error-message error-email" style="display: none;"></div>
                             </div>
                         </div>
                         <div class="col-md">
                             <div class="form-group">
-                                <label for="new-asesi-tanggal_sertifikat" class="text-sm mb-0 font-weight-bold">Tanggal Sertifikat</label>
+                                <label for="edit-asesi-no_telepon" class="text-sm mb-0 font-weight-bold">Nomor Telepon</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fas fa-phone-alt"></i></span>
+                                    </div>
+                                    <input type="text" id="edit-asesi-no_telepon" class="form-control" name="no_telepon" placeholder="tuliskan nomor telepon">
+                                </div>
+                                <div class="text-xs text-danger font-weight-bold font-italic error-message error-no_telepon" style="display: none;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md">
+                            <div class="form-group">
+                                <label for="edit-asesi-alamat" class="text-sm mb-0 font-weight-bold">Alamat</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fas fa-map-marked-alt"></i></span>
+                                    </div>
+                                    <textarea name="alamat" id="edit-asesi-alamat" class="form-control"></textarea>
+                                </div>
+                                <div class="text-xs text-danger font-weight-bold font-italic error-message error-alamat" style="display: none;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col">
+                            <div class="text-xs text-uppercase font-weight-bold" style="color: #c5c5c5">Asesi</div>
+                            <hr class="mt-0">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md">
+                            <div class="form-group">
+                                <label for="edit-asesi-asesor_kompetensi" class="text-sm mb-0 font-weight-bold">Asesor Kompetensi</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fas fa-check-square"></i></span>
+                                    </div>
+                                    <select name="asesor_kompetensi" id="edit-asesi-asesor_kompetensi" class="form-control">
+                                        <option value="">- Pilih asesor -</option>
+                                        <?php foreach($dataAsesor as $asesor) : ?>
+                                            <option value="<?= $asesor->id ?>"><?= $asesor->nama ?></option>
+                                        <?php endforeach;?>
+                                    </select>
+                                </div>
+                                <div class="text-xs text-danger font-weight-bold font-italic error-message error-asesor_kompetensi" style="display: none;"></div>
+                            </div>
+                        </div>
+                        <div class="col-md">
+                            <div class="form-group">
+                                <label for="edit-asesi-tuk" class="text-sm mb-0 font-weight-bold">TUK</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fas fa-chalkboard-teacher"></i></span>
+                                    </div>
+                                    <select name="tuk" id="edit-asesi-tuk" class="form-control">
+                                        <option value="">- Pilih TUK -</option>
+                                        <?php foreach($dataTuk as $tuk) : ?>
+                                            <option value="<?= $tuk->id ?>"><?= $tuk->nama ?></option>
+                                        <?php endforeach; ?>
+                                    </select>
+                                </div>
+                                <div class="text-xs text-danger font-weight-bold font-italic error-message error-tuk" style="display: none;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md">
+                            <div class="form-group">
+                                <label for="edit-asesi-tanggal_uji" class="text-sm mb-0 font-weight-bold">Tanggal Uji</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fas fa-calendar"></i></span>
+                                    </div>
+                                    <input type="date" class="form-control" name="tanggal_uji">
+                                </div>
+                                <div class="text-xs text-danger font-weight-bold font-italic error-message error-tanggal_uji" style="display: none;"></div>
+                            </div>
+                        </div>
+                        <div class="col-md">
+                            <div class="form-group">
+                                <label for="edit-asesi-skema_sertifikasi" class="text-sm mb-0 font-weight-bold">Skema Sertifikasi</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fas fa-scroll"></i></span>
                                     </div>
-                                    <input type="date" id="new-asesi-tanggal_sertifikat" class="form-control" name="tanggal_sertifikat">
+                                    <select name="skema_sertifikasi" id="edit-asesi-skema_sertifikasi" class="form-control">
+                                        <option value="">- Pilih Skema -</option>
+                                    </select>
+                                </div>
+                                <div class="text-xs text-muted font-weight-bold font-italic">
+                                    Tidak ada skema? <a href="#" class="btn-new-skema">Tambah skema sertifikasi</a>
+                                </div>
+                                <div class="text-xs text-danger font-weight-bold font-italic error-message error-skema_sertifikasi" style="display: none;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md">
+                            <div class="form-group">
+                                <label for="edit-asesi-no_blanko" class="text-sm mb-0 font-weight-bold">Nomor Blanko</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fas fa-id-card-alt"></i></span>
+                                    </div>
+                                    <input type="text" class="form-control" id="edit-asesi-no_blanko" name="no_blanko" placeholder="Tuliskan nomor blanko...">
+                                </div>
+                                <div class="text-xs text-danger font-weight-bold font-italic error-message error-no_blanko" style="display: none;"></div>
+                            </div>
+                        </div>
+                        <div class="col-md">
+                            <div class="form-group">
+                                <label for="edit-asesi-no_sertifikat" class="text-sm mb-0 font-weight-bold">Nomor Sertifikat</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fas fa-id-card-alt"></i></span>
+                                    </div>
+                                    <input type="text" class="form-control" id="edit-asesi-no_sertifikat" name="no_sertifikat" placeholder="Tuliskan nomor sertifikat...">
+                                </div>
+                                <div class="text-xs text-danger font-weight-bold font-italic error-message error-no_sertifikat" style="display: none;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md">
+                            <div class="form-group">
+                                <label for="edit-asesi-tanggal_sertifikat" class="text-sm mb-0 font-weight-bold">Tanggal Sertifikat</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fas fa-calendar"></i></span>
+                                    </div>
+                                    <input type="date" class="form-control" id="edit-asesi-tanggal_sertifikat" name="tanggal_sertifikat">
                                 </div>
                                 <div class="text-xs text-danger font-weight-bold font-italic error-message error-tanggal_sertifikat" style="display: none;"></div>
                             </div>
                         </div>
                         <div class="col-md">
                             <div class="form-group">
-                                <label for="new-asesi-tanggal_expired_sertifikat" class="text-sm mb-0 font-weight-bold">Tanggal Expired Sertifikat</label>
+                                <label for="edit-asesi-tanggal_expired_sertifikat" class="text-sm mb-0 font-weight-bold">Tanggal Expired Sertifikat</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
-                                        <span class="input-group-text"><i class="fas fa-scroll"></i></span>
+                                        <span class="input-group-text"><i class="fas fa-calendar"></i></span>
                                     </div>
-                                    <input type="date" id="new-asesi-tanggal_expired_sertifikat" class="form-control" name="tanggal_expired_sertifikat">
+                                    <input type="date" class="form-control" name="tanggal_expired_sertifikat" id="edit-asesi-tanggal_expired_sertifikat">
                                 </div>
                                 <div class="text-xs text-danger font-weight-bold font-italic error-message error-tanggal_expired_sertifikat" style="display: none;"></div>
                             </div>
@@ -840,85 +966,69 @@
                     <div class="row">
                         <div class="col-md">
                             <div class="form-group mb-0">
-                                <label for="new-asesi-sertifikat_asesor" class="text-sm mb-0 font-weight-bold">Sertifikat Asesor</label>
+                                <label for="edit-asesi-foto" class="text-sm mb-0 font-weight-bold">Foto</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fas fa-file-pdf"></i></span>
                                     </div>
-                                    <input type="file" accept=".doc,.docx,.pdf,.ppt,.pptx" id="new-asesi-sertifikat_asesor" class="form-control pt-1" name="sertifikat_asesor">
+                                    <input type="file" accept="image/*" id="edit-asesi-foto" class="form-control pt-1" name="foto">
                                 </div>
-                                <div class="text-muted text-xs font-italic">Upload file dokumen (doc/docx/pdf). Ukuran Max: 6MB <br/>Abaikan jika tidak ingin merubah</div>
-                                <div class="text-xs text-danger font-weight-bold font-italic error-message error-sertifikat_asesor" style="display: none;"></div>
+                                <div class="text-muted text-xs font-italic">Upload file gambar. Ukuran Max: 6MB<br/>Abaikan jika tidak ingin merubah</div>
+                                <div class="text-xs text-danger font-weight-bold font-italic error-message error-foto" style="display: none;"></div>
                             </div>
-                            <div class="preview-document document-sertifikat_asesor" style="display: none;">
-                                <a target="_blank" href=""></a>
-                            </div>
+                            <div class="preview-image image-foto mb-2" style="display:none">
+                                <img class="img-thumbnail" style="max-width: 150px" src="<?= site_url('img/img_unavailable.png') ?>">
+                            </div> 
                         </div>
                         <div class="col-md">
                             <div class="form-group mb-0">
-                                <label for="new-asesi-portofolio" class="text-sm mb-0 font-weight-bold">Portofolio</label>
+                                <label for="edit-asesi-portofolio" class="text-sm mb-0 font-weight-bold">Portofolio</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fas fa-file-pdf"></i></span>
                                     </div>
-                                    <input type="file" accept=".doc,.docx,.pdf,.ppt,.pptx" id="new-asesi-portofolio" class="form-control pt-1" name="portofolio">
+                                    <input type="file" accept=".doc,.docx,.pdf,.ppt,.pptx" id="edit-asesi-portofolio" class="form-control pt-1" name="portofolio">
                                 </div>
-                                <div class="text-muted text-xs font-italic">Upload file dokumen (doc/docx/pdf). Ukuran Max: 6MB <br/>Abaikan jika tidak ingin merubah</div>
+                                <div class="text-muted text-xs font-italic">Upload file gambar. Ukuran Max: 6MB<br/>Abaikan jika tidak ingin merubah</div>
                                 <div class="text-xs text-danger font-weight-bold font-italic error-message error-portofolio" style="display: none;"></div>
                             </div>
                             <div class="preview-document document-portofolio" style="display: none;">
                                 <a target="_blank" href=""></a>
                             </div>
                         </div>
-                        <div class="col-md">
-                            <div class="form-group mb-0">
-                                <label for="new-asesi-cv" class="text-sm mb-0 font-weight-bold">CV</label>
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text"><i class="fas fa-file-pdf"></i></span>
-                                    </div>
-                                    <input type="file" accept=".doc,.docx,.pdf,.ppt,.pptx" id="new-asesi-cv" class="form-control pt-1" name="cv">
-                                </div>
-                                <div class="text-muted text-xs font-italic">Upload file dokumen (doc/docx/pdf). Ukuran Max: 6MB <br/>Abaikan jika tidak ingin merubah</div>
-                                <div class="text-xs text-danger font-weight-bold font-italic error-message error-cv" style="display: none;"></div>
-                            </div>
-                            <div class="preview-dokumen dokumen-cv" style="display: none;">
-                                <a href=""></a>
-                            </div>
-                        </div>
                     </div>
                     <div class="row">
                         <div class="col-md">
                             <div class="form-group mb-0">
-                                <label for="new-asesi-pas_foto" class="text-sm mb-0 font-weight-bold">Pas Foto</label>
+                                <label for="edit-asesi-muk" class="text-sm mb-0 font-weight-bold">MUK</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fas fa-file-pdf"></i></span>
                                     </div>
-                                    <input type="file" accept="image/*" id="new-asesi-pas_foto" class="form-control pt-1" name="pas_foto">
+                                    <input type="file" accept=".doc,.docx,.pdf,.ppt,.pptx" id="edit-asesi-muk" class="form-control pt-1" name="muk">
                                 </div>
-                                <span class="text-muted text-xs font-italic">Upload file gambar. Ukuran Max: 6MB</span>
-                                <div class="text-xs text-danger font-weight-bold font-italic error-message error-pas_foto" style="display: none;"></div>
+                                <div class="text-muted text-xs font-italic">Upload file gambar. Ukuran Max: 6MB<br/>Abaikan jika tidak ingin merubah</div>
+                                <div class="text-xs text-danger font-weight-bold font-italic error-message error-muk" style="display: none;"></div>
                             </div>
-                            <div class="preview-image image-pas_foto mb-2" style="display:none">
-                                <img class="img-thumbnail" src="<?= site_url('img/img_unavailable.png') ?>">
-                            </div> 
+                            <div class="preview-document document-muk" style="display: none;">
+                                <a target="_blank" href=""></a>
+                            </div>
                         </div>
                         <div class="col-md">
                             <div class="form-group mb-0">
-                                <label for="new-asesi-ktp" class="text-sm mb-0 font-weight-bold">Scan KTP</label>
+                                <label for="edit-asesi-sertifikat_kompetensi" class="text-sm mb-0 font-weight-bold">Sertifikat</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fas fa-file-pdf"></i></span>
                                     </div>
-                                    <input type="file" accept="image/*" id="new-asesi-ktp" class="form-control pt-1" name="ktp">
+                                    <input type="file" accept=".doc,.docx,.pdf,.ppt,.pptx" id="edit-asesi-sertifikat_kompetensi" class="form-control pt-1" name="sertifikat_kompetensi">
                                 </div>
-                                <span class="text-muted text-xs font-italic">Upload file gambar. Ukuran Max: 6MB</span>
-                                <div class="text-xs text-danger font-weight-bold font-italic error-message error-ktp" style="display: none;"></div>
+                                <div class="text-muted text-xs font-italic">Upload file gambar. Ukuran Max: 6MB<br/>Abaikan jika tidak ingin merubah</div>
+                                <div class="text-xs text-danger font-weight-bold font-italic error-message error-sertifikat_kompetensi" style="display: none;"></div>
                             </div>
-                            <div class="preview-image image-ktp mb-2" style="display:none">
-                                <img class="img-thumbnail" src="<?= site_url('img/img_unavailable.png') ?>">
-                            </div> 
+                            <div class="preview-document document-sertifikat_kompetensi" style="display: none;">
+                                <a target="_blank" href=""></a>
+                            </div>
                         </div>
                     </div>
                     <div class="row">
@@ -979,65 +1089,81 @@
                 refreshData(link)
             })
             $(".btn-edit").unbind('click').click(function (e) {
-                modalEditAsesor.modal('show')
-                modalEditAsesor.find('.loading').show()
+                modalEditAsesi.modal('show')
+                modalEditAsesi.find('.loading').show()
                 e.preventDefault()
                 id = $(this).data('id')
-                modalEditAsesor.find("[name='id']").val(id)
+                modalEditAsesi.find("[name='id']").val(id)
                 $.ajax({
                     type: "GET",
-                    url: "<?= site_url('resource/asesor/') ?>" + id,
+                    url: "<?= site_url('resource/asesi/') ?>" + id,
                     dataType: "json",
                 })
                 .done(function(response) {
-                    modalEditAsesor.find("[name='id']").val(response.data.id)
-                    modalEditAsesor.find("[name='nama']").val(response.data.nama)
-                    modalEditAsesor.find("[name='tempat_lahir']").val(response.data.tempat_lahir)
-                    modalEditAsesor.find("[name='tanggal_lahir']").val(response.data.tanggal_lahir)
-                    modalEditAsesor.find("[name='no_blanko']").val(response.data.no_blanko)
-                    modalEditAsesor.find("[name='no_reg_sertifikat']").val(response.data.no_reg_sertifikat)
-                    modalEditAsesor.find("[name='no_met_sertifikat']").val(response.data.no_met_sertifikat)
-                    modalEditAsesor.find("[name='kompetensi_teknis']").val(response.data.kompetensi_teknis)
-                    modalEditAsesor.find("[name='tanggal_sertifikat']").val(response.data.tanggal_sertifikat)
-                    modalEditAsesor.find("[name='tanggal_expired_sertifikat']").val(response.data.tanggal_expired_sertifikat)
+                    modalEditAsesi.find("[name='id']").val(response.data.id)
+                    modalEditAsesi.find("[name='nama']").val(response.data.nama)
+                    modalEditAsesi.find("[name='tempat_lahir']").val(response.data.tempat_lahir)
+                    modalEditAsesi.find("[name='tanggal_lahir']").val(response.data.tanggal_lahir)
+                    modalEditAsesi.find("[name='nik']").val(response.data.nik)
+                    modalEditAsesi.find("[name='pekerjaan']").val(response.data.pekerjaan)
+                    modalEditAsesi.find("[name='pendidikan_terakhir']").val(response.data.pendidikan_terakhir)
+                    modalEditAsesi.find("[name='email']").val(response.data.email)
+                    modalEditAsesi.find("[name='no_telepon']").val(response.data.no_telepon)
+                    modalEditAsesi.find("[name='alamat']").val(response.data.alamat)
+                    modalEditAsesi.find("[name='asesor_kompetensi']").val(response.data.asesor_kompetensi)
+                    modalEditAsesi.find("[name='tuk']").val(response.data.tuk)
+                    modalEditAsesi.find("[name='tanggal_uji']").val(response.data.tanggal_uji)
+                    modalEditAsesi.find("[name='no_blanko']").val(response.data.no_blanko)
+                    modalEditAsesi.find("[name='no_sertifikat']").val(response.data.no_sertifikat)
+                    modalEditAsesi.find("[name='tanggal_sertifikat']").val(response.data.tanggal_sertifikat)
+                    modalEditAsesi.find("[name='tanggal_expired_sertifikat']").val(response.data.tanggal_expired_sertifikat)
 
-                    if (response.data.sertifikat_asesor_filename )
-                    modalEditAsesor.find(".document-sertifikat_asesor a").html(
-                        `
-                        <i class='fas fa-download mr-2'></i>
-                        ${response.data.sertifikat_asesor_filename}
-                        `
-                    )
-                    modalEditAsesor.find(".document-sertifikat_asesor a").attr('href', response.data.sertifikat_asesor)
-                    modalEditAsesor.find(".document-sertifikat_asesor").show()
+                    refreshSkema(function () {
+                        modalEditAsesi.find("[name='skema_sertifikasi']").val(response.data.skema_sertifikasi)
+                    })
 
-                    if (response.data.portofolio_filename )
-                    modalEditAsesor.find(".document-portofolio a").html(
+                    if (response.data.portofolio_filename)
+                    modalEditAsesi.find(".document-portofolio a").html(
                         `
                         <i class='fas fa-download mr-2'></i>
                         ${response.data.portofolio_filename}
                         `
                     )
-                    modalEditAsesor.find(".document-portofolio a").attr('href', response.data.portofolio)
-                    modalEditAsesor.find(".document-portofolio").show()
+                    modalEditAsesi.find(".document-portofolio a").attr('href', response.data.portofolio)
+                    modalEditAsesi.find(".document-portofolio").show()
 
-                    if (response.data.cv_filename )
-                    modalEditAsesor.find(".document-cv a").html(
+                    if (response.data.sertifikat_kompetensi_filename)
+                    modalEditAsesi.find(".document-sertifikat_kompetensi a").html(
                         `
                         <i class='fas fa-download mr-2'></i>
-                        ${response.data.cv_filename}
+                        ${response.data.sertifikat_kompetensi_filename}
                         `
                     )
-                    modalEditAsesor.find(".document-cv a").attr('href', response.data.cv)
-                    modalEditAsesor.find(".document-cv").show()
+                    modalEditAsesi.find(".document-sertifikat_kompetensi a").attr('href', response.data.sertifikat_kompetensi)
+                    modalEditAsesi.find(".document-sertifikat_kompetensi").show()
+
+                    if (response.data.muk_filename)
+                    modalEditAsesi.find(".document-muk a").html(
+                        `
+                        <i class='fas fa-download mr-2'></i>
+                        ${response.data.muk_filename}
+                        `
+                    )
+                    modalEditAsesi.find(".document-muk a").attr('href', response.data.muk)
+                    modalEditAsesi.find(".document-muk").show()
 
                     
-                    modalEditAsesor.find(".image-pas_foto img").attr('src', response.data.pas_foto)
-                    modalEditAsesor.find(".image-pas_foto").show()
-                    modalEditAsesor.find(".image-ktp img").attr('src', response.data.ktp)
-                    modalEditAsesor.find(".image-ktp").show()
+                    modalEditAsesi.find(".document-cv a").attr('href', response.data.cv)
+                    modalEditAsesi.find(".document-cv").show()
 
-                    modalEditAsesor.find(".loading").hide()
+                    
+                    modalEditAsesi.find(".image-foto img").attr('src', response.data.foto)
+                    modalEditAsesi.find(".image-foto").show()
+
+                    modalEditAsesi.find(".image-ktp img").attr('src', response.data.ktp)
+                    modalEditAsesi.find(".image-ktp").show()
+
+                    modalEditAsesi.find(".loading").hide()
                 })
             })
 
@@ -1112,35 +1238,25 @@
             })
         })
 
-        modalEditAsesor = $("#modal-edit-asesor")
-        modalEditAsesor.on('shown.bs.modal', function() {
-            modalEditAsesor.find("[name='pas_foto']").change(function (e) {
+        modalEditAsesi = $("#modal-edit-asesi")
+        modalEditAsesi.on('shown.bs.modal', function() {
+            modalEditAsesi.find("[name='foto']").change(function (e) {
                 const pasFotoReader = new FileReader()
                 pasFotoReader.readAsDataURL(this.files[0])
                 pasFotoReader.onload = function (e) {
-                    console.log(e)
-                    modalEditAsesor.find(".image-pas_foto img").attr('src', e.target.result)
-                    modalEditAsesor.find(".image-pas_foto").show()
+                    modalEditAsesi.find(".image-foto img").attr('src', e.target.result)
+                    modalEditAsesi.find(".image-foto").show()
                 }
             })
-            modalEditAsesor.find("[name='ktp']").change(function (e) {
-                const pasFotoReader = new FileReader()
-                pasFotoReader.readAsDataURL(this.files[0])
-                pasFotoReader.onload = function (e) {
-                    console.log(e)
-                    modalEditAsesor.find(".image-ktp img").attr('src', e.target.result)
-                    modalEditAsesor.find(".image-ktp").show()
-                }
-            })
-            modalEditAsesor.find('form').unbind('submit').submit(function (e) {
+            modalEditAsesi.find('form').unbind('submit').submit(function (e) {
                 e.preventDefault()
-                modalEditAsesor.find('.loading').show()
-                modalEditAsesor.find(".error-message").hide()
-                id = modalEditAsesor.find("[name='id']").val()
+                modalEditAsesi.find('.loading').show()
+                modalEditAsesi.find(".error-message").hide()
+                id = modalEditAsesi.find("[name='id']").val()
                 formData = new FormData(this)
                 $.ajax({
                     type: "POST",
-                    url: "<?= site_url('resource/asesor/') ?>" + id,
+                    url: "<?= site_url('resource/asesi/') ?>" + id,
                     data: formData,
                     dataType: "json",
                     contentType: false,
@@ -1151,18 +1267,19 @@
                     if (response.status == 'error') {
                         Object.entries(response.errors).forEach((error) => {
                             const [field, message] = error
-                            modalEditAsesor.find('.error-' + field).html(message).show()
+                            modalEditAsesi.find('.error-' + field).html(message).show()
                         })
                     } else {
-                        modalEditAsesor.find('form')[0].reset()
-                        modalEditAsesor.modal('hide')
-                        modalEditAsesor.find(".error-message").hide()
-                        modalEditAsesor.find(".preview-image").hide()
+                        modalEditAsesi.find('form')[0].reset()
+                        modalEditAsesi.modal('hide')
+                        modalEditAsesi.find(".error-message").hide()
+                        modalEditAsesi.find(".preview-image").hide()
+                        modalEditAsesi.find(".preview-document").hide()
                         refreshData()
                     }
                 })
                 .always(function() {
-                    modalEditAsesor.find('.loading').hide()
+                    modalEditAsesi.find('.loading').hide()
                 })
             })
         })
