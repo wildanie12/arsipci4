@@ -1,0 +1,1 @@
+<?= $pager->links('lampiran', 'custom') ?>

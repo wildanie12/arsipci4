@@ -41,6 +41,8 @@ $routes->get('/', function () {
 // $routes->get('asesi', 'Asesi\AsesiController::index');
 // $routes->get('asesi/(:any)', 'Asesi\AsesiController::$1');
 
+$routes->get('lampiran', 'Dashboard\LampiranController::index');
+
 $routes->get('tuk', 'TUK\TUKController::index');
 $routes->get('tuk/(:any)', 'TUK\TUKController::$1');
 
@@ -70,6 +72,7 @@ $routes->group('resource', function($routes) {
 	$routes->resource('jabatan', ['controller' => 'Resources\JabatanResource']);
 	$routes->resource('asesi', ['controller' => 'Resources\Asesi\AsesiResource']);
 	$routes->resource('skema_sertifikasi', ['controller' => 'Resources\SkemaSertifikasiResource']);
+	$routes->resource('lampiran', ['controller' => 'Resources\LampiranResource']);
 });
 
 $routes->group('export', function($routes) {
