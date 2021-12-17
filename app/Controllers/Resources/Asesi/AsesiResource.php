@@ -3,6 +3,9 @@
 namespace App\Controllers\Resources\Asesi;
 
 use App\Models\Asesi\AsesiModel;
+use App\Models\Asesor\AsesorModel;
+use App\Models\SkemaSertifikasiModel;
+use App\Models\TUK\TUKModel;
 use CodeIgniter\RESTful\ResourceController;
 use Config\Upload;
 
@@ -138,6 +141,21 @@ class AsesiResource extends ResourceController
 		$asesi['muk_filename'] = utf8_decode(urldecode(basename($asesi['muk'])));
 		$asesi['portofolio_filename'] = utf8_decode(urldecode(basename($asesi['portofolio'])));
 		$asesi['sertifikat_kompetensi_filename'] = utf8_decode(urldecode(basename($asesi['sertifikat_kompetensi'])));
+		
+		$skema = (new SkemaSertifikasiModel())->find($asesi['skema_sertifikasi']);
+		if ($skema != '') {
+			$asesi['skema_sertifikasi_nama'] = $skema->nama;
+		}
+
+		$asesor = (new AsesorModel())->find($asesi['asesor_kompetensi']);
+		if ($skema != '') {
+			$asesi['asesor_nama'] = $asesor->nama;
+		}
+
+		$tuk = (new TUKModel())->find($asesi['tuk']);
+		if ($skema != '') {
+			$asesi['tuk_nama'] = $tuk->nama;
+		}
 		
 		return json_encode([
 			'status' => 'success',

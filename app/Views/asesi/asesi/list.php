@@ -1054,6 +1054,248 @@
     </div> 
 </div>
 
+
+<div class="modal fade" id="modal-detail-asesi">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content rounded">
+            <div class="modal-header bg-success">
+                <h6 class="modal-title font-weight-bold mb-0 text-white">Detail data Asesi</h6>
+                <button type="button" class="close" data-dismiss="modal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="loading position-absolute top-0 bottom-0 left-0 right-0 rounded" style="display: none;">
+                    <div class="d-flex justify-content-center align-items-center h-100 flex-column">
+                        <i class="fas fa-spin fa-sync text-white" style="font-size: 48px"></i>
+                        <h4 class="text-center mt-3 text-white">Loading<br/>.....</h4>
+                    </div>
+                </div>
+                <form>
+                    <?= csrf_field() ?>
+                    <input type="hidden" name="_method" value="PATCH">
+                    <input type="hidden" name="id">
+                    <div class="row">
+                        <div class="col-md">
+                            <div class="form-group">
+                                <label for="edit-personil-nama" class="text-sm mb-0 font-weight-bold ml-3">
+                                    <i class="fas fa-signature mr-2"></i>  
+                                    Nama Lengkap
+                                </label>
+                                <h4 class="py-1 mt-1 pl-3 text-primary fill-nama border-left-default"></h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md">
+                            <div class="form-group">
+                                <label for="edit-personil-nama" class="text-sm mb-0 font-weight-bold ml-3">
+                                    <i class="fas fa-birthday-cake mr-2"></i>  
+                                    Tempat, Tanggal Lahir
+                                </label>
+                                <h4 class="py-1 mt-1 pl-3 text-primary fill-tempat_lahir border-left-default"></h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md">
+                            <div class="form-group">
+                                <label for="edit-personil-nama" class="text-sm mb-0 font-weight-bold ml-3">
+                                    <i class="fas fa-id-card-cake mr-2"></i>  
+                                    NIK
+                                </label>
+                                <h4 class="py-1 mt-1 pl-3 text-primary fill-nik border-left-default"></h4>
+                            </div>
+                        </div>
+                        <div class="col-md">
+                            <div class="form-group">
+                                <label for="edit-personil-nama" class="text-sm mb-0 font-weight-bold ml-3">
+                                    <i class="fas fa-briefcase mr-2"></i>  
+                                    Pekerjaan
+                                </label>
+                                <h4 class="py-1 mt-1 pl-3 text-primary fill-pekerjaan border-left-default"></h4>
+                            </div>
+                        </div>
+                        <div class="col-md">
+                            <div class="form-group">
+                                <label for="edit-personil-nama" class="text-sm mb-0 font-weight-bold ml-3">
+                                    <i class="fas fa-university mr-2"></i>  
+                                    Pendidikan Terakhir
+                                </label>
+                                <h4 class="py-1 mt-1 pl-3 text-primary fill-pendidikan_terakhir border-left-default"></h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md">
+                            <div class="form-group">
+                                <label for="edit-personil-email" class="text-sm mb-0 font-weight-bold ml-2">
+                                    <i class="fas fa-envelope mr-2"></i>  
+                                    Email
+                                </label>
+                                <h4 class="py-1 mt-1 pl-3 text-primary fill-email border-left-default"></h4>
+                            </div>
+                        </div>
+                        <div class="col-md">
+                            <div class="form-group">
+                                <label class="text-sm mb-0 font-weight-bold ml-2">
+                                    <i class="fas fa-phone-alt mr-2"></i>  
+                                    Nomor telepon
+                                </label>
+                                <h4 class="py-1 mt-1 pl-3 text-primary fill-no_telepon border-left-default"></h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md">
+                            <div class="form-group">
+                                <label class="text-sm mb-0 font-weight-bold ml-2">
+                                    <i class="fas fa-map-marked-alt mr-2"></i>  
+                                    Alamat
+                                </label>
+                                <h4 class="py-1 mt-1 pl-3 text-primary fill-alamat border-left-default"></h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col">
+                            <div class="text-xs text-uppercase font-weight-bold" style="color: #c5c5c5">Asesi</div>
+                            <hr class="mt-0">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md">
+                            <div class="form-group">
+                                <label class="text-sm mb-0 font-weight-bold ml-2">
+                                    <i class="fas fa-user-check mr-2"></i>  
+                                    Asesor Kompetensi
+                                </label>
+                                <h4 class="py-1 mt-1 pl-3 text-primary fill-asesor_kompetensi border-left-default"></h4>
+                            </div>
+                        </div>
+                        <div class="col-md">
+                            <div class="form-group">
+                                <label class="text-sm mb-0 font-weight-bold ml-2">
+                                    <i class="fas fa-chalkboard-teacher mr-2"></i>  
+                                    TUK
+                                </label>
+                                <h4 class="py-1 mt-1 pl-3 text-primary fill-tuk border-left-default"></h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md">
+                            <div class="form-group">
+                                <label class="text-sm mb-0 font-weight-bold ml-2">
+                                    <i class="fas fa-calendar mr-2"></i>  
+                                    Tanggal Uji
+                                </label>
+                                <h4 class="py-1 mt-1 pl-3 text-primary fill-tanggal_uji border-left-default"></h4>
+                            </div>
+                        </div>
+                        <div class="col-md">
+                            <div class="form-group">
+                                <label class="text-sm mb-0 font-weight-bold ml-2">
+                                    <i class="fas fa-scroll mr-2"></i>  
+                                    Skema Sertifikasi
+                                </label>
+                                <h4 class="py-1 mt-1 pl-3 text-primary fill-skema_sertifikasi border-left-default"></h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md">
+                            <div class="form-group">
+                                <label class="text-sm mb-0 font-weight-bold ml-2">
+                                    <i class="fas fa-phone-alt mr-2"></i>  
+                                    Nomor Blanko
+                                </label>
+                                <h4 class="py-1 mt-1 pl-3 text-primary fill-no_blanko border-left-default"></h4>
+                            </div>
+                        </div>
+                        <div class="col-md">
+                            <div class="form-group">
+                                <label class="text-sm mb-0 font-weight-bold ml-2">
+                                    <i class="fas fa-id-card-alt mr-2"></i>  
+                                    Nomor Sertifikat
+                                </label>
+                                <h4 class="py-1 mt-1 pl-3 text-primary fill-no_sertifikat border-left-default"></h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md">
+                            <div class="form-group">
+                                <label class="text-sm mb-0 font-weight-bold ml-2">
+                                    <i class="fas fa-calendar mr-2"></i>  
+                                    Tanggal Sertifikat
+                                </label>
+                                <h4 class="py-1 mt-1 pl-3 text-primary fill-tanggal_sertifikat border-left-default"></h4>
+                            </div>
+                        </div>
+                        <div class="col-md">
+                            <div class="form-group">
+                                <label class="text-sm mb-0 font-weight-bold ml-2">
+                                    <i class="fas fa-calendar mr-2"></i>  
+                                    Tanggal Expired Sertifikat
+                                </label>
+                                <h4 class="py-1 mt-1 pl-3 text-primary fill-tanggal_expired_sertifikat border-left-default"></h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col">
+                            <div class="text-xs text-uppercase font-weight-bold" style="color: #c5c5c5">Dokumen-dokumen</div>
+                            <hr class="mt-0">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md">
+                            <label for="edit-asesi-foto" class="text-sm mb-0 font-weight-bold ml-2">Foto</label>
+                            <div class="preview-image image-foto mb-2" style="display:none">
+                                <img class="img-thumbnail" style="max-width: 150px" src="<?= site_url('img/img_unavailable.png') ?>">
+                            </div> 
+                        </div>
+                        <div class="col-md">
+                            <label for="edit-asesi-portofolio" class="text-sm mb-0 font-weight-bold ml-2">Portofolio</label>
+                            <div class="preview-document document-portofolio" style="display: none;">
+                                <a target="_blank" href=""></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md">
+                            <label for="edit-asesi-muk" class="text-sm mb-0 font-weight-bold ml-2">MUK</label>
+                            <div class="preview-document document-muk" style="display: none;">
+                                <a target="_blank" href=""></a>
+                            </div>
+                        </div>
+                        <div class="col-md">
+                            <label for="edit-asesi-sertifikat_kompetensi" class="text-sm mb-0 font-weight-bold ml-2">Sertifikat</label>
+                            <div class="preview-document document-sertifikat_kompetensi" style="display: none;">
+                                <a target="_blank" href=""></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <hr>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col d-flex justify-content-center">
+                            <button type="button" class="btn btn-default px-4 mr-2" data-dismiss="modal">
+                                <i class="fas fa-times mr-2"></i>
+                                Tutup
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div> 
+</div>
+
 <script>
     $(document).ready(function () {
 
@@ -1185,6 +1427,88 @@
                     })
                 }
             })
+
+            $(".btn-detail").unbind('click').click(function (e) {
+                modalDetailAsesi.modal('show')
+                modalDetailAsesi.find('.loading').show()
+                e.preventDefault()
+                id = $(this).data('id')
+                modalDetailAsesi.find("[name='id']").val(id)
+                $.ajax({
+                    type: "GET",
+                    url: "<?= site_url('resource/asesi/') ?>" + id,
+                    dataType: "json",
+                })
+                .done(function(response) {
+                    modalDetailAsesi.find(".fill-id").html(response.data.id)
+                    modalDetailAsesi.find(".fill-nama").html(response.data.nama)
+                    modalDetailAsesi.find(".fill-tempat_lahir").html(response.data.tempat_lahir)
+                    modalDetailAsesi.find(".fill-tanggal_lahir").html(response.data.tanggal_lahir)
+                    modalDetailAsesi.find(".fill-nik").html(response.data.nik)
+                    modalDetailAsesi.find(".fill-pekerjaan").html(response.data.pekerjaan)
+                    modalDetailAsesi.find(".fill-pendidikan_terakhir").html(response.data.pendidikan_terakhir)
+                    modalDetailAsesi.find(".fill-email").html(response.data.email)
+                    modalDetailAsesi.find(".fill-no_telepon").html(response.data.no_telepon)
+                    modalDetailAsesi.find(".fill-alamat").html(response.data.alamat)
+                    modalDetailAsesi.find(".fill-tanggal_uji").html(response.data.tanggal_uji)
+                    modalDetailAsesi.find(".fill-no_blanko").html(response.data.no_blanko)
+                    modalDetailAsesi.find(".fill-no_sertifikat").html(response.data.no_sertifikat)
+                    modalDetailAsesi.find(".fill-tanggal_sertifikat").html(response.data.tanggal_sertifikat)
+                    modalDetailAsesi.find(".fill-tanggal_expired_sertifikat").html(response.data.tanggal_expired_sertifikat)
+                    
+                    if (response.data.tuk_nama != null) modalDetailAsesi.find(".fill-tuk").html(response.data.tuk_nama)
+                    else modalDetailAsesi.find(".fill-tuk").html(response.data.tuk)
+                    
+                    if (response.data.asesor_nama != null) modalDetailAsesi.find(".fill-asesor_kompetensi").html(response.data.asesor_nama)
+                    else modalDetailAsesi.find(".fill-asesor_kompetensi").html(response.data.asesor_kompetensi)
+
+                    if (response.data.skema_sertifikasi_nama != null) modalDetailAsesi.find(".fill-skema_sertifikasi").html(response.data.skema_sertifikasi_nama)
+                    else modalDetailAsesi.find(".fill-asesor_kompetensi").html(response.data.skema_sertifikasi)
+
+                    if (response.data.portofolio_filename)
+                    modalDetailAsesi.find(".document-portofolio a").html(
+                        `
+                        <i class='fas fa-download mr-2'></i>
+                        ${response.data.portofolio_filename}
+                        `
+                    )
+                    modalDetailAsesi.find(".document-portofolio a").attr('href', response.data.portofolio)
+                    modalDetailAsesi.find(".document-portofolio").show()
+
+                    if (response.data.sertifikat_kompetensi_filename)
+                    modalDetailAsesi.find(".document-sertifikat_kompetensi a").html(
+                        `
+                        <i class='fas fa-download mr-2'></i>
+                        ${response.data.sertifikat_kompetensi_filename}
+                        `
+                    )
+                    modalDetailAsesi.find(".document-sertifikat_kompetensi a").attr('href', response.data.sertifikat_kompetensi)
+                    modalDetailAsesi.find(".document-sertifikat_kompetensi").show()
+
+                    if (response.data.muk_filename)
+                    modalDetailAsesi.find(".document-muk a").html(
+                        `
+                        <i class='fas fa-download mr-2'></i>
+                        ${response.data.muk_filename}
+                        `
+                    )
+                    modalDetailAsesi.find(".document-muk a").attr('href', response.data.muk)
+                    modalDetailAsesi.find(".document-muk").show()
+
+                    
+                    modalDetailAsesi.find(".document-cv a").attr('href', response.data.cv)
+                    modalDetailAsesi.find(".document-cv").show()
+
+                    
+                    modalDetailAsesi.find(".image-foto img").attr('src', response.data.foto)
+                    modalDetailAsesi.find(".image-foto").show()
+
+                    modalDetailAsesi.find(".image-ktp img").attr('src', response.data.ktp)
+                    modalDetailAsesi.find(".image-ktp").show()
+
+                    modalDetailAsesi.find(".loading").hide()
+                })
+            })
         }
         refreshData()
 
@@ -1238,6 +1562,7 @@
             })
         })
 
+        modalDetailAsesi = $("#modal-detail-asesi")
         modalEditAsesi = $("#modal-edit-asesi")
         modalEditAsesi.on('shown.bs.modal', function() {
             modalEditAsesi.find("[name='foto']").change(function (e) {
@@ -1505,12 +1830,12 @@
         })
         modalSkema.on('show.bs.modal', function (e) {
             modalNewAsesi.css('z-index', '1020')
-            // modalEditPersonil.css('z-index', '1020')
+            modalEditPersonil.css('z-index', '1020')
         })
         modalSkema.on('hidden.bs.modal', function (e) {
             modalNewAsesi.css('z-index', '1050')
             $("body").addClass('modal-open')
-            // modalEditPersonil.css('z-index', '1050')
+            modalEditPersonil.css('z-index', '1050')
         })
         modalSkema.on('shown.bs.modal', function (e) {
             refreshSkema()

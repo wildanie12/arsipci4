@@ -368,7 +368,7 @@
     <div class="modal-dialog modal-xl">
         <div class="modal-content rounded">
             <div class="modal-header bg-success">
-                <h6 class="modal-title font-weight-bold mb-0 text-white">Tambah data TUK</h6>
+                <h6 class="modal-title font-weight-bold mb-0 text-white">Edit data TUK</h6>
                 <button type="button" class="close" data-dismiss="modal">
                     <i class="fas fa-times"></i>
                 </button>
@@ -651,6 +651,218 @@
     </div> 
 </div>
 
+<div class="modal fade" id="modal-detail-tuk">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content rounded">
+            <div class="modal-header bg-success">
+                <h6 class="modal-title font-weight-bold mb-0 text-white">Tambah data TUK</h6>
+                <button type="button" class="close" data-dismiss="modal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="loading position-absolute top-0 bottom-0 left-0 right-0 rounded" style="display: none;">
+                    <div class="d-flex justify-content-center align-items-center h-100 flex-column">
+                        <i class="fas fa-spin fa-sync text-white" style="font-size: 48px"></i>
+                        <h4 class="text-center mt-3 text-white">Loading<br/>.....</h4>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="edit-tuk-nama" class="text-sm mb-0 font-weight-bold">
+                                            <i class="fas fa-signature mr-2"></i>
+                                            Nama TUK
+                                        </label>
+                                        <h4 class="py-1 mt-1 pl-3 text-primary fill-nama border-left-default"></h4>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="edit-tuk-no_sk" class="text-sm mb-0 font-weight-bold">
+                                            <i class="fas fa-signature mr-2"></i>
+                                            Nomor SK TUK
+                                        </label>
+                                        <h4 class="py-1 mt-1 pl-3 text-primary fill-no_sk border-left-default"></h4>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="edit-tuk-alamat" class="text-sm mb-0 font-weight-bold">
+                                            <i class="fas fa-map-marked-alt mr-2"></i>
+                                            Alamat TUK
+                                        </label>
+                                        <h4 class="py-1 mt-1 pl-3 text-primary fill-alamat border-left-default"></h4>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="edit-tuk-ketua" class="text-sm mb-0 font-weight-bold">
+                                            <i class="fas fa-map-marked-alt mr-2"></i>
+                                            Ketua TUK
+                                        </label>
+                                        <h4 class="py-1 mt-1 pl-3 text-primary fill-ketua border-left-default"></h4>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="edit-tuk-no_telepon" class="text-sm mb-0 font-weight-bold">
+                                            <i class="fas fa-phone-alt mr-2"></i>
+                                            Nomor Telepon TUK
+                                        </label>
+                                        <h4 class="py-1 mt-1 pl-3 text-primary fill-no_telepon border-left-default"></h4>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col">
+                                    <div class="text-xs text-uppercase font-weight-bold" style="color: #c5c5c5">Dokumen-dokumen</div>
+                                    <hr class="mt-0">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="edit-tuk-panduan_mutu" class="text-sm mb-0 font-weight-bold">Panduan Mutu</label>
+                                        <div class="preview-document document-panduan_mutu" style="display: none;">
+                                            <h6 class="text-center font-weight-bold">File.pdf</h6>
+                                            <iframe
+                                                src="http://arsip_ci4.test/files/tuk/mou/STIKI%20E-Learning%20Laporan.pdf"
+                                                frameBorder="0"
+                                                scrolling="auto"
+                                                height="300px"
+                                                width="100%"
+                                            ></iframe>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="edit-tuk-sop" class="text-sm mb-0 font-weight-bold">Dokumen SOP</label>
+                                        <div class="preview-document document-sop" style="display: none;">
+                                            <h6 class="text-center font-weight-bold">File.pdf</h6>
+                                            <iframe
+                                                src="http://arsip_ci4.test/files/tuk/mou/STIKI%20E-Learning%20Laporan.pdf"
+                                                frameBorder="0"
+                                                scrolling="auto"
+                                                height="300px"
+                                                width="100%"
+                                            ></iframe>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="edit-tuk-sk_tuk" class="text-sm mb-0 font-weight-bold">Surat Keputusan TUK</label>
+                                        <div class="preview-document document-sk_tuk" style="display: none;">
+                                            <h6 class="text-center font-weight-bold">File.pdf</h6>
+                                            <iframe
+                                                src="http://arsip_ci4.test/files/tuk/mou/STIKI%20E-Learning%20Laporan.pdf"
+                                                frameBorder="0"
+                                                scrolling="auto"
+                                                height="300px"
+                                                width="100%"
+                                            ></iframe>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="edit-tuk-ba_verifikasi" class="text-sm mb-0 font-weight-bold">B.A. Verifikasi</label>
+                                        <div class="preview-document document-ba_verifikasi" style="display: none;">
+                                            <h6 class="text-center font-weight-bold">File.pdf</h6>
+                                            <iframe
+                                                src="http://arsip_ci4.test/files/tuk/mou/STIKI%20E-Learning%20Laporan.pdf"
+                                                frameBorder="0"
+                                                scrolling="auto"
+                                                height="300px"
+                                                width="100%"
+                                            ></iframe>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="edit-tuk-spt_verifikator" class="text-sm mb-0 font-weight-bold">SPT Verifikator</label>
+                                        <div class="preview-document document-spt_verifikator" style="display: none;">
+                                            <h6 class="text-center font-weight-bold">File.pdf</h6>
+                                            <iframe
+                                                src="http://arsip_ci4.test/files/tuk/mou/STIKI%20E-Learning%20Laporan.pdf"
+                                                frameBorder="0"
+                                                scrolling="auto"
+                                                height="300px"
+                                                width="100%"
+                                            ></iframe>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="edit-tuk-sk_checklist_persyaratan" class="text-sm mb-0 font-weight-bold">SK Checklist Persyaratan</label>
+                                        <div class="preview-document document-sk_checklist_persyaratan" style="display: none;">
+                                            <h6 class="text-center font-weight-bold">File.pdf</h6>
+                                            <iframe
+                                                src="http://arsip_ci4.test/files/tuk/mou/STIKI%20E-Learning%20Laporan.pdf"
+                                                frameBorder="0"
+                                                scrolling="auto"
+                                                height="300px"
+                                                width="100%"
+                                            ></iframe>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="edit-tuk-mou" class="text-sm mb-0 font-weight-bold">Dokumen MoU</label>
+                                        <div class="preview-document document-mou" style="display: none;">
+                                            <h6 class="text-center font-weight-bold">File.pdf</h6>
+                                            <iframe
+                                                src="http://arsip_ci4.test/files/tuk/mou/STIKI%20E-Learning%20Laporan.pdf"
+                                                frameBorder="0"
+                                                scrolling="auto"
+                                                height="300px"
+                                                width="100%"
+                                            ></iframe>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <hr>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col d-flex justify-content-center">
+                                    <button type="button" class="btn btn-default px-4 mr-2" data-dismiss="modal">
+                                        <i class="fas fa-times mr-2"></i>
+                                        Tutup
+                                    </button>
+                                    <button type="submit" class="btn btn-primary flex-fill">
+                                        <i class="fas fa-paper-plane mr-2"></i>
+                                        Kirim
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div> 
+</div>
+
 
 <script>
     $(document).ready(function () {
@@ -753,9 +965,89 @@
                     })
                 }
             })
+            $(".btn-detail").unbind('click').click(function(e) {
+                modalDetailTUK.modal('show')
+                modalDetailTUK.modal('show')
+                modalDetailTUK.find('.loading').show()
+                modalDetailTUK.find('.loading').show()
+                e.preventDefault()
+                id = $(this).data('id')
+                modalDetailTUK.find("[name='id']").val(id)
+                modalDetailTUK.find("[name='id']").val(id)
+                $.ajax({
+                    type: "GET",
+                    url: "<?= site_url('resource/tuk/') ?>" + id,
+                    dataType: "json",
+                })
+                .done(function(response) {
+                    modalDetailTUK.find(".fill-nama").html(response.data.nama)
+                    modalDetailTUK.find(".fill-no_sk").html(response.data.no_sk)
+                    modalDetailTUK.find(".fill-no_sk").html(response.data.no_sk)
+                    modalDetailTUK.find(".fill-alamat").html(response.data.alamat)
+                    modalDetailTUK.find(".fill-alamat").html(response.data.alamat)
+                    modalDetailTUK.find(".fill-ketua").html(response.data.ketua)
+                    modalDetailTUK.find(".fill-ketua").html(response.data.ketua)
+                    modalDetailTUK.find(".fill-no_telepon").html(response.data.no_telepon)
+                    modalDetailTUK.find(".fill-no_telepon").html(response.data.no_telepon)
+                    
+                    console.log('changing to ' + decodeURIComponent(response.data.panduan_mutu_filename))
+                    modalDetailTUK.find(".document-panduan_mutu h6").html(decodeURIComponent(response.data.panduan_mutu_filename))
+                    modalDetailTUK.find(".document-panduan_mutu h6").html(decodeURIComponent(response.data.panduan_mutu_filename))
+                    modalDetailTUK.find(".document-panduan_mutu iframe").attr('src', response.data.panduan_mutu)
+                    modalDetailTUK.find(".document-panduan_mutu iframe").attr('src', response.data.panduan_mutu)
+                    modalDetailTUK.find(".document-panduan_mutu").show()
+                    modalDetailTUK.find(".document-panduan_mutu").show()
+                    
+                    modalDetailTUK.find(".document-sop h6").html(decodeURIComponent(response.data.sop_filename))
+                    modalDetailTUK.find(".document-sop h6").html(decodeURIComponent(response.data.sop_filename))
+                    modalDetailTUK.find(".document-sop iframe").attr('src', response.data.sop)
+                    modalDetailTUK.find(".document-sop iframe").attr('src', response.data.sop)
+                    modalDetailTUK.find(".document-sop").show()
+                    modalDetailTUK.find(".document-sop").show()
+                    
+                    modalDetailTUK.find(".document-sk_tuk h6").html(decodeURIComponent(response.data.sk_tuk_filename))
+                    modalDetailTUK.find(".document-sk_tuk h6").html(decodeURIComponent(response.data.sk_tuk_filename))
+                    modalDetailTUK.find(".document-sk_tuk iframe").attr('src', response.data.sk_tuk)
+                    modalDetailTUK.find(".document-sk_tuk iframe").attr('src', response.data.sk_tuk)
+                    modalDetailTUK.find(".document-sk_tuk").show()
+                    modalDetailTUK.find(".document-sk_tuk").show()
+                    
+                    modalDetailTUK.find(".document-ba_verifikasi h6").html(decodeURIComponent(response.data.ba_verifikasi_filename))
+                    modalDetailTUK.find(".document-ba_verifikasi h6").html(decodeURIComponent(response.data.ba_verifikasi_filename))
+                    modalDetailTUK.find(".document-ba_verifikasi iframe").attr('src', response.data.ba_verifikasi)
+                    modalDetailTUK.find(".document-ba_verifikasi iframe").attr('src', response.data.ba_verifikasi)
+                    modalDetailTUK.find(".document-ba_verifikasi").show()
+                    modalDetailTUK.find(".document-ba_verifikasi").show()
+                    
+                    modalDetailTUK.find(".document-spt_verifikator h6").html(decodeURIComponent(response.data.spt_verifikator_filename))
+                    modalDetailTUK.find(".document-spt_verifikator h6").html(decodeURIComponent(response.data.spt_verifikator_filename))
+                    modalDetailTUK.find(".document-spt_verifikator iframe").attr('src', response.data.spt_verifikator)
+                    modalDetailTUK.find(".document-spt_verifikator iframe").attr('src', response.data.spt_verifikator)
+                    modalDetailTUK.find(".document-spt_verifikator").show()
+                    modalDetailTUK.find(".document-spt_verifikator").show()
+                    
+                    modalDetailTUK.find(".document-sk_checklist_persyaratan h6").html(decodeURIComponent(response.data.sk_checklist_persyaratan_filename))
+                    modalDetailTUK.find(".document-sk_checklist_persyaratan h6").html(decodeURIComponent(response.data.sk_checklist_persyaratan_filename))
+                    modalDetailTUK.find(".document-sk_checklist_persyaratan iframe").attr('src', response.data.sk_checklist_persyaratan)
+                    modalDetailTUK.find(".document-sk_checklist_persyaratan iframe").attr('src', response.data.sk_checklist_persyaratan)
+                    modalDetailTUK.find(".document-sk_checklist_persyaratan").show()
+                    modalDetailTUK.find(".document-sk_checklist_persyaratan").show()
+
+                    modalDetailTUK.find(".document-mou h6").html(decodeURIComponent(response.data.mou_filename))
+                    modalDetailTUK.find(".document-mou h6").html(decodeURIComponent(response.data.mou_filename))
+                    modalDetailTUK.find(".document-mou iframe").attr('src', response.data.mou)
+                    modalDetailTUK.find(".document-mou iframe").attr('src', response.data.mou)
+                    modalDetailTUK.find(".document-mou").show()
+                    modalDetailTUK.find(".document-mou").show()
+                    
+                    modalDetailTUK.find('.loading').hide()
+                    modalDetailTUK.find('.loading').hide()
+                })
+            })
         }
         refreshData()
 
+        let modalDetailTUK = $("#modal-detail-tuk")
         let modalNewTUK = $("#modal-new-tuk")
         $(".btn-new-tuk").click(function (e) {
             e.preventDefault()

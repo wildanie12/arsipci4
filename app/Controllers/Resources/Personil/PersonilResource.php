@@ -2,6 +2,7 @@
 
 namespace App\Controllers\Resources\Personil;
 
+use App\Models\JabatanModel;
 use App\Models\Personil\PersonilModel;
 use CodeIgniter\RESTful\ResourceController;
 use Config\Upload;
@@ -98,6 +99,13 @@ class PersonilResource extends ResourceController
 		$personil['pas_foto_filename'] = utf8_decode(urldecode(basename($personil['pas_foto'])));
 		$personil['ktp_filename'] = utf8_decode(urldecode(basename($personil['ktp'])));
 		$personil['sk_pengangkatan_filename'] = utf8_decode(urldecode(basename($personil['sk_pengangkatan'])));
+
+		$jabatanModel = new JabatanModel();
+		$jabatan = $jabatanModel->find($personil['jabatan_id']);
+		if ($jabatan != '') {
+			$personil['jabatan_nama'] = $jabatan->nama;
+		}
+
 		return json_encode([
 			'status' => 'success',
 			'data' => $personil

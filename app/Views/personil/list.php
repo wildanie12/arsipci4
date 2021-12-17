@@ -623,11 +623,11 @@
     </div>
 </div>
 
-<div class="modal fade" id="modal-edit-asesor">
-    <div class="modal-dialog modal-xl">
+<div class="modal fade" id="modal-detail-personil">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content rounded">
             <div class="modal-header bg-success">
-                <h6 class="modal-title font-weight-bold mb-0 text-white">Edit data Asesor Internal</h6>
+                <h6 class="modal-title font-weight-bold mb-0 text-white">Detail data Personil</h6>
                 <button type="button" class="close" data-dismiss="modal">
                     <i class="fas fa-times"></i>
                 </button>
@@ -639,122 +639,56 @@
                         <h4 class="text-center mt-3 text-white">Loading<br/>.....</h4>
                     </div>
                 </div>
-                <form>
-                    <?= csrf_field() ?>
-                    <input type="hidden" name="sifat_penempatan" value="internal">
-                    <input type="hidden" name="id">
-                    <input type="hidden" name="_method" value="PATCH">
                     <div class="row">
                         <div class="col-md">
                             <div class="form-group">
-                                <label for="new-personil-nama" class="text-sm mb-0 font-weight-bold">Nama Lengkap</label>
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text"><i class="fas fa-signature"></i></span>
-                                    </div>
-                                    <input type="text" id="new-personil-nama" class="form-control" name="nama" placeholder="Tuliskan nama lengkap asesor...">
-                                </div>
-                                <div class="text-xs text-danger font-weight-bold font-italic error-message error-nama" style="display: none;"></div>
+                                <label for="edit-personil-nama" class="text-sm mb-0 font-weight-bold">
+                                    <i class="fas fa-signature mr-2"></i>  
+                                    Nama Lengkap
+                                </label>
+                                <h4 class="py-1 mt-1 pl-3 text-primary fill-nama border-left-default"></h4>
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md">
                             <div class="form-group">
-                                <label for="new-personil-tempat_lahir" class="text-sm mb-0 font-weight-bold">Tempat Lahir</label>
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text">
-                                            <i class="fas fa-birthday-cake"></i> 
-                                        </span>
-                                    </div>
-                                    <input type="text" class="form-control" name="tempat_lahir" placeholder="Tuliskan Tempat lahir..">
-                                    <input type="date" class="form-control" name="tanggal_lahir">
-                                </div>
-                                <div class="text-xs text-danger font-weight-bold font-italic error-message error-tempat_lahir" style="display: none;"></div>
-                                <div class="text-xs text-danger font-weight-bold font-italic error-message error-tanggal_lahir" style="display: none;"></div>
+                                <label for="edit-personil-nama" class="text-sm mb-0 font-weight-bold">
+                                    <i class="fas fa-birthday-cake mr-2"></i>  
+                                    Tempat, Tanggal Lahir
+                                </label>
+                                <h4 class="py-1 mt-1 pl-3 text-primary fill-tempat_lahir border-left-default"></h4>
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md">
                             <div class="form-group">
-                                <label for="new-personil-no_blanko" class="text-sm mb-0 font-weight-bold">Nomor Blanko</label>
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text">
-                                            <i class="fas fa-file-alt"></i> 
-                                        </span>
-                                    </div>
-                                    <input type="text" class="form-control" name="no_blanko" placeholder="Tuliskan nomor blanko..">
-                                </div>
-                                <div class="text-xs text-danger font-weight-bold font-italic error-message error-no_blanko" style="display: none;"></div>
+                                <label for="edit-personil-nama" class="text-sm mb-0 font-weight-bold">
+                                    <i class="fas fa-user-tie mr-2"></i>  
+                                    Jabatan
+                                </label>
+                                <h4 class="py-1 mt-1 pl-3 text-primary fill-jabatan border-left-default"></h4>
                             </div>
                         </div>
                         <div class="col-md">
                             <div class="form-group">
-                                <label for="new-personil-no_reg_sertifikat" class="text-sm mb-0 font-weight-bold">Nomor REG Sertifikat</label>
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text">
-                                            <i class="fas fa-file-alt"></i> 
-                                        </span>
-                                    </div>
-                                    <input type="text" class="form-control" name="no_reg_sertifikat" placeholder="Tuliskan REG..">
-                                </div>
-                                <div class="text-xs text-danger font-weight-bold font-italic error-message error-no_reg_sertifikat" style="display: none;"></div>
-                            </div>
-                        </div>
-                        <div class="col-md">
-                            <div class="form-group">
-                                <label for="new-personil-no_met_sertifikat" class="text-sm mb-0 font-weight-bold">Nomor MET Sertifikat</label>
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text">
-                                            <i class="fas fa-file-alt"></i> 
-                                        </span>
-                                    </div>
-                                    <input type="text" class="form-control" id="no_met_sertifikat" name="no_met_sertifikat" placeholder="Tuliskan MET..">
-                                </div>
-                                <div class="text-xs text-danger font-weight-bold font-italic error-message error-no_met_sertifikat" style="display: none;"></div>
+                                <label for="edit-personil-nama" class="text-sm mb-0 font-weight-bold">
+                                    <i class="fas fa-id-card mr-2"></i>  
+                                    NIK
+                                </label>
+                                <h4 class="py-1 mt-1 pl-3 text-primary fill-nik border-left-default"></h4>
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md">
                             <div class="form-group">
-                                <label for="new-personil-kompetensi_teknis" class="text-sm mb-0 font-weight-bold">Kompetensi Teknis</label>
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text"><i class="fas fa-flask"></i></span>
-                                    </div>
-                                    <input type="text" id="new-personil-kompetensi_teknis" class="form-control" name="kompetensi_teknis" placeholder="Tuliskan kompetensi teknis">
-                                </div>
-                                <div class="text-xs text-danger font-weight-bold font-italic error-message error-kompetensi_teknis" style="display: none;"></div>
-                            </div>
-                        </div>
-                        <div class="col-md">
-                            <div class="form-group">
-                                <label for="new-personil-tanggal_sertifikat" class="text-sm mb-0 font-weight-bold">Tanggal Sertifikat</label>
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text"><i class="fas fa-scroll"></i></span>
-                                    </div>
-                                    <input type="date" id="new-personil-tanggal_sertifikat" class="form-control" name="tanggal_sertifikat">
-                                </div>
-                                <div class="text-xs text-danger font-weight-bold font-italic error-message error-tanggal_sertifikat" style="display: none;"></div>
-                            </div>
-                        </div>
-                        <div class="col-md">
-                            <div class="form-group">
-                                <label for="new-personil-tanggal_expired_sertifikat" class="text-sm mb-0 font-weight-bold">Tanggal Expired Sertifikat</label>
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text"><i class="fas fa-scroll"></i></span>
-                                    </div>
-                                    <input type="date" id="new-personil-tanggal_expired_sertifikat" class="form-control" name="tanggal_expired_sertifikat">
-                                </div>
-                                <div class="text-xs text-danger font-weight-bold font-italic error-message error-tanggal_expired_sertifikat" style="display: none;"></div>
+                                <label for="edit-personil-nama" class="text-sm mb-0 font-weight-bold">
+                                    <i class="fas fa-map-marked-alt mr-2"></i>  
+                                    Alamat
+                                </label>
+                                <h4 class="py-1 mt-1 pl-3 text-primary fill-alamat border-left-default"></h4>
                             </div>
                         </div>
                     </div>
@@ -766,83 +700,33 @@
                     </div>
                     <div class="row">
                         <div class="col-md">
-                            <div class="form-group mb-0">
-                                <label for="new-personil-sertifikat_asesor" class="text-sm mb-0 font-weight-bold">Sertifikat Asesor</label>
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text"><i class="fas fa-file-pdf"></i></span>
-                                    </div>
-                                    <input type="file" accept=".doc,.docx,.pdf,.ppt,.pptx" id="new-personil-sertifikat_asesor" class="form-control pt-1" name="sertifikat_asesor">
-                                </div>
-                                <div class="text-muted text-xs font-italic">Upload file dokumen (doc/docx/pdf). Ukuran Max: 6MB <br/>Abaikan jika tidak ingin merubah</div>
-                                <div class="text-xs text-danger font-weight-bold font-italic error-message error-sertifikat_asesor" style="display: none;"></div>
-                            </div>
-                            <div class="preview-document document-sertifikat_asesor" style="display: none;">
+                            <label for="edit-personil-sk_pengangkatan" class="text-sm mb-0 font-weight-bold">SK Pengangkatan</label>
+                            <div class="preview-document document-sk_pengangkatan" style="display: none;">
                                 <a target="_blank" href=""></a>
                             </div>
                         </div>
                         <div class="col-md">
-                            <div class="form-group mb-0">
-                                <label for="new-personil-portofolio" class="text-sm mb-0 font-weight-bold">Portofolio</label>
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text"><i class="fas fa-file-pdf"></i></span>
-                                    </div>
-                                    <input type="file" accept=".doc,.docx,.pdf,.ppt,.pptx" id="new-personil-portofolio" class="form-control pt-1" name="portofolio">
-                                </div>
-                                <div class="text-muted text-xs font-italic">Upload file dokumen (doc/docx/pdf). Ukuran Max: 6MB <br/>Abaikan jika tidak ingin merubah</div>
-                                <div class="text-xs text-danger font-weight-bold font-italic error-message error-portofolio" style="display: none;"></div>
-                            </div>
+                            <label for="edit-personil-portofolio" class="text-sm mb-0 font-weight-bold">Portofolio</label>
                             <div class="preview-document document-portofolio" style="display: none;">
                                 <a target="_blank" href=""></a>
                             </div>
                         </div>
                         <div class="col-md">
-                            <div class="form-group mb-0">
-                                <label for="new-personil-cv" class="text-sm mb-0 font-weight-bold">CV</label>
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text"><i class="fas fa-file-pdf"></i></span>
-                                    </div>
-                                    <input type="file" accept=".doc,.docx,.pdf,.ppt,.pptx" id="new-personil-cv" class="form-control pt-1" name="cv">
-                                </div>
-                                <div class="text-muted text-xs font-italic">Upload file dokumen (doc/docx/pdf). Ukuran Max: 6MB <br/>Abaikan jika tidak ingin merubah</div>
-                                <div class="text-xs text-danger font-weight-bold font-italic error-message error-cv" style="display: none;"></div>
-                            </div>
-                            <div class="preview-dokumen dokumen-cv" style="display: none;">
-                                <a href=""></a>
+                            <label for="edit-personil-cv" class="text-sm mb-0 font-weight-bold">CV</label>
+                            <div class="preview-document document-cv" style="display: none;">
+                                <a target="_blank" href=""></a>
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md">
-                            <div class="form-group mb-0">
-                                <label for="new-personil-pas_foto" class="text-sm mb-0 font-weight-bold">Pas Foto</label>
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text"><i class="fas fa-file-pdf"></i></span>
-                                    </div>
-                                    <input type="file" accept="image/*" id="new-personil-pas_foto" class="form-control pt-1" name="pas_foto">
-                                </div>
-                                <span class="text-muted text-xs font-italic">Upload file gambar. Ukuran Max: 6MB</span>
-                                <div class="text-xs text-danger font-weight-bold font-italic error-message error-pas_foto" style="display: none;"></div>
-                            </div>
+                            <label for="edit-personil-pas_foto" class="text-sm mb-0 font-weight-bold">Pas Foto</label>
                             <div class="preview-image image-pas_foto mb-2" style="display:none">
                                 <img class="img-thumbnail" src="<?= site_url('img/img_unavailable.png') ?>">
                             </div> 
                         </div>
                         <div class="col-md">
-                            <div class="form-group mb-0">
-                                <label for="new-personil-ktp" class="text-sm mb-0 font-weight-bold">Scan KTP</label>
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text"><i class="fas fa-file-pdf"></i></span>
-                                    </div>
-                                    <input type="file" accept="image/*" id="new-personil-ktp" class="form-control pt-1" name="ktp">
-                                </div>
-                                <span class="text-muted text-xs font-italic">Upload file gambar. Ukuran Max: 6MB</span>
-                                <div class="text-xs text-danger font-weight-bold font-italic error-message error-ktp" style="display: none;"></div>
-                            </div>
+                            <label for="edit-personil-ktp" class="text-sm mb-0 font-weight-bold">Scan KTP</label>
                             <div class="preview-image image-ktp mb-2" style="display:none">
                                 <img class="img-thumbnail" src="<?= site_url('img/img_unavailable.png') ?>">
                             </div> 
@@ -859,13 +743,8 @@
                                 <i class="fas fa-times mr-2"></i>
                                 Tutup
                             </button>
-                            <button type="submit" class="btn btn-primary flex-fill">
-                                <i class="fas fa-paper-plane mr-2"></i>
-                                Kirim
-                            </button>
                         </div>
                     </div>
-                </form>
             </div>
         </div>
     </div> 
@@ -984,9 +863,69 @@
                     })
                 }
             })
+
+            $(".btn-detail").unbind('click').click(function (e) {
+                modalDetailPersonil.modal('show')
+                modalDetailPersonil.find('.loading').show()
+                e.preventDefault()
+                id = $(this).data('id')
+                modalDetailPersonil.find("[name='id']").val(id)
+                $.ajax({
+                    type: "GET",
+                    url: "<?= site_url('resource/personil/') ?>" + id,
+                    dataType: "json",
+                })
+                .done(function(response) {
+                    modalDetailPersonil.find(".fill-id").html(response.data.id)
+                    modalDetailPersonil.find(".fill-nama").html(response.data.nama)
+                    modalDetailPersonil.find(".fill-tempat_lahir").html(response.data.tempat_lahir + ', ' + response.data.tanggal_lahir)
+                    modalDetailPersonil.find(".fill-nik").html(response.data.nik)
+                    modalDetailPersonil.find(".fill-alamat").html(response.data.alamat)
+
+                    if (response.data.sk_pengangkatan_filename )
+                    modalDetailPersonil.find(".document-sk_pengangkatan a").html(
+                        `
+                        <i class='fas fa-download mr-2'></i>
+                        ${response.data.sk_pengangkatan_filename}
+                        `
+                    )
+                    modalDetailPersonil.find(".document-sk_pengangkatan a").attr('href', response.data.sertifikat_asesor)
+                    modalDetailPersonil.find(".document-sk_pengangkatan").show()
+
+                    if (response.data.portofolio_filename )
+                    modalDetailPersonil.find(".document-portofolio a").html(
+                        `
+                        <i class='fas fa-download mr-2'></i>
+                        ${response.data.portofolio_filename}
+                        `
+                    )
+                    modalDetailPersonil.find(".document-portofolio a").attr('href', response.data.portofolio)
+                    modalDetailPersonil.find(".document-portofolio").show()
+
+                    if (response.data.cv_filename )
+                    modalDetailPersonil.find(".document-cv a").html(
+                        `
+                        <i class='fas fa-download mr-2'></i>
+                        ${response.data.cv_filename}
+                        `
+                    )
+                    modalDetailPersonil.find(".document-cv a").attr('href', response.data.cv)
+                    modalDetailPersonil.find(".document-cv").show()
+
+                    modalDetailPersonil.find(".image-pas_foto img").attr('src', response.data.pas_foto)
+                    modalDetailPersonil.find(".image-pas_foto").show()
+                    modalDetailPersonil.find(".image-ktp img").attr('src', response.data.ktp)
+                    modalDetailPersonil.find(".image-ktp").show()
+                    
+                    modalDetailPersonil.find(".fill-jabatan").html(response.data.jabatan_nama)
+
+                    modalDetailPersonil.find(".loading").hide()
+                })
+            })
         }
         refreshData()
 
+        let modalDetailPersonil = $("#modal-detail-personil")
         let modalNewPersonil = $("#modal-new-personil")
         $(".btn-new-personil").click(function (e) {
             e.preventDefault()

@@ -3,6 +3,7 @@
 namespace App\Controllers\Resources\Asesor;
 
 use App\Models\Asesor\AsesorModel;
+use App\Models\SkemaSertifikasiModel;
 use CodeIgniter\RESTful\ResourceController;
 use Config\Upload;
 

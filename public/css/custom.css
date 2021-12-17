@@ -26,3 +26,6 @@
 .menu-item:hover {
     background: rgb(243, 243, 243);
 }
+.border-left-default {
+    border-left: 3px solid #ddd;
+}

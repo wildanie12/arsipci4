@@ -448,7 +448,110 @@
     </div> 
 </div>
 
-<script src="<?= site_url('vendor/dropzonejs/dropzone.min.js') ?>"></script>
+<div class="modal fade" id="modal-detail-mitra_kerja">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content rounded">
+            <div class="modal-header bg-success">
+                <h6 class="modal-title font-weight-bold mb-0 text-white">Detail Mitra Kerja</h6>
+                <button type="button" class="close" data-dismiss="modal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="loading position-absolute top-0 bottom-0 left-0 right-0 rounded" style="display: none;">
+                    <div class="d-flex justify-content-center align-items-center h-100 flex-column">
+                        <i class="fas fa-spin fa-sync text-white" style="font-size: 48px"></i>
+                        <h4 class="text-center mt-3 text-white">Loading<br/>.....</h4>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md">
+                        <div class="form-group">
+                            <label class="text-sm mb-0 font-weight-bold">
+                                <i class="fas fa-signature mr-2"></i>
+                                Nama Mitra Kerja
+                            </label>
+                            <h4 class="py-1 mt-1 pl-3 text-primary fill-nama border-left-default"></h4>
+                        </div>
+                    </div>
+                    <div class="col-md">
+                        <div class="form-group">
+                            <label for="edit-mitra_kerja-jenis_mitra" class="text-sm mb-0 font-weight-bold">
+                                <i class="fas fa-asterisk mr-2"></i>
+                                Jenis Mitra Kerja
+                            </label>
+                            <h4 class="py-1 mt-1 pl-3 text-primary fill-jenis_mitra border-left-default"></h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md">
+                        <div class="form-group">
+                            <label for="edit-mitra_kerja-tanggal_mou" class="text-sm mb-0 font-weight-bold">
+                                <i class="fas fa-calendar mr-2"></i>
+                                Tanggal MoU
+                            </label>
+                            <h4 class="py-1 mt-1 pl-3 text-primary fill-tanggal_mou border-left-default"></h4>
+                        </div>
+                    </div>
+                    <div class="col-md">
+                        <div class="form-group">
+                            <label for="edit-mitra_kerja-nomor_mou" class="text-sm mb-0 font-weight-bold">
+                                <i class="fas fa-key mr-2"></i>
+                                Nomor MoU
+                            </label>
+                            <h4 class="py-1 mt-1 pl-3 text-primary fill-nomor_mou border-left-default"></h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md">
+                        <div class="form-group">
+                            <label for="edit-mitra_kerja-keterangan" class="text-sm mb-0 font-weight-bold">
+                                <i class="fas fa-marked-alt mr-2"></i>
+                                Keterangan
+                            </label>
+                            <h4 class="py-1 mt-1 pl-3 text-primary fill-keterangan border-left-default"></h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col">
+                        <div class="text-xs text-uppercase font-weight-bold" style="color: #c5c5c5">Dokumen-dokumen</div>
+                        <hr class="mt-0">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <label class="font-weight-bold text-xs">Upload dokumen pendukung</label>
+                            <ul class="list-group file-list" style="display: none; border-top-left-radius: 0; border-top-right-radius: 0;">
+                                <li class="list-group-item d-flex align-items-center justify-content-between">
+                                    <span class="text">File.pdf</span>
+                                    <span class="badge badge-danger"><i class="fas fa-times position-relative" style="top: 1px; cursor: pointer"></i></span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <hr>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col d-flex justify-content-center">
+                        <button type="button" class="btn btn-default px-4 mr-2" data-dismiss="modal">
+                            <i class="fas fa-times mr-2"></i>
+                            Tutup
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> 
+</div>
+
 <script>
     $(document).ready(function () {
 
@@ -498,6 +601,7 @@
                     modalEditMitraKerja.find("[name='nama']").val(response.data.nama)
                     modalEditMitraKerja.find("[name='tanggal_mou']").val(response.data.tanggal_mou)
                     modalEditMitraKerja.find("[name='nomor_mou']").val(response.data.nomor_mou)
+                    modalEditMitraKerja.find("[name='jenis_mitra']").val(response.data.jenis_mitra)
                     modalEditMitraKerja.find("[name='keterangan']").val(response.data.keterangan)
                     modalEditMitraKerja.find("[name='dokumen_edit']").val(response.data.dokumen.join('|'))
                     if (response.data.dokumen_filename != '') {
@@ -553,9 +657,62 @@
                     })
                 }
             })
+
+            $(".btn-detail").unbind('click').click(function (e) {
+                e.preventDefault()
+                id = $(this).data('id')
+                modalDetailMitraKerja.modal('show')
+                $.ajax({
+                    type: "GET",
+                    url: "<?= site_url('resource/mitra_kerja/') ?>" + id,
+                    dataType: "json",
+                })
+                .done(function(response) {
+                    modalDetailMitraKerja.find(".fill-id").html(response.data.id)
+                    modalDetailMitraKerja.find(".fill-nama").html(response.data.nama)
+                    modalDetailMitraKerja.find(".fill-tanggal_mou").html(response.data.tanggal_mou)
+                    modalDetailMitraKerja.find(".fill-jenis_mitra").html(response.data.jenis_mitra)
+                    modalDetailMitraKerja.find(".fill-nomor_mou").html(response.data.nomor_mou)
+                    modalDetailMitraKerja.find(".fill-keterangan").html(response.data.keterangan)
+                    modalDetailMitraKerja.find(".fill-dokumen_edit").html(response.data.dokumen.join('|'))
+                    if (response.data.dokumen_filename != '') {
+                        let fileNames = response.data.dokumen_filename
+                        let files = response.data.dokumen
+                        function refreshFileList() {
+                            fileListHtml = ''
+                            fileNames.forEach(function (file, index) {
+                                fileListHtml += `
+                                <li class="list-group-item d-flex align-items-center justify-content-between">
+                                <span class="text">${file}</span>
+                                <div class="d-flex align-items-center">
+                                <span class="text mr-3"><a href="${response.data.dokumen[index]}" target="_blank"><i class="fas fa-download"></i></a></span>
+                                <span class="btn-delete-file badge badge-danger" data-index="${index}" style="cursor: pointer"><i class="fas fa-times"></i></span>
+                                </div>
+                                </li>
+                                `
+                            })
+                            modalDetailMitraKerja.find('.file-list').html(fileListHtml).show()
+                            modalDetailMitraKerja.find('.file-list .btn-delete-file').unbind().click(function (e) {
+                                if (confirm('Anda yakin?')) {
+                                    index = $(this).data('index')
+                                    fileNames.splice(index, 1)
+                                    files.splice(index, 1)
+                                    modalDetailMitraKerja.find("[name='dokumen_edit']").val(files.join('|'))
+                                    refreshFileList()
+                                }
+                            })
+                        }
+                        refreshFileList()
+                    }
+                })
+                .always(function() {
+                    modalDetailMitraKerja.find('.loading').hide()
+                })
+            })
         }
         refreshData()
 
+        let modalDetailMitraKerja = $("#modal-detail-mitra_kerja")
         let modalNewMitraKerja = $("#modal-new-mitra_kerja")
         $(".btn-new-mitra_kerja").click(function (e) {
             e.preventDefault()
@@ -566,20 +723,21 @@
             modalNewMitraKerja.find("[name='dokumen[]']").change(function () {
                 dokumenFileBuffer = []
                 fileListHtml = '';
+                console.log(this.files.length)
                 if (this.files.length > 0) {
                     modalNewMitraKerja.find('.file-list').show()
-                    this.files.forEach(function (file, index) {
-                        dokumenFileBuffer.push(file)
+                    for (let index = 0; index < this.files.length; index++) {
+                        dokumenFileBuffer.push(this.files[index])
                         fileListHtml += `
                             <li class="list-group-item d-flex align-items-center justify-content-between">
-                            <span class="text">${file.name}</span>
+                            <span class="text">${this.files[index].name}</span>
                             <div class="d-flex align-items-center">
-                                <span class="text mr-3">${Math.floor(file.size / 1000)} KB</span>
+                                <span class="text mr-3">${Math.floor(this.files[index].size / 1000)} KB</span>
                                 <span class="btn-delete-file badge badge-danger" data-index="${index}" style="cursor: pointer"><i class="fas fa-times"></i></span>
                             </div>
                             </li>
                         `
-                    })
+                    }
                     modalNewMitraKerja.find('.file-list').html(fileListHtml)
                     modalNewMitraKerja.find('.btn-delete-file').unbind('click').click(function(e) {
                         if (confirm('Hapus file dokumen untuk di upload?'))
@@ -639,18 +797,18 @@
                 fileListHtml = '';
                 if (this.files.length > 0) {
                     modalEditMitraKerja.find('.file-list').show()
-                    this.files.forEach(function (file, index) {
-                        dokumenFileBuffer.push(file)
+                    for (let index = 0; index < this.files.length; index++) {
+                        dokumenFileBuffer.push(this.files[index])
                         fileListHtml += `
                             <li class="list-group-item d-flex align-items-center justify-content-between">
-                            <span class="text">${file.name}</span>
+                            <span class="text">${this.files[index].name}</span>
                             <div class="d-flex align-items-center">
-                                <span class="text mr-3">${Math.floor(file.size / 1000)} KB</span>
+                                <span class="text mr-3">${Math.floor(this.files[index].size / 1000)} KB</span>
                                 <span class="btn-delete-file badge badge-danger" data-index="${index}" style="cursor: pointer"><i class="fas fa-times"></i></span>
                             </div>
                             </li>
                         `
-                    })
+                    }
                     modalEditMitraKerja.find('.file-list').html(fileListHtml)
                     modalEditMitraKerja.find('.btn-delete-file').unbind('click').click(function(e) {
                         if (confirm('Hapus file dokumen untuk di upload?'))

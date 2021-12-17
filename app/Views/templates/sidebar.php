@@ -136,7 +136,7 @@
                 <div id="collapseDatabase" class="collapse <?=(($uri->getSegment(1) == 'asesi') ? 'show' : '')?>" aria-labelledby="headingDatabase" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <!-- <h6 class="collapse-header">Custom Utilities:</h6> -->
-                        <a class="collapse-item <?=(($uri->getSegment(2) == 'asesi' || $uri->getSegment(1) == 'asesi') ? 'active' : '')?>" href="<?= base_url('asesi/asesi'); ?>">Asesi</a>
+                        <a class="collapse-item <?=(($uri->getSegment(2) == 'asesi') ? 'active' : '')?>" href="<?= base_url('asesi/asesi'); ?>">Asesi</a>
                         <a class="collapse-item <?=(($uri->getSegment(2) == 'surveilance') ? 'active' : '')?>" href="<?= base_url('asesi/surveilance'); ?>">Data Surveilance</a>
 
                     </div>
