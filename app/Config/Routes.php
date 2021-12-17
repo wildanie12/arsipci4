@@ -50,6 +50,8 @@ $routes->get('mitra_kerja/(:any)', 'MitraKerja\MitraKerjaController::$1');
 $routes->get('asesor', 'Asesor\AsesorInternalController::index');
 $routes->get('asesor/internal', 'Asesor\AsesorInternalController::index');
 $routes->get('asesor/internal/(:any)', 'Asesor\AsesorInternalController::$1');
+$routes->get('asesor/eksternal', 'Asesor\AsesorEksternalController::index');
+$routes->get('asesor/eksternal/(:any)', 'Asesor\AsesorEksternalController::$1');
 
 $routes->get('personil', 'Personil\PersonilController::index');
 $routes->get('personil/(:any)', 'Personil\PersonilController::$1');

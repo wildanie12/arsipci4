@@ -12,7 +12,7 @@
                         <div class="col-auto px-4 text-center">
                             <i class="fas fa-file-alt mb-2" style="font-size: 32px"></i>
                             <h6 class="mb-0 font-weight-bold text-default text-center">
-                                Data <br/>Asesor <br/> Internal
+                                Data <br/>Asesor <br/> Eksternal
                             </h6>
                         </div>
                         <div class="col-md">
@@ -117,7 +117,7 @@
                                         <div class="col">
                                             <div class="form-group">
                                                 <form action="<?= site_url('export/asesor/spreadsheet') ?>" method="post">
-                                                    <input type="hidden" name="sifat_penempatan" value="internal">
+                                                    <input type="hidden" name="sifat_penempatan" value="eksternal">
                                                     <button type="submit" class="btn btn-sm btn-block btn-success">
                                                         <i class="fas fa-file-excel mr-2"></i>
                                                         Export
@@ -212,7 +212,7 @@
                 </div>
                 <form>
                     <?= csrf_field() ?>
-                    <input type="hidden" name="sifat_penempatan" value="internal">
+                    <input type="hidden" name="sifat_penempatan" value="eksternal">
                     <div class="row">
                         <div class="col-md">
                             <div class="form-group">
@@ -449,7 +449,7 @@
                 </div>
                 <form>
                     <?= csrf_field() ?>
-                    <input type="hidden" name="sifat_penempatan" value="internal">
+                    <input type="hidden" name="sifat_penempatan" value="eksternal">
                     <input type="hidden" name="id">
                     <input type="hidden" name="_method" value="PATCH">
                     <div class="row">
@@ -685,7 +685,7 @@
         let dataParams = {
             limit: 50,
             berdasarkan: 'nama',
-            sifat_penempatan: 'internal',
+            sifat_penempatan: 'eksternal',
             view_content: 'asesor/ajax/table',
             view_pagination: 'asesor/ajax/pagination'
         }
