@@ -13,7 +13,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Dashboard</title>
+    <title><?= $ui_title ?? 'Tidak ada judul' ?></title>
 
     <!-- Custom fonts for this template-->
     <link href="<?= base_url(); ?>/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -47,8 +47,8 @@
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item active">
-                <a class="nav-link" href="dashboard">
+            <li class="nav-item">
+                <a class="nav-link" href="<?= site_url('dashboard') ?>">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
@@ -62,38 +62,28 @@
             </div>
 
             <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item <?=(($uri->getSegment(1) == 'primary' || $uri->getSegment(1) == 'lampiran') ? 'active' : '')?>">
+            <li class="nav-item <?=(($uri->getSegment(1) == 'profil' || $uri->getSegment(1) == 'lampiran') ? 'active' : '')?>">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fas fa-fw fa-cog"></i>
                     <span>Data LSP</span>
                 </a>
-                <div id="collapseTwo" class="collapse <?=(($uri->getSegment(1) == 'primary' || $uri->getSegment(1) == 'lampiran') ? 'show' : '')?>" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div id="collapseTwo" class="collapse <?=(($uri->getSegment(1) == 'profil' || $uri->getSegment(1) == 'lampiran') ? 'show' : '')?>" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <!-- <h6 class="collapse-header">Custom Components:</h6> -->
-                        <a class="collapse-item <?=(($uri->getSegment(1) == 'primary') ? 'active' : '')?>" href="<?= base_url('primary'); ?>">Primary</a>
-                        <a class="collapse-item" href="<?= base_url('lampiran'); ?>">Lampiran</a>
+                        <a class="collapse-item <?= ($uri->getSegment(1) == 'profil') ? 'active' : '' ?>" href="<?= site_url('profil') ?>">Profil</a>
+                        <a class="collapse-item <?= ($uri->getSegment(1) == 'lampiran') ? 'active' : '' ?>" href="<?= site_url('lampiran') ?>">Lampiran</a>
                     </div>
                 </div>
             </li>
 
             <!-- Nav Item - Utilities Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
-                    <i class="fas fa-fw fa-wrench"></i>
+            <li class="nav-item <?= ($uri->getSegment(1) == 'mitra_kerja') ? 'active' : '' ?>">
+                <a class="nav-link" href="<?= base_url('mitra_kerja'); ?>">
+                    <i class="fas fa-fw fa-handshake"></i>
                     <span>Mitra Kerja</span>
                 </a>
-                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <!-- <h6 class="collapse-header">Custom Utilities:</h6> -->
-                        <a class="collapse-item active" href="<?= base_url('asosiasi'); ?>">Asosiasi</a>
-                        <a class="collapse-item" href="<?= base_url('instansi'); ?>">Instansi Pemerintah</a>
-                        <a class="collapse-item" href="<?= base_url('lembaga'); ?>">Lembaga Pendidikan</a>
-                        <a class="collapse-item" href="<?= base_url('perusahaan'); ?>">Perusahaan/Industri</a>
-                        <a class="collapse-item" href="<?= base_url('etc'); ?>">Etc</a>
-                    </div>
-                </div>
             </li>
-            <li class="nav-item">
+            <li class="nav-item <?= ($uri->getSegment(1) == 'tuk') ? 'active' : '' ?>">
                 <a class="nav-link" href="<?= base_url('tuk'); ?>">
                     <i class="fas fa-fw fa-folder"></i>
                     <span>T.U.K</span>
@@ -115,21 +105,19 @@
                     <i class="fas fa-fw fa-folder"></i>
                     <span>Asesor</span>
                 </a>
-                <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                <div id="collapsePages" class="collapse <?= ($uri->getSegment(1) == 'asesor') ? 'show' : '' ?>" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <!-- <h6 class="collapse-header">Login Screens:</h6> -->
-                        <a class="collapse-item" href="<?= base_url('asesor_in'); ?>">Asesor Internal</a>
-                        <a class="collapse-item" href="<?= base_url('asesor_ex'); ?>">Asesor Eksternal</a>
-
+                        <a class="collapse-item <?= ($uri->getSegment(2) == 'internal') ? 'active' : '' ?>" href="<?= site_url('asesor/internal'); ?>">Asesor Internal</a>
+                        <a class="collapse-item <?= ($uri->getSegment(2) == 'eksternal') ? 'active' : '' ?>" href="<?= site_url('asesor/eksternal'); ?>">Asesor Eksternal</a>
                     </div>
                 </div>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="<?= base_url('personil'); ?>">
+            <li class="nav-item <?= ($uri->getSegment(1) == 'personil') ? 'active' : '' ?>">
+                <a class="nav-link" href="<?= site_url('personil'); ?>">
                     <i class="fas fa-fw fa-folder"></i>
                     <span>Personil</span>
                 </a>
-
             </li>
 
             <!-- Divider -->
@@ -145,11 +133,11 @@
                     <i class="fas fa-fw fa-wrench"></i>
                     <span>Asesi</span>
                 </a>
-                <div id="collapseDatabase" class="collapse <?=(($uri->getSegment(1) == 'asesi' || $uri->getSegment(1) == 'surveilance') ? 'show' : '')?>" aria-labelledby="headingDatabase" data-parent="#accordionSidebar">
+                <div id="collapseDatabase" class="collapse <?=(($uri->getSegment(1) == 'asesi') ? 'show' : '')?>" aria-labelledby="headingDatabase" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <!-- <h6 class="collapse-header">Custom Utilities:</h6> -->
-                        <a class="collapse-item <?=(($uri->getSegment(1) == 'asesi') ? 'active' : '')?>" href="<?= base_url('asesi'); ?>">Asesi</a>
-                        <a class="collapse-item <?=(($uri->getSegment(1) == 'surveilance') ? 'active' : '')?>" href="<?= base_url('surveilance'); ?>">Data Surveilance</a>
+                        <a class="collapse-item <?=(($uri->getSegment(2) == 'asesi' || $uri->getSegment(1) == 'asesi') ? 'active' : '')?>" href="<?= base_url('asesi/asesi'); ?>">Asesi</a>
+                        <a class="collapse-item <?=(($uri->getSegment(2) == 'surveilance') ? 'active' : '')?>" href="<?= base_url('asesi/surveilance'); ?>">Data Surveilance</a>
 
                     </div>
                 </div>
