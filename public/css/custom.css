@@ -18,3 +18,11 @@
     z-index: 1;
     background: rgba(0, 0, 0, 0.7);
 }
+
+.menu a:hover {
+    text-decoration: none !important;
+}
+
+.menu-item:hover {
+    background: rgb(243, 243, 243);
+}
