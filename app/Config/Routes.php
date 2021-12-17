@@ -41,6 +41,7 @@ $routes->get('/', function () {
 // $routes->get('asesi', 'Asesi\AsesiController::index');
 // $routes->get('asesi/(:any)', 'Asesi\AsesiController::$1');
 
+$routes->get('profil', 'Dashboard\ProfilController::index');
 $routes->get('lampiran', 'Dashboard\LampiranController::index');
 
 $routes->get('tuk', 'TUK\TUKController::index');

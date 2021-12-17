@@ -9,6 +9,6 @@ class ProfilController extends BaseController
 	public function index()
 	{
 		$data['ui_title'] = 'Data Asesor Internal';
-		return view('dashboard/profil', $data);
+		return view('dashboard/profil/index', $data);
 	}
 }
