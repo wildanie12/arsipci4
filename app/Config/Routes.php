@@ -38,8 +38,8 @@ $routes->get('/', function () {
 	dd((new TUKModel())->findAll());
 });
 
-$routes->get('asesi', 'Asesi\AsesiController::index');
-$routes->get('asesi/(:any)', 'Asesi\AsesiController::$1');
+// $routes->get('asesi', 'Asesi\AsesiController::index');
+// $routes->get('asesi/(:any)', 'Asesi\AsesiController::$1');
 
 $routes->get('tuk', 'TUK\TUKController::index');
 $routes->get('tuk/(:any)', 'TUK\TUKController::$1');
@@ -54,12 +54,16 @@ $routes->get('asesor/internal/(:any)', 'Asesor\AsesorInternalController::$1');
 $routes->get('personil', 'Personil\PersonilController::index');
 $routes->get('personil/(:any)', 'Personil\PersonilController::$1');
 
+$routes->get('asesi', 'Asesi\AsesiController::index');
+$routes->get('asesi/(:any)', 'Asesi\AsesiController::$1');
+
 $routes->group('resource', function($routes) {
 	$routes->resource('tuk', ['controller' => 'Resources\TUK\TUKResource']);
 	$routes->resource('mitra_kerja', ['controller' => 'Resources\MitraKerja\MitraKerjaResource']);
 	$routes->resource('asesor', ['controller' => 'Resources\Asesor\AsesorResource']);
 	$routes->resource('personil', ['controller' => 'Resources\Personil\PersonilResource']);
 	$routes->resource('jabatan', ['controller' => 'Resources\JabatanResource']);
+	$routes->resource('asesi', ['controller' => 'Resources\Asesi\AsesiResource']);
 });
 
 $routes->group('export', function($routes) {

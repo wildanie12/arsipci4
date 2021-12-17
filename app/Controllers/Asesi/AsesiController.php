@@ -2,89 +2,18 @@
 
 namespace App\Controllers\Asesi;
 
-use CodeIgniter\RESTful\ResourceController;
+use App\Controllers\BaseController;
+use App\Models\Asesor\AsesorModel;
+use App\Models\TUK\TUKModel;
 
-class AsesiController extends ResourceController
+class AsesiController extends BaseController
 {
-	/**
-	 * Return an array of resource objects, themselves in array format
-	 *
-	 * @return mixed
-	 */
 	public function index()
 	{
-		$data = [
-            'ui_title' => 'Data Asesi'
-        ];
-        return view('asesi/asesi/list', $data);
-	}
+		$data['ui_title'] = 'Manajemen data Asesi';
 
-	/**
-	 * Return list of resource objects
-	 * 
-	 * @return mixed
-	 */
-	public function list() {
-		
-	}
-
-	/**
-	 * Return the properties of a resource object
-	 *
-	 * @return mixed
-	 */
-	public function show($id = null)
-	{
-		//
-	}
-
-	/**
-	 * Return a new resource object, with default properties
-	 *
-	 * @return mixed
-	 */
-	public function new()
-	{
-		//
-	}
-
-	/**
-	 * Create a new resource object, from "posted" parameters
-	 *
-	 * @return mixed
-	 */
-	public function create()
-	{
-		//
-	}
-
-	/**
-	 * Return the editable properties of a resource object
-	 *
-	 * @return mixed
-	 */
-	public function edit($id = null)
-	{
-		//
-	}
-
-	/**
-	 * Add or update a model resource, from "posted" properties
-	 *
-	 * @return mixed
-	 */
-	public function update($id = null)
-	{
-		//
-	}
-
-	/**
-	 * Delete the designated resource object from the model
-	 *
-	 * @return mixed
-	 */
-	public function delete($id = null)
-	{
-		//
+		$data['dataAsesor'] = (new AsesorModel())->orderBy('nama', 'asc')->findAll();
+		$data['dataTuk'] = (new TUKModel())->orderBy('nama', 'asc')->findAll();
+		return view('asesi/list', $data);
 	}
 }
