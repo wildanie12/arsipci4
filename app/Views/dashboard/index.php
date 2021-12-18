@@ -136,7 +136,7 @@
                             </div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800">
                                 <?= $countAsesi ?>
-                                <small style="color: #999999">Item</small>
+                                <small style="color: #999999">Peserta</small>
                             </div>
                         </div>
                         <div class="col-auto">
@@ -156,7 +156,7 @@
                             </div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800">
                                 <?= $countSurveilance ?>
-                                <small style="color: #999999">Item</small>
+                                <small style="color: #999999">Peserta</small>
                             </div>
                         </div>
                         <div class="col-auto">

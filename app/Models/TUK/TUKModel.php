@@ -6,7 +6,7 @@ use CodeIgniter\Model;
 
 class TUKModel extends Model
 {
-	protected $table                = 'TUK';
+	protected $table                = 'tuk';
 	protected $returnType           = 'object';
 	protected $useSoftDeletes       = true;
 	protected $useTimestamps        = true;

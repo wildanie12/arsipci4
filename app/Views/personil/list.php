@@ -1203,12 +1203,12 @@
 
         modalJabatan.on('show.bs.modal', function (e) {
             modalNewPersonil.css('z-index', '1020')
-            // modalEditPersonil.css('z-index', '1020')
+            modalEditPersonil.css('z-index', '1020')
         })
         modalJabatan.on('hidden.bs.modal', function (e) {
             modalNewPersonil.css('z-index', '1050')
             $("body").addClass('modal-open')
-            // modalEditPersonil.css('z-index', '1050')
+            modalEditPersonil.css('z-index', '1050')
         })
         modalJabatan.on('shown.bs.modal', function (e) {
             refreshJabatan()

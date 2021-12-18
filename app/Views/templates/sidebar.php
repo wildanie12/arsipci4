@@ -62,12 +62,12 @@
             </div>
 
             <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item <?=(($uri->getSegment(1) == 'profil' || $uri->getSegment(1) == 'lampiran') ? 'active' : '')?>">
+            <li class="nav-item <?=(($uri->getTotalSegments() >= 1 && $uri->getSegment(1) == 'profil' || $uri->getSegment(1) == 'lampiran') ? 'active' : '')?>">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fas fa-fw fa-cog"></i>
                     <span>Data LSP</span>
                 </a>
-                <div id="collapseTwo" class="collapse <?=(($uri->getSegment(1) == 'profil' || $uri->getSegment(1) == 'lampiran') ? 'show' : '')?>" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div id="collapseTwo" class="collapse <?=(($uri->getTotalSegments() >= 1 && $uri->getSegment(1) == 'profil' || $uri->getSegment(1) == 'lampiran') ? 'show' : '')?>" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <!-- <h6 class="collapse-header">Custom Components:</h6> -->
                         <a class="collapse-item <?= ($uri->getSegment(1) == 'profil') ? 'active' : '' ?>" href="<?= site_url('profil') ?>">Profil</a>
@@ -77,13 +77,13 @@
             </li>
 
             <!-- Nav Item - Utilities Collapse Menu -->
-            <li class="nav-item <?= ($uri->getSegment(1) == 'mitra_kerja') ? 'active' : '' ?>">
+            <li class="nav-item <?= ($uri->getTotalSegments() >= 1 && $uri->getSegment(1) == 'mitra_kerja') ? 'active' : '' ?>">
                 <a class="nav-link" href="<?= base_url('mitra_kerja'); ?>">
                     <i class="fas fa-fw fa-handshake"></i>
                     <span>Mitra Kerja</span>
                 </a>
             </li>
-            <li class="nav-item <?= ($uri->getSegment(1) == 'tuk') ? 'active' : '' ?>">
+            <li class="nav-item <?= ($uri->getTotalSegments() >= 1 && $uri->getSegment(1) == 'tuk') ? 'active' : '' ?>">
                 <a class="nav-link" href="<?= base_url('tuk'); ?>">
                     <i class="fas fa-fw fa-folder"></i>
                     <span>T.U.K</span>
@@ -105,15 +105,15 @@
                     <i class="fas fa-fw fa-folder"></i>
                     <span>Asesor</span>
                 </a>
-                <div id="collapsePages" class="collapse <?= ($uri->getSegment(1) == 'asesor') ? 'show' : '' ?>" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                <div id="collapsePages" class="collapse <?= ($uri->getTotalSegments() >= 1 && $uri->getSegment(1) == 'asesor') ? 'show' : '' ?>" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <!-- <h6 class="collapse-header">Login Screens:</h6> -->
-                        <a class="collapse-item <?= ($uri->getSegment(2) == 'internal') ? 'active' : '' ?>" href="<?= site_url('asesor/internal'); ?>">Asesor Internal</a>
-                        <a class="collapse-item <?= ($uri->getSegment(2) == 'eksternal') ? 'active' : '' ?>" href="<?= site_url('asesor/eksternal'); ?>">Asesor Eksternal</a>
+                        <a class="collapse-item <?= ($uri->getTotalSegments() >= 1 && $uri->getSegment(2) == 'internal') ? 'active' : '' ?>" href="<?= site_url('asesor/internal'); ?>">Asesor Internal</a>
+                        <a class="collapse-item <?= ($uri->getTotalSegments() >= 1 && $uri->getSegment(2) == 'eksternal') ? 'active' : '' ?>" href="<?= site_url('asesor/eksternal'); ?>">Asesor Eksternal</a>
                     </div>
                 </div>
             </li>
-            <li class="nav-item <?= ($uri->getSegment(1) == 'personil') ? 'active' : '' ?>">
+            <li class="nav-item <?= ($uri->getTotalSegments() >= 1 && $uri->getSegment(1) == 'personil') ? 'active' : '' ?>">
                 <a class="nav-link" href="<?= site_url('personil'); ?>">
                     <i class="fas fa-fw fa-folder"></i>
                     <span>Personil</span>
@@ -128,16 +128,16 @@
                 DATABASE
             </div>
 
-            <li class="nav-item <?=(($uri->getSegment(1) == 'asesi' || $uri->getSegment(1) == 'surveilance') ? 'active' : '')?>">
+            <li class="nav-item <?=(($uri->getTotalSegments() >= 1 && $uri->getSegment(1) == 'asesi' || $uri->getSegment(1) == 'surveilance') ? 'active' : '')?>">
                 <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapseDatabase" aria-expanded="true" aria-controls="collapseDatabase">
                     <i class="fas fa-fw fa-wrench"></i>
                     <span>Asesi</span>
                 </a>
-                <div id="collapseDatabase" class="collapse <?=(($uri->getSegment(1) == 'asesi') ? 'show' : '')?>" aria-labelledby="headingDatabase" data-parent="#accordionSidebar">
+                <div id="collapseDatabase" class="collapse <?=(($uri->getTotalSegments() >= 1 && $uri->getSegment(1) == 'asesi') ? 'show' : '')?>" aria-labelledby="headingDatabase" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <!-- <h6 class="collapse-header">Custom Utilities:</h6> -->
-                        <a class="collapse-item <?=(($uri->getSegment(2) == 'asesi') ? 'active' : '')?>" href="<?= base_url('asesi/asesi'); ?>">Asesi</a>
-                        <a class="collapse-item <?=(($uri->getSegment(2) == 'surveilance') ? 'active' : '')?>" href="<?= base_url('asesi/surveilance'); ?>">Data Surveilance</a>
+                        <a class="collapse-item <?=(($uri->getTotalSegments() >= 1 && $uri->getSegment(2) == 'asesi') ? 'active' : '')?>" href="<?= base_url('asesi/asesi'); ?>">Asesi</a>
+                        <a class="collapse-item <?=(($uri->getTotalSegments() >= 1 && $uri->getSegment(2) == 'surveilance') ? 'active' : '')?>" href="<?= base_url('asesi/surveilance'); ?>">Data Surveilance</a>
 
                     </div>
                 </div>

@@ -1831,12 +1831,12 @@
         })
         modalSkema.on('show.bs.modal', function (e) {
             modalNewAsesi.css('z-index', '1020')
-            // modalEditPersonil.css('z-index', '1020')
+            modalEditAsesi.css('z-index', '1020')
         })
         modalSkema.on('hidden.bs.modal', function (e) {
             modalNewAsesi.css('z-index', '1050')
             $("body").addClass('modal-open')
-            // modalEditPersonil.css('z-index', '1050')
+            modalEditAsesi.css('z-index', '1050')
         })
         modalSkema.on('shown.bs.modal', function (e) {
             refreshSkema()

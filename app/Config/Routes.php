@@ -34,9 +34,7 @@ $routes->setAutoRoute(true);
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 // $routes->get('/', 'User::index');
-$routes->get('/', function () {
-	dd((new TUKModel())->findAll());
-});
+$routes->get('/', 'Dashboard\DashboardController::index');
 
 // $routes->get('asesi', 'Asesi\AsesiController::index');
 // $routes->get('asesi/(:any)', 'Asesi\AsesiController::$1');
